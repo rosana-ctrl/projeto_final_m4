@@ -1,0 +1,25 @@
+{
+  "name": "projeto_final_m4",
+  "version": "1.0.0",
+  "description": "Projeto final do módulo 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "dev" : "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosana-ctrl/projeto_final_m4.git"
+  },
+  "author": "Sara, Rachelle, Rosana, Julia, Elica e Edson",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/rosana-ctrl/projeto_final_m4/issues"
+  },
+  "homepage": "https://github.com/rosana-ctrl/projeto_final_m4#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
