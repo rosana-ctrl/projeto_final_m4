@@ -37,3 +37,4 @@ app.delete ('/lazer/atividades/:atividades', (req,res)=>{
 
 
 export default lazer_controller
+
