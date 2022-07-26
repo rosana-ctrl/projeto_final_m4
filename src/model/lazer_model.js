@@ -1,3 +1,4 @@
+import bd from "../database/bd.js"
 import banco from "../database/bd.js"
 
 class Lazer {
@@ -7,9 +8,15 @@ class Lazer {
         this.idAtividade = idAtividade
     }
     escolherAtividades = (bancoAtividades) => {
-        banco.bancoAtividades.push (bancoAtividades)
+        bd.bancoAtividades.push (bancoAtividades)
+    }
+
+    deletaAtividade = (ativ)=>{
+        const newbd = bd.bancoAtividades.filter(atividades => atividades.ativ !== ativ)
+        bd.bancoAtividades = newbd
     }
 }
+
 
 export default Lazer
 
