@@ -1,3 +1,3 @@
-const hospede_tabela = []
+let bd_reservas = []
 
-export default {hospede_tabela}
+export default bd_reservas
