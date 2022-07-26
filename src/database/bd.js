@@ -1,3 +1,3 @@
-const bancoAtividades = []
+let bd_reservas = []
 
-export default {bancoAtividades}
+export default bd_reservas
