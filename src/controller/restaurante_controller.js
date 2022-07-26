@@ -1,11 +1,11 @@
-import Restaurante from "../model/restaurante.js"
+import Restaurante from "../model/restaurante_controller.js"
 
 const hotelRestaurante = (app)=>{
 
 app.get('/restaurante', (req, res)=>{
         
-//const restaurante = new Restaurante()
-res.json({"restaurante" : "O que fazer nessa rota???"})
+const restaurante = new Restaurante()
+res.json({"restaurante" : restaurante.garRestaurante})
     })
 
 app.post('/restaurante', (req, res)=>{

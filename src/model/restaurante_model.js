@@ -1,4 +1,4 @@
-//import banco from '../database/banco.js'
+import banco from '../database/bd.js'
 
 class Restaurante {
     constructor(pedido, cardapio, bebidas,cliente){
@@ -11,7 +11,9 @@ class Restaurante {
     inserirRestaurante = (restaurante)=>{
         banco.restaurante.push(restaurante)
     }
-
+    pegarRestaurante = ()=>{
+        return banco.restaurante
+    }
 
 }
 
