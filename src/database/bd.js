@@ -1,3 +1,3 @@
-let reservas = []
+let bd_reservas = []
 
-export default reservas
+export default bd_reservas
