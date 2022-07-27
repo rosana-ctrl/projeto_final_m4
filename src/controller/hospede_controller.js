@@ -17,6 +17,17 @@ const hospedeController = (app) => {
         )
     })
 
+    app.get('/hospede/email/:email', (req, res) => {
+        const email = req.params.email
+
+        const hospede = hospedeModel.pegaUmHospede(email)
+        
+        res.json(
+            {"hospede": hospede,
+             "erro" : false}
+        )
+    })
+
     app.post('/hospede', (req, res) => {
         const body = req.body
         try {
@@ -41,11 +52,23 @@ const hospedeController = (app) => {
         }        
     })
 
-    app.delete('/hospede/:email'), (req, res) => {
+    app.delete('/hospede/email/:email', (req, res) => {
+        const email = req.params.email
+        hospedeModel.deletaUmHospede(email)
         res.json({
-            'mensagem': 'foi com deus'
+            'mensagem': `${email} foi com deus`,
+            "erro" : false
         })
-    }
+    })
+
+    app.put('/hospede/email/:email', (req, res) => {
+        const email = req.params.email
+        hospedeModel.atualizaUmHospede(email)
+        res.json({
+            'mensagem': `${email} atualizado`,
+            "erro" : false
+        })
+    })
 }
 
 export default hospedeController
