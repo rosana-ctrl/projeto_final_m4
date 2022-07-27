@@ -1,11 +1,12 @@
 import Lazer from "../model/lazer_model.js"
-
+import lazerDao from "../DAO/lazer_DAO.js"
+import db from "../database/db-sqlite.js"
 
 const lazer_controller = (app) => {
-    const lazer_model = new Lazer ()
-    app.get ('/lazer', (req, res) => {
+    const lazerModel = new Lazer ()
+    app.get ('/lazer', async(req, res) => {
         //const lazer = ("message: Essa chama a model")
-        res.json ('teste lazer')
+        res.json (await lazerDao.pegarTodosLazer(db))
     })
 
 app.post ('/lazer', (req, res) => {
