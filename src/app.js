@@ -6,7 +6,6 @@ import servicosController from "./controller/servicos_controller.js"
 import hotelRestaurante from './controller/restaurante_controller.js'
 
 
-
 const app = express()
 const port = 3009
 
@@ -18,6 +17,6 @@ reservasController(app)
 servicosController(app)
 hotelRestaurante(app)
 
-app.listen(port, () => {
-    console.log(`http://localhost:${port}/`)
+app.listen (port, () => {
+    console.log(`http://localhost: ${port}/`)
 })
