@@ -1,7 +1,7 @@
 import bd from '../database/bd.js'
 
 export default class HospedeModel {
-    
+
     // add novo hospede no bd
     addNovoHospede = (hospede) => {
         bd.bd_hospedes.push(hospede)
