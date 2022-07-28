@@ -31,7 +31,7 @@ const hospedeController = (app) => {
     app.post('/hospede', (req, res) => {
         const body = req.body
         try {
-            const novoHospede = new ValidaHospede(body.nome, body.email, body.senha)
+            const novoHospede = new ValidaHospede(body.nome, body.genero, body.nasc, body.email, body.senha)
             
             hospedeModel.addNovoHospede(novoHospede)
 
