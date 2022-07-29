@@ -8,14 +8,14 @@ const restaurante = new Restaurante()
 res.json({"restaurante" : restaurante.pegarRestaurante()})
     })
 
-app.get('/restaurante/pedido/:pedido', (req, res)=>{
+app.get('/restaurante/cardapio/:cardapaio', (req, res)=>{
 const restaurante = new Restaurante()
 
-const pedido = req.params.pedido
+const cardapio = req.params.cardapio
 
-const pegarPedido = restaurante.pegaUm(pedido)
+const pegarCardapio = restaurante.pegaUm(cardapio)
 
-res.json({"tarefa" : pegarPedido,
+res.json({"tarefa" : pegarCardapio,
               "erro" : false}
         )
 })
@@ -24,32 +24,32 @@ app.post('/restaurante', (req, res)=>{
 
 const body = req.body
         
-const restaurante = new Restaurante(body.pedido, body.cardapio, body.bebidas,body.cliente)
+const restaurante = new Restaurante(body.cardapio, body.bebida,body.cliente)
         
 restaurante.inserirRestaurante(restaurante)
 
-res.json({"msg" : "Serviço selecionado com sucesso",
+res.json({"msg" : "Cardapio inserido com sucesso",
           "restaurante" : restaurante,})
 })
-app.delete('/restaurante/pedido/:pedido', (req,res)=>{
+app.delete('/restaurante/cardapio/:cardapio', (req,res)=>{
 
 const restaurante = new Restaurante()
     
-const pedido = req.params.pedido
+const cardapio = req.params.cardapio
     
-restaurante.deletarCardapio(pedido)
+restaurante.deletarCardapio(cardapio)
             
-res.json({"msg" : `Pedido ${pedido} deletado com sucesso`,
+res.json({"msg" : `Pedido ${cardapio} deletado com sucesso`,
               "erro" : false})    
 })
-app.put('/restaurante/pedido/:pedido', (req, res)=>{
+app.put('/restaurante/cardapio/:cardapio', (req, res)=>{
     const body = req.body
-    const pedido = req.params.pedido
+    const cardapio = req.params.cardapio
     try {
-        const restaurante = new Restaurante(body.pedido, body.cardapio, body.bebidas,body.cliente)
-        restaurante.atualizarPedido(pedido, restaurante)
+        const restaurante = new Restaurante(body.cardapio, body.bebida,body.cliente)
+        restaurante.atualizarPedido(cardapio, restaurante)
         res.json({
-            "msg" : `Pedido ${pedido} atualizado com sucesso`,
+            "msg" : `Cardapio ${cardapio} atualizado com sucesso`,
             "erro" : false
         })
 

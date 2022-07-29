@@ -82,7 +82,6 @@ function criaTabelaHosp() {
     })
 }
 
-
 function populaTabelaHosp() {
     db.run(ADD_HOSPEDES_DATA, (error)=> {
        if (error) console.log("Erro ao popular tabela de usuários");
@@ -123,6 +122,34 @@ function populaTabelaSer() {
     });
 }
 
+const RESTAURANTE_SCHEMA = `
+CREATE TABLE IF NOT EXISTS "RESTAURANTE" (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "cardapio" varchar(64),
+    "bebida" varchar(64),
+    "cliente" varchar(64)
+  );`;
+
+const ADD_RESTAURANTE_DATA = `
+INSERT INTO RESTAURANTE (id, cardapio, bebida, cliente)
+VALUES 
+    (1, 'strogonoff de carne', 'suco de laranja', 'Luana da Silva'),
+    (2, 'bife a parmegiana', 'coca-cola', 'Juma'),
+    (3, 'feijoada', 'água', 'Demi Lovato')
+`
+
+function criaTabelaRestaurante() {
+    db.run(RESTAURANTE_SCHEMA, (error)=> {
+       if (error) console.log("Erro ao criar tabela de restaurante");
+});
+}
+
+function populaTabelaRestaurante() {
+    db.run(ADD_RESTAURANTE_DATA, (error) => {
+        if (error) console.log("Erro ao popular tabela restaurante");
+    });
+}
+
 db.serialize( ()=> {
     criaTabelaReserva();
     populaTabelaReserva();
@@ -130,5 +157,8 @@ db.serialize( ()=> {
     populaTabelaHosp();
     criaTabelaSer();
     populaTabelaSer();
+    criaTabelaRestaurante();
+    populaTabelaRestaurante();
+    
     
 })

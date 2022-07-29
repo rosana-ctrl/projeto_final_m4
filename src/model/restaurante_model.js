@@ -1,10 +1,10 @@
 import banco from '../database/bd.js'
-
+let id_restaurante = 0
 class Restaurante {
-    constructor(pedido, cardapio, bebidas,cliente){
-        this.pedido = pedido;
+    constructor(cardapio, bebida,cliente){
+        this.id_restaurante = id_restaurante++;
         this.cardapio = cardapio;
-        this.bebidas = bebidas;
+        this.bebida = bebida;
         this.cliente = cliente;
     }
 
@@ -22,13 +22,13 @@ class Restaurante {
         const newDB = banco.restaurante.filter(restaurante=>restaurante.pedido ==!pedido)
         banco.restaurante = newDB
     }
-    atualizarPedido = (pedido, novos)=>{
+    atualizarPedido = (cardapio, novos)=>{
     const newDb = banco.restaurante.map(restaurante=>{
-    if(restaurante.pedido === pedido){
+    if(restaurante.cardapio === cardapio){
     return {
-            "pedido" : novos.pedido || restaurante.pedido,
+            "id" : restaurante.id,
             "cardapio" : novos.cardapio || restaurante.cardapio,
-            "bebidas" : novos.bebidas || restaurante.bebidas,
+            "bebidas" : novos.bebida || restaurante.bebida,
             "cliente" : novos.cliente || restaurante.cliente
                 }
             }return restaurante
