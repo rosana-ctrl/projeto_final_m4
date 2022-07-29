@@ -1,32 +1,38 @@
 import bd from "../database/bd.js"
 
-let idServicos = 1
-
 export default class Servicos {
-    constructor(room_service, early_checkin, late_checkout, governanca, concierge) {
-        this.idServicos = idServicos++;
-        this.room_service = room_service;
-        this.early_checkin = early_checkin;
-        this.late_checkout = late_checkout;
-        this.governanca = governanca;
-        this.concierge = concierge;
 
-    }
-
-    solicitarServico = (bd_servicos) => {
+    solicitaServico = (bd_servicos) => {
         bd.bd_servicos.push(bd_servicos)
     }
 
     pegaServico = () => {
         return bd.bd_servicos
     }
+
     deletaServico = (room_service) => {
 
-        return bd.bd_servicos.filter(bd_servicos => bd_servicos.room_service === room_service)
+        const bd_v2 = bd.bd_servicos.filter(bd_servicos => bd_servicos.room_service !== room_service)
+        bd.bd_servicos = bd_v2
     }
 
-    atualizaServico = (room_service) => {
+    atualizaServico = (room_service, new_service) => {
 
-        return bd.bd_servicos.filter(bd_servicos => bd_servicos.room_service === room_service)
+        const newDb = bd.bd_servicos.map(bd_servicos => {
+            if (bd_servicos.room_service === room_service) {
+                return {
+                    "id": bd_servicos.id,
+                    "room_service": new_service.room_service || bd_servicos.room_service,
+                    "late_checkout": new_service.late_checkout || bd_servicos.late_checkout,
+                    "early_checkin": new_service.early_checkin || bd_servicos.early_checkin,
+                    "concierge": new_service.concierge || bd_servicos.concierge,
+                    "governanca": new_service.governanca || bd_servicos.governanca
+                }
+            }
+            return bd_servicos
+        })
+
+        bd.bd_servicos = newDb
+
     }
 }
