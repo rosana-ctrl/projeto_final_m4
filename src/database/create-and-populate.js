@@ -1,23 +1,28 @@
 import sqlite3 from "sqlite3";
 sqlite3.verbose()
 
-import { dirname } from'path'
-import { fileURLToPath } from 'url'
-const filePath = dirname(fileURLToPath(import.meta.url)) + '/database.db'
+import {
+    dirname
+} from 'path'
+import {
+    fileURLToPath
+} from 'url'
+const filePath = dirname(fileURLToPath(
+    import.meta.url)) + '/database.db'
 const db = new sqlite3.Database(filePath)
 
 const RESERVAS_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "RESERVAS" (
-    "id_reserva" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "quarto" varchar(64),
     "quantLeitos" varchar(64),
     "frigobar" varchar(64),
     "dataEntrada" varchar(64),
-    "dataSaida" varchar(64),
+    "dataSaida" varchar(64)
   );`;
 
-  const ADD_RESERVAS_DATA = `
-  INSERT INTO RESERVAS (ID_RESERVA, QUARTO, QUANTLEITOS, FRIGOBAR, DATAENTRADA, DATASAIDA)
+const ADD_RESERVAS_DATA = `
+  INSERT INTO RESERVAS (id, quarto, quantLeitos, frigobar, dataEntrada, dataSaida)
   VALUES 
       (1, '10', '3', 'Sim', '01/07/2022', '03/07/2022'),
       (2, '11', '3', 'Sim', '01/07/2022', '05/07/2022'),
@@ -38,18 +43,18 @@ CREATE TABLE IF NOT EXISTS "RESERVAS" (
       (17, '35', '1', 'Sim', '11/07/2022', '17/07/2022'),
       (18, '36', '2', 'Sim', '11/07/2022', '14/07/2022'),
       (19, '37', '3', 'Sim', '12/07/2022', '17/07/2022'),
-      (20, '39', '2', 'Não', '13/07/2022', '14/07/2022'),
+      (20, '39', '2', 'Não', '13/07/2022', '14/07/2022')
   `
 
-  function criaTabelaReserva() {
-    db.run(RESERVAS_SCHEMA, (error)=> {
+function criaTabelaReserva() {
+    db.run(RESERVAS_SCHEMA, (error) => {
         if (error) console.log("Erro ao criar tabela de reservas");
     });
 }
 
 
 function populaTabelaReserva() {
-    db.run(ADD_RESERVAS_DATA, (error)=> {
+    db.run(ADD_RESERVAS_DATA, (error) => {
         if (error) console.log("Erro ao popular tabela de reservas");
     });
 }
@@ -69,22 +74,22 @@ CREATE TABLE IF NOT EXISTS "HOSPEDES" (
 const ADD_HOSPEDES_DATA = `
 INSERT INTO HOSPEDES (id_Hospede, nome, genero, nasc, email, celular, senha)
 VALUES 
-    (1, 'Rachelle Santolin', 'F', '13/12/1992', 'rach@gmail.com, '(21) 99765-8972', 'aB@aQ34526'),
-    (2, 'Gloria Santos', 'F', '17/10/1990', 'gloria@gmail.com, '(21) 99545-8867', 'cD@aJ34826'),
-    (3, 'Ronald Magalhães', 'M', '24/05/1980', 'ronald@gmail.com, '(11) 99321-9967', '123@aBcD'),
-    (4, 'Kay Torres', 'NB', '09/09/1988', 'kay@gmail.com, '(31) 98381-9467', '456!aBcD')
+    (1, 'Rachelle Santolin', 'F', '13/12/1992', 'rach@gmail.com', '(21) 99765-8972', 'aB@aQ34526'),
+    (2, 'Gloria Santos', 'F', '17/10/1990', 'gloria@gmail.com', '(21) 99545-8867', 'cD@aJ34826'),
+    (3, 'Ronald Magalhães', 'M', '24/05/1980', 'ronald@gmail.com', '(11) 99321-9967', '123@aBcD'),
+    (4, 'Kay Torres', 'NB', '09/09/1988', 'kay@gmail.com', '(31) 98381-9467', '456!aBcD')
 
 `
 
 function criaTabelaHosp() {
-    db.run(HOSPEDES_SCHEMA, (error)=> {
-       if (error) console.log("Erro ao criar tabela de usuários");
+    db.run(HOSPEDES_SCHEMA, (error) => {
+        if (error) console.log("Erro ao criar tabela de usuários");
     })
 }
 
 function populaTabelaHosp() {
-    db.run(ADD_HOSPEDES_DATA, (error)=> {
-       if (error) console.log("Erro ao popular tabela de usuários");
+    db.run(ADD_HOSPEDES_DATA, (error) => {
+        if (error) console.log("Erro ao popular tabela de usuários");
     })
 }
 
@@ -95,18 +100,17 @@ CREATE TABLE IF NOT EXISTS "SERVICOS" (
     "early_checkin" datetime,
     "late_checkout" varchar,
     "governanca" varchar(255),
-    "concierge" varchar(255),
-    FOREIGN KEY(ID_QUARTO) REFERENCES USUARIO(ID)
+    "concierge" varchar(255)
   );`;
 
 //   fazer uma query que chame o id do quarto
 const ADD_SERVICOS_DATA = `
-INSERT INTO SERVICOS (ROOM_SERVICE, EARLY_CHECKIN, LATE_CHECKOUT, GOVERNANCA, CONCIERGE,)
+INSERT INTO SERVICOS (id, room_service, early_checkin, late_checkout, governanca, concierge)
 VALUES 
-    ('café da manhã', null, '2021-01-13 16:30:00', 'toalha', 'teatro'),
-    ('almoço', 'null', 'null', 'mull', 'cinema'),
-    ('café da manhã', 'null', 'null', 'travesseiro', 'null'),
-    ('lanche', 'null', 'null', 'null', 'show')
+    (1, 'café da manhã', null, '2021-01-13 16:30:00', 'toalha', 'teatro'),
+    (2, 'almoço', 'null', 'null', 'mull', 'cinema'),
+    (3, 'café da manhã', 'null', 'null', 'travesseiro', 'null'),
+    (4, 'lanche', 'null', 'null', 'null', 'show')
 `
 
 function criaTabelaSer() {
@@ -139,9 +143,9 @@ VALUES
 `
 
 function criaTabelaRestaurante() {
-    db.run(RESTAURANTE_SCHEMA, (error)=> {
-       if (error) console.log("Erro ao criar tabela de restaurante");
-});
+    db.run(RESTAURANTE_SCHEMA, (error) => {
+        if (error) console.log("Erro ao criar tabela de restaurante");
+    });
 }
 
 function populaTabelaRestaurante() {
@@ -167,19 +171,19 @@ VALUES
 `
 
 function criaTabelaLzr() {
-    db.run(LAZER_SCHEMA, (error)=> {
+    db.run(LAZER_SCHEMA, (error) => {
         if (error) console.log("Erro ao criar tabela de lazer");
     });
 }
 
 
 function populaTabelaLzr() {
-    db.run(ADD_LAZER_DATA, (error)=> {
+    db.run(ADD_LAZER_DATA, (error) => {
         if (error) console.log("Erro ao popular tabela de lazer");
     });
 }
 
-db.serialize( ()=> {
+db.serialize(() => {
     criaTabelaReserva();
     populaTabelaReserva();
     criaTabelaHosp();
@@ -189,5 +193,5 @@ db.serialize( ()=> {
     criaTabelaRestaurante();
     populaTabelaRestaurante();
     criaTabelaLzr();
-    populaTabelaLzr();    
+    populaTabelaLzr();
 })
