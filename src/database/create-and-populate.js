@@ -1,6 +1,3 @@
-/*
-Esse arquivo deve ser executado apenas uma vez
-*/
 import sqlite3 from "sqlite3";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
