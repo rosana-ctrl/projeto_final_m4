@@ -1,14 +1,37 @@
 let id_Hospede = 0
 
 class ValidaHospede {
-    constructor(nome, genero, nasc, email, telefone, senha) {
+    constructor(nome, genero, nasc, email, celular, senha) {
         this.id_Hospede = id_Hospede++
-        this.nome = nome
+        this.nome = this.validaNome(nome)
         this.genero = this.validaGenero(genero)
         this.nasc = this.validaNasc(nasc)
         this.email = this.validaEmail(email)
-        this.telefone = telefone
+        this.celular = this.validaCelular(celular)
         this.senha = this.validaSenha(senha)
+    }
+
+    validaNome = (nome) => {        
+            if (nome.length == 0) {
+                throw new Error("O campo NOME não pode ficar vazio")
+            } else {
+                return nome
+            }
+    }
+
+    validaCelular = (celular) => {
+        const regexT = /^\([1-9]{2}\) 9[1-9]{1}[0-9]{3}\-[0-9]{4}$/
+
+        if (celular) {
+            if (regexT.exec(celular)) {
+                return celular
+            } else {
+                throw new Error("Número de celular inválido. Use o formato (xx) xxxxx-xxxx")
+            }
+        } else {
+            throw new Error("Insira um celular no formato (xx) xxxxx-xxxx")
+        }
+
     }
 
     validaSenha = (senha) => {
@@ -68,8 +91,8 @@ class ValidaHospede {
             throw new Error("Insira uma data")
         }
     }
-    
-    
+
+
 
 }
 
