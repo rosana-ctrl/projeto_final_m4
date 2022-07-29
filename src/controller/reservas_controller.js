@@ -1,74 +1,63 @@
 import Reservas from "../model/reservas_model.js"
 import ValidacaoReserva from "../services/validacaoReservas.js"
 
-const reservasController = (app)=>{
+
+const reservasController = (app) => {
     const modelReservas = new Reservas()
-    app.get('/reservas', (req, res)=>{
-
-        const todasReservas = modelReservas.pegaReservas()
-        res.json({
-            "Reservas" : todasReservas,
-            "erro" : false
-        })
+    app.get('/reservas', async (req, res) => {
+        try {
+            const todasReservas = await modelReservas.pegaReservas()
+            res.json(todasReservas)
+        } catch (error) {
+            res.json(error)
+        }
     })
 
-    app.get('/reservas/quarto/:quarto', (req, res)=>{
-
+    app.get('/reservas/quarto/:quarto', async (req, res) => {
         const quarto = req.params.quarto
-        const bd_reservas = modelReservas.pegaUmaReserva(quarto)
-      
-        res.json(
-            {"Reserva": bd_reservas,
-             "erro" : false}
-        )
+        try {
+            const reserva = await modelReservas.pegaUmaReserva(quarto)
+            res.json(reserva)
+        } catch (error) {
+            res.json(error)
+        }
     })
 
-    app.post('/reservas', (req, res)=>{
+    app.post('/reservas', async (req, res) => {
         const body = req.body
         try {
-            const novaReserva = new ValidacaoReserva(body.quarto, body.quantLeitos, body.frigobar, body.dataEntrada, body.dataSaida)
-            modelReservas.insereReserva(novaReserva)
-            res.json(
-                {"msg" : "Reserva inserida com sucesso",
-                "Reserva" : novaReserva,
-                "erro" : false}
-            )
-            
+            const resposta = await modelReservas.insereReserva(body)
+            res.json(resposta)
         } catch (error) {
-            res.json(
-                {"msg" : error.message,
-                 "erro" : true}
-            )
+            res.json({
+                "msg": error.message,
+                "erro": true
+            })
         }
 
     })
 
-    app.delete('/reservas/quarto/:quarto', (req,res)=>{
+    app.delete('/reservas/quarto/:quarto', async (req, res) => {
         const quarto = req.params.quarto
-        modelReservas.deletaReserva(quarto)
-        res.json({
-            "msg" : `Reserva do quarto ${quarto} deletada com sucesso`,
-            "erro" : false
-        })
+        try {
+            const resposta = await modelReservas.deletaReserva(quarto)
+            res.json(resposta)
+        } catch (error) {
+            res.json(error)
+        }
+
     })
 
-    app.put('/reservas/quarto/:quarto', (req, res)=>{
+    app.put('/reservas/quarto/:quarto', async (req, res) => {
         const body = req.body
         const quarto = req.params.quarto
         try {
             const novosDados = new ValidacaoReserva(body.quarto, body.quantLeitos, body.frigobar, body.dataEntrada, body.dataSaida)
-            modelReservas.atualizaReserva(quarto, novosDados)
-            res.json({
-                "msg" : `Reserva do quarto ${quarto} atualizada com sucesso`,
-                "Reserva" : novosDados,
-                "erro" : false
-            })
+            const resposta = await modelReservas.atualizaReserva(quarto, novosDados)
+            res.json(resposta)
 
         } catch (error) {
-            res.json({
-                "msg" : error.message,
-                "erro" : true
-            })
+            res.json(error)
         }
     })
 }
