@@ -12,17 +12,17 @@ const db = new sqlite3.Database(filePath);
 const LAZER_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "LAZER" (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "faixa_etaria" varchar(64),
-    "id_atividade" int,
-    "nome_atividade" varchar(64)
+    "nome_Hospede" varchar(64),
+    "nome_Atividade" varchar(64),
+    "dia_Atividade" varchar(10) 
   );`;
 
 const ADD_LAZER_DATA = `
-INSERT INTO LAZER (ID, FAIXA_ETARIA, ID_ATIVIDADE, NOME_ATIVIDADE)
+INSERT INTO LAZER (ID, NOME_HOSPEDE, NOME_ATIVIDADE, DIA_ATIVIDADE)
 VALUES 
-    (1, 'Adulto', 1, 'Trilha'),
-    (2, 'Jovem', 2, 'Jogos Eletronicos'),
-    (3, 'Criança', 3, 'Brinquedoteca')
+    (1, 'Geraldo Nascimento', 'Trilha', '10/07/2022'),
+    (2, 'Mariah Assunção', 'SPA', '28/07/2022'),
+    (3, 'Raimunda Freitas', 'Yoga', '02/08/2022')
 `
 
 function criaTabelaLzr() {
