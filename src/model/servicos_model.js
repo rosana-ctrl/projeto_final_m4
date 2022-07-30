@@ -1,38 +1,49 @@
-import bd from "../database/bd.js"
+import ServicosDao from '../DAO/servicosDAO.js'
+import validacaoServicos from '../services/validacaoServicos.js';
 
 export default class Servicos {
 
-    solicitaServico = (bd_servicos) => {
-        bd.bd_servicos.push(bd_servicos)
+    solicitaServico = async (servico) => {
+
+        try {
+            const servicoNovo = new validacaoServicos(servico.room_service, servico.early_checkin, servico.late_checkout, servico.governanca, servico.concierge)
+            ServicosDao.solicitaServico(servicoNovo);
+
+        } catch (error) {
+            res.json({
+                "msg": error.message,
+                "erro": true
+            })
+        }
     }
 
-    pegaServico = () => {
-        return bd.bd_servicos
+    pegaServico = async () => {
+
+        return await ServicosDao.pegaServico()
     }
 
-    deletaServico = (room_service) => {
+    deletaServico = async (id) => {
 
-        const bd_v2 = bd.bd_servicos.filter(bd_servicos => bd_servicos.room_service !== room_service)
-        bd.bd_servicos = bd_v2
+        return await ServicosDao.deletaServico(id)
     }
 
-    atualizaServico = (room_service, new_service) => {
+    atualizaServico = async (id, novoServico) => {
 
-        const newDb = bd.bd_servicos.map(bd_servicos => {
-            if (bd_servicos.room_service === room_service) {
+        const servicoAtualizado = await ServicosDao.atualizaservico(novoServico => {
+            if (servicoAtualizado.id === id) {
                 return {
-                    "id": bd_servicos.id,
-                    "room_service": new_service.room_service || bd_servicos.room_service,
-                    "late_checkout": new_service.late_checkout || bd_servicos.late_checkout,
-                    "early_checkin": new_service.early_checkin || bd_servicos.early_checkin,
-                    "concierge": new_service.concierge || bd_servicos.concierge,
-                    "governanca": new_service.governanca || bd_servicos.governanca
+                    "id": servicoAtualizado.id,
+                    "room_service": novoServico.room_service || servicoAtualizado.room_service,
+                    "late_checkout": novoServico.late_checkout || servicoAtualizado.late_checkout,
+                    "early_checkin": novoServico.early_checkin || servicoAtualizado.early_checkin,
+                    "concierge": novoServico.concierge || servicoAtualizado.concierge,
+                    "governanca": novoServico.governanca || servicoAtualizado.governanca
                 }
             }
-            return bd_servicos
+            return servicoAtualizado
         })
 
-        bd.bd_servicos = newDb
+        ServicosDao.atualizaservico = servicoAtualizado
 
     }
 }

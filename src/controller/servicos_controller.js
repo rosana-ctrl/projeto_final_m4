@@ -3,56 +3,50 @@ import validacaoServicos from "../services/validacaoServicos.js"
 
 const servicosController = (app) => {
     const modelServicos = new Servicos
-    app.get('/servicos', (req, res) => {
-        const todosServicos = modelServicos.pegaServico()
 
-        res.json({
-            "msg": todosServicos,
-            "erro": false
-        })
+    app.get('/servicos', (req, res) => {
+        try {
+            const todosServicos = await modelServicos.pegaServico()
+
+            res.json(
+                todosServicos)
+        } catch (error) {
+            res.json(error)
+
+        }
     })
 
     app.post('/servicos', (req, res) => {
         const body = req.body
         try {
-
-            const servico = new validacaoServicos(body.room_service, body.early_checkin, body.late_checkout, body.governanca, body.concierge)
-            modelServicos.solicitaServico(servico);
-            res.json({
-                "msg": servico,
-                "erro": false
-            })
+            const servico = await modelServicos.solicitaServico(id)
+            res.json(servico)
         } catch (error) {
-            res.json({
-                "msg": error.message,
-                "erro": true
-            })
+            res.json(error.message)
         }
     })
-    app.delete('/servicos/room_service/:room_service', (req, res) => {
-        const room_service = req.params.room_service
-        modelServicos.deletaServico(room_service)
-        res.json({
-            'mensagem': `${room_service} serviço deletado`,
-            "erro": false
-        })
+
+    app.delete('/servicos/id/:servico', (req, res) => {
+        try {
+            const servico = await modelServicos.deletaServico(id)
+
+            res.json(servico)
+        } catch (error) {
+            res.json(error.message)
+        }
+
     })
 
-    app.put('/servicos/room_service/:room_service', (req, res) => {
+    app.put('/servicos/id/:servico', (req, res) => {
         const body = req.body
+        const id = req.params.id
         try {
 
-            const servico = new validacaoServicos(body.room_service, body.early_checkin, body.late_checkout, body.governanca, body.concierge)
-            modelServicos.atualizaServico(servico);
-            res.json({
-                "msg": servico,
-                "erro": false
-            })
+            const novoServico = new validacaoServicos(body.room_service, body.early_checkin, body.late_checkout, body.governanca, body.concierge)
+            const servico = await modelServicos.atualizaServico(id)
+            res.json(servico)
         } catch (error) {
-            res.json({
-                "msg": error.message,
-                "erro": true
-            })
+            res.json(error.message)
         }
     })
 }

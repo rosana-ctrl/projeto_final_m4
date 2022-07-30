@@ -48,6 +48,6 @@ export default class HospedeModel {
             return await dao.atualizaHospede(id_Hospede, hospedeAtualizado)
         } else {
             throw new Error("Hospede não encontrado")
-        }        
+        }
     }
 }
