@@ -1,55 +1,45 @@
-import Restaurante from "../model/restaurante_model.js"
+import restauranteModel from "../model/restaurante_model.js"
 
 const hotelRestaurante = (app)=>{
 
-app.get('/restaurante', (req, res)=>{
+app.get('/restaurante', async (req, res)=>{
         
-const restaurante = new Restaurante()
-res.json({"restaurante" : restaurante.pegarRestaurante()})
+const restaurante = await restauranteModel.pegaTodosRestaurante()
+res.json({"restaurantes" : restaurante})
     })
 
-app.get('/restaurante/cardapio/:cardapaio', (req, res)=>{
-const restaurante = new Restaurante()
+app.get('/restaurante/cliente/:cliente', async (req, res)=>{
+const cliente = req.params.cliente
 
-const cardapio = req.params.cardapio
+const restaurante = await restauranteModel.pegaRestauranteCliente(cliente)
 
-const pegarCardapio = restaurante.pegaUm(cardapio)
-
-res.json({"tarefa" : pegarCardapio,
+res.json({"restaurante" : restaurante,
               "erro" : false}
         )
 })
 
-app.post('/restaurante', (req, res)=>{
+app.post('/restaurante',async (req, res)=>{
 
 const body = req.body
         
-const restaurante = new Restaurante(body.cardapio, body.bebida,body.cliente)
+const restaurante = await restauranteModel.inserirRestaurante(body)
         
-restaurante.inserirRestaurante(restaurante)
-
-res.json({"msg" : "Cardapio inserido com sucesso",
-          "restaurante" : restaurante,})
+res.json(restaurante)
 })
-app.delete('/restaurante/cardapio/:cardapio', (req,res)=>{
+app.delete('/restaurante/id/:id', async (req,res)=>{
+const id = req.params.id
 
-const restaurante = new Restaurante()
+const restaurante = await restauranteModel.deletaRestaurante(id)
     
-const cardapio = req.params.cardapio
-    
-restaurante.deletarCardapio(cardapio)
-            
-res.json({"msg" : `Pedido ${cardapio} deletado com sucesso`,
-              "erro" : false})    
+res.json(restaurante)    
 })
-app.put('/restaurante/cardapio/:cardapio', (req, res)=>{
+app.put('/restaurante/id/:id',async (req, res)=>{
     const body = req.body
-    const cardapio = req.params.cardapio
+    const id = req.params.id
     try {
-        const restaurante = new Restaurante(body.cardapio, body.bebida,body.cliente)
-        restaurante.atualizarPedido(cardapio, restaurante)
+        const restaurante = await restauranteModel.atualizarCardapio(id,body)
         res.json({
-            "msg" : `Cardapio ${cardapio} atualizado com sucesso`,
+            "msg" : `Cardapio ${restaurante.cardapio} atualizado com sucesso`,
             "erro" : false
         })
 

@@ -1,4 +1,4 @@
-import db from "../database/sqlite.js"
+import db from "../database/db-sqlite.js"
 
 export default class Dao {
 

@@ -1,42 +1,44 @@
-import banco from '../database/bd.js'
-let id_restaurante = 0
-class Restaurante {
-    constructor(cardapio, bebida,cliente){
-        this.id_restaurante = id_restaurante++;
-        this.cardapio = cardapio;
-        this.bebida = bebida;
-        this.cliente = cliente;
-    }
+import dao from '../DAO/restauranteDAO.js'
 
-    inserirRestaurante = (restaurante)=>{
-        banco.restaurante.push(restaurante)
-    }
-    pegarRestaurante = ()=>{
-        return banco.restaurante
-    }
-    pegaUm = (pedido)=>{
-        return banco.restaurante.filter(restaurante=>restaurante.pedido === pedido)
-    }
+const restauranteModel = {
 
-    deletarCardapio = (pedido)=>{
-        const newDB = banco.restaurante.filter(restaurante=>restaurante.pedido ==!pedido)
-        banco.restaurante = newDB
-    }
-    atualizarPedido = (cardapio, novos)=>{
-    const newDb = banco.restaurante.map(restaurante=>{
-    if(restaurante.cardapio === cardapio){
-    return {
-            "id" : restaurante.id,
-            "cardapio" : novos.cardapio || restaurante.cardapio,
-            "bebidas" : novos.bebida || restaurante.bebida,
-            "cliente" : novos.cliente || restaurante.cliente
-                }
-            }return restaurante
-        })
-        banco.restaurante = newDb
-    }
+    
+    inserirRestaurante : async (cardapio)=>{
+        return await dao.inserirRestaurante(cardapio)
+    },
 
+    
+    pegaTodosRestaurante : async ()=>{
+        return await dao.pegaTodosRestaurante()
+    },
+
+    pegaRestauranteCliente : async (cliente)=>{
+        return await dao.pegaRestauranteCliente(cliente)
+    },
+
+    pegaId : async (id)=>{
+        return await dao.pegaId(id)
+    },
+
+    deletaRestaurante: async (id)=>{
+        return await dao.deletaRestaurante(id)
+    },
+
+    atualizarCardapio : async (id, novosDados)=>{
+        const restauranteAtual = await restauranteModel.pegaId(id)
+        console.log(restauranteAtual)
+        if(restauranteAtual){
+            const restauranteAtualizado = {
+                "cardapio" : novosDados.cardapio || restauranteAtual.cardapio,
+                "bebida" : novosDados.bebida || restauranteAtual.bebida,
+                "cliente" : novosDados.cliente || restauranteAtual.cliente
+            }
+            return await dao.atualizarCardapio(id, restauranteAtualizado)
+        } else{
+            throw new Error("Cardapio não encontrado")
+        }
+
+    },
 }
 
-
-export default Restaurante
+export default restauranteModel
