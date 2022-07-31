@@ -1,6 +1,6 @@
 // import bd from '../database/bd.js'
 
-import Dao from "../DAO/hospedeDAO"
+import Dao from "../DAO/hospedeDAO.js"
 
 export default class HospedeModel {
 

@@ -2,14 +2,34 @@ import db from "../database/db-sqlite.js";
 
 const ServicosDao = {
 
-    solicitaServico: (servico) => {
+    insereServico: (servico) => {
         const INSERE_SERVICO = `
-        INSERT INTO SERVICOS (id, room_service, early_checkin, late_checkout, governanca, concierge)
-        VALUES (?,?,?,?,?,?)
+        INSERT INTO SERVICOS (room_service, early_checkin, late_checkout, governanca, concierge)
+        VALUES (?,?,?,?,?)
         `
         return new Promise((resolve, reject) => {
             db.run(INSERE_SERVICO,
-                servico.room_service, servico.early_checkin, servico.late_checkout, servico.governanca, servico.concoerge,
+                servico.room_service, servico.early_checkin, servico.late_checkout, servico.governanca, servico.concierge,
+                (error) => {
+                    if (error)
+                        reject(error)
+                    else
+                        resolve(servico)
+                }
+            )
+        })
+    },
+
+    atualizaservico: (id, servico) => {
+        const ATUALIZA_SERVICO = `
+        UPDATE SERVICOS
+        SET room_service = ?, early_checkin = ?, late_checkout = ?, governanca = ?, concierge = ?
+        WHERE id = ?
+        `
+        return new Promise((resolve, reject) => {
+            db.run(ATUALIZA_SERVICO,
+                servico.room_service, servico.early_checkin, servico.late_checkout, servico.governanca, servico.concierge,
+                id,
                 (error) => {
                     if (error)
                         reject(error)
@@ -61,26 +81,6 @@ const ServicosDao = {
                 else
                     resolve(row)
             })
-        })
-    },
-
-    atualizaservico: (id, novoServico) => {
-        const ATUALIZA_SERVICO = `
-        UPDATE SERVICOS
-        SET room_service = ?, early_checkin = ?, late_checkout = ?, governanca = ?, concierge = ?, 
-        WHERE id = ?
-        `
-        return new Promise((resolve, reject) => {
-            db.run(ATUALIZA_SERVICO,
-                novoServico.room_service, novoServico.early_checkin, novoServico.late_checkout, novoServico.governanca, novoServico.concierge,
-                id,
-                (error) => {
-                    if (error)
-                        reject(error)
-                    else
-                        resolve(novoServico)
-                }
-            )
         })
     }
 }

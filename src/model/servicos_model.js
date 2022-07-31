@@ -3,47 +3,68 @@ import validacaoServicos from '../services/validacaoServicos.js';
 
 export default class Servicos {
 
-    solicitaServico = async (servico) => {
-
+    insereServico = async (dados) => {
         try {
-            const servicoNovo = new validacaoServicos(servico.room_service, servico.early_checkin, servico.late_checkout, servico.governanca, servico.concierge)
-            ServicosDao.solicitaServico(servicoNovo);
-
+            let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
+            let resultado = ServicosDao.insereServico(servico);
+            return {
+                "dados": resultado,
+                "status": 200
+            }
         } catch (error) {
-            res.json({
-                "msg": error.message,
-                "erro": true
-            })
+            throw error
         }
     }
 
-    pegaServico = async () => {
+    atualizaServico = async (id, dados) => {
+        try {
+            let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
+            let resultado = await ServicosDao.atualizaservico(id, servico)
+            return {
+                "dados": resultado,
+                "status": 200
+            }
+        } catch (error) {
+            throw error
+        }
+    }
 
-        return await ServicosDao.pegaServico()
+    pegaTodosServicos = async () => {
+        try {
+            let resultado = await ServicosDao.pegaTodosServicos()
+            return {
+                "dados": resultado,
+                "total": resultado.length,
+                "status": 200
+            }
+
+        } catch (error) {
+            throw error
+        }
+    }
+
+    pegaServico = async (id) => {
+        try {
+            let resultado = await ServicosDao.pegaServico(id)
+            return {
+                "dados": resultado,
+                "status": 200
+            }
+
+        } catch (error) {
+            throw error
+        }
     }
 
     deletaServico = async (id) => {
-
-        return await ServicosDao.deletaServico(id)
-    }
-
-    atualizaServico = async (id, novoServico) => {
-
-        const servicoAtualizado = await ServicosDao.atualizaservico(novoServico => {
-            if (servicoAtualizado.id === id) {
-                return {
-                    "id": servicoAtualizado.id,
-                    "room_service": novoServico.room_service || servicoAtualizado.room_service,
-                    "late_checkout": novoServico.late_checkout || servicoAtualizado.late_checkout,
-                    "early_checkin": novoServico.early_checkin || servicoAtualizado.early_checkin,
-                    "concierge": novoServico.concierge || servicoAtualizado.concierge,
-                    "governanca": novoServico.governanca || servicoAtualizado.governanca
-                }
+        try {
+            let resultado = await ServicosDao.deletaServico(id)
+            return {
+                "status": 200
             }
-            return servicoAtualizado
-        })
 
-        ServicosDao.atualizaservico = servicoAtualizado
-
+        } catch (error) {
+            throw error
+        }
     }
 }
