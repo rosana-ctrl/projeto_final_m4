@@ -4,34 +4,75 @@ const hotelRestaurante = (app)=>{
 
 app.get('/restaurante', async (req, res)=>{
         
-const restaurante = await restauranteModel.pegaTodosRestaurante()
-res.json({"restaurantes" : restaurante})
-    })
-
+try{
+    const restaurante = await restauranteModel.pegaTodosRestaurante()
+    res.json({"restaurantes" : restaurante,
+          "erro":false
+    }
+    )
+}catch(error){
+    res.json(
+        {"msg":error.message,
+        "erro":true}
+    )
+}
+})
 app.get('/restaurante/cliente/:cliente', async (req, res)=>{
 const cliente = req.params.cliente
 
+try{
 const restaurante = await restauranteModel.pegaRestauranteCliente(cliente)
 
 res.json({"restaurante" : restaurante,
               "erro" : false}
         )
+}catch(error) {
+    res.json({
+        "msg":error.message,
+        "erro":true
+    })
+}
 })
 
 app.post('/restaurante',async (req, res)=>{
 
 const body = req.body
         
+try{
 const restaurante = await restauranteModel.inserirRestaurante(body)
         
-res.json(restaurante)
+res.json(
+    {"msg":"Cardapio inserido com sucesso",
+    "restaurante":restaurante,
+     "erro": false
+    }
+     )
+}catch(error){
+    res.json({
+        "msg":error.message,
+        "erro":true
+    })
+}
 })
+
 app.delete('/restaurante/id/:id', async (req,res)=>{
 const id = req.params.id
 
-const restaurante = await restauranteModel.deletaRestaurante(id)
+try {
+   const restaurante = await restauranteModel.deletaRestaurante(id)
+
+    res.json(
+        {"restaurante":restaurante,
+        "msg" : "Cardapio deletado com sucesso",
+        "erro" : false}
+    )
     
-res.json(restaurante)    
+} catch (error) {
+    res.json(
+        {"msg" : error.message,
+         "erro" : true}
+    )
+}
 })
 app.put('/restaurante/id/:id',async (req, res)=>{
     const body = req.body
