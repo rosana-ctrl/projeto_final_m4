@@ -1,11 +1,11 @@
-import db from "../database/sqlite.js"
+import db from "../database/db-sqlite.js"
 
 export default class Dao {
 
     insereHospede = (hospede) =>{
         const INSERE_HOSPEDE = `
-        INSERT INTO HOSPEDES (id_Hospede, nome, genero, nasc, email, celular, senha)
-        VALUES (?,?,?,?,?,?,?)
+        INSERT INTO HOSPEDES (nome, genero, nasc, email, celular, senha)
+        VALUES (?,?,?,?,?,?)
         `
         return new Promise((resolve, reject)=>{
             db.run(INSERE_HOSPEDE,
@@ -40,7 +40,7 @@ export default class Dao {
         WHERE email = ?
         `
         return new Promise((resolve, reject)=>{
-            db.all(PEGA_HOSPEDE, email, (error, row)=>{
+            db.get(PEGA_HOSPEDE, email, (error, row)=>{
                 if(error)
                     reject(error)
                 else
@@ -70,11 +70,11 @@ export default class Dao {
         WHERE id_Hospede = ?
         `
         return new Promise((resolve, reject)=>{
-            db.get(DELETA_HOSPEDE, id_Hospede, (error, row)=>{
+            db.run(DELETA_HOSPEDE, id_Hospede, (error)=>{
                 if(error)
                     reject(error)
                 else
-                    resolve(row)
+                    resolve(`Hospede com ID = ${id_Hospede} deletado`)
             })
         })
     }

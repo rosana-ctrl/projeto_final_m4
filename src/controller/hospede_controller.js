@@ -27,15 +27,16 @@ const hospedeController = (app) => {
 
     app.get('/hospede/email/:email', async (req, res) => {
         const email = req.params.email
-
+        const body = req.body
         try {
-            const hospede = await hospedeModel.pegaUmHospedeEmail(email)
+                const hospede = await hospedeModel.pegaUmHospedeEmail(email)
             res.json(
                 {
                     "hospede": hospede,
                     "erro": false
                 }
             )
+                        
         } catch (error) {
             res.json(
                 {
@@ -75,7 +76,7 @@ const hospedeController = (app) => {
         try {
             await hospedeModel.deletaUmHospede(id_Hospede)
             res.json({
-                'mensagem': `Hospede com id ${id_Hospede} foi com deus`,
+                'mensagem': `Hospede com id ${id_Hospede} foi deletado com sucesso`,
                 "erro": false
             })
         } catch (error) {
@@ -109,27 +110,6 @@ const hospedeController = (app) => {
         }
     })
 
-    app.patch('/hospede/senha/id/:id_Hospede', async (req, res) =>{
-        const id_Hospede = req.params.id_Hospede
-        const body = req.body
-        const validacao = new ValidaHospede()
-        const validaSenha = validacao.validaSenha()
-        try {
-            validaSenha(body.senha)
-            await hospedeModel.atualizaUmHospede(id_Hospede, {"senha": body.senha})
-            res.jason({
-                "mensagem": "Senha atualizada",
-                "erro": false
-            })
-        } catch (error) {
-            res.json(
-                {
-                    'msg': error.message,
-                    'erro': true
-                }
-            )
-        }
-    })
 }
 
 export default hospedeController
