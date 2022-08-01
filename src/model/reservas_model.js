@@ -5,7 +5,7 @@ export default class Reservas {
     insereReserva = async (reserva) => {
         try {
             const novaReserva = new ValidacaoReserva(reserva.quarto, reserva.quantLeitos, reserva.frigobar, reserva.dataEntrada, reserva.dataSaida)
-            reservasDAO.insereReserva(novaReserva)
+            return await reservasDAO.insereReserva(novaReserva)
         } catch (error) {
             return {
                 "msg": error.message,
@@ -27,21 +27,18 @@ export default class Reservas {
     }
 
     atualizaReserva = async (quarto, novosDados) => {
-        const reservaAtualizada = await reservasDAO.atualizaReserva(novosDados => {
-            if (reservaAtualizada.quarto === quarto) {
-                return {
-                    "id_reserva": reservaAtualizada.id_reserva,
-                    "quarto": novosDados.quarto || reservaAtualizada.quarto,
-                    "quantLeitos": novosDados.quantLeitos || reservaAtualizada.quantLeitos,
-                    "frigobar": novosDados.frigobar || reservaAtualizada.frigobar,
-                    "dataEntrada": novosDados.dataEntrada || reservaAtualizada.dataEntrada,
-                    "dataSaida": novosDados.dataSaida || reservaAtualizada.dataSaida
-                }
-            }
-            return reservaAtualizada
-        })
-
-        reservasDAO.atualizaReserva = reservaAtualizada
+       try {
+        const resposta = await reservasDAO.atualizaReserva(quarto,novosDados)
+        return {
+            "mensagem": messagem,
+            "status":200
+        }
+       } catch (error) {
+        return {
+            "mensagem": error.message,
+            "status":400
+        }
+       }
 
     }
 }

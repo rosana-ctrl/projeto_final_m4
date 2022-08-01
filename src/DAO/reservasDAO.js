@@ -1,3 +1,4 @@
+
 import db from "../database/db-sqlite.js";
 
 const reservasDAO = {
@@ -42,7 +43,8 @@ const reservasDAO = {
     insereReserva: (reserva) => {
         return new Promise((resolve, reject) => {
             db.run(`INSERT INTO RESERVAS (QUARTO, QUANTLEITOS, FRIGOBAR, DATAENTRADA, DATASAIDA)
-            VALUES (?,?,?,?,?)`, reserva.quarto, reserva.quantLeitos, reserva.frigobar, reserva.dataEntrada, reserva.dataSaida,
+            VALUES (?,?,?,?,?)` ,
+                reserva.quarto, reserva.quantLeitos, reserva.frigobar, reserva.dataEntrada, reserva.dataSaida,
                 (error) => {
                     if (error) {
                         reject({
@@ -51,7 +53,7 @@ const reservasDAO = {
                         })
                     } else {
                         resolve({
-                            "mensagem": "Reserva inserida com sucesso",
+                            "mensagem": `Reserva inserida com sucesso`,
                             "erro": false
                         })
                     }
@@ -80,24 +82,54 @@ const reservasDAO = {
     },
 
     atualizaReserva: (quarto, novosDados) => {
+        const query = (novosDados) => {
+            let quarto = ""
+            let quantLeitos = ""
+            let frigobar = ""
+            let dataEntrada = ""
+            let dataSaida = ""
+            if (novosDados.quarto) {
+                quarto = `QUARTO = ?`
+            }
+            if (novosDados.quantLeitos) {
+                quantLeitos = `QUANTLEITOS = ?`
+                if (quarto) {
+                    quantLeitos = ', ' + quantLeitos
+                }
+            }
+            if (novosDados.frigobar) {
+                frigobar = `FRIGOBAR = ?`
+                if (quarto || quantLeitos) {
+                    frigobar = ', ' + frigobar
+                }
+            }
+            if (novosDados.dataEntrada) {
+                dataEntrada = `DATAENTRADA = ?`
+                if (quarto || quantLeitos || frigobar) {
+                    dataEntrada = ', ' + dataEntrada
+                }
+            }
+            if (novosDados.dataSaida) {
+                dataSaida = `DATASAIDA = ?`
+                if (quarto || quantLeitos || frigobar || dataEntrada) {
+                    dataSaida = ', ' + dataSaida
+                }
+            }
+
+            return `UPDATE RESERVAS SET 
+            ${quarto} ${quantLeitos} ${frigobar} ${dataEntrada} ${dataSaida}
+            WHERE QUARTO = ?`
+        }
+
         return new Promise((resolve, reject) => {
-            db.run(`UPDATE RESERVAS 
-            SET QUARTO = ?, QUANTLEITOS = ?, FRIGOBAR = ?, DATAENTRADA = ?, DATASAIDA =?,
-            WHERE QUARTO = ?`,
-                novosDados.quarto, novosDados.quantLeitos, novosDados.frigobar, novosDados.dataEntrada, novosDados.dataSaida,
-                quarto,
+            db.run(query(novosDados),
+                ...Object.values(novosDados), quarto,
                 (error) => {
                     if (error) {
-                        reject({
-                            "mensagem": error.message,
-                            "erro": true
-                        })
+                        reject(error)
                     } else {
-                        resolve({
-                            "mensagem": `Reserva do quarto ${quarto} atualizada com sucesso`,
-                            "Reserva": novosDados,
-                            "erro": false
-                        })
+                        resolve(`Reserva do quarto ${quarto} atualizada com sucesso`,
+                        )
                     }
                 }
             )
