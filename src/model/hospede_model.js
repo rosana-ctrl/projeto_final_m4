@@ -1,9 +1,7 @@
-// import bd from '../database/bd.js'
-
-import Dao from "../DAO/hospedeDAO"
+import Dao from "../DAO/hospedeDAO.js"
 
 export default class HospedeModel {
-
+    
     // add novo hospede no bd
     addNovoHospede = async (hospede) => {
         const dao = new Dao()
@@ -18,22 +16,44 @@ export default class HospedeModel {
 
     pegaUmHospedeEmail = async (email) => {
         const dao = new Dao()
-        return await dao.pegaHospedeEmail(email)
+        const hospedeAtual = await dao.pegaHospedeEmail(email)
+
+        if (hospedeAtual) {
+            const hospedeBuscado = {
+                "email": hospedeAtual.email
+            }
+            return await dao.pegaHospedeEmail(email, hospedeBuscado)
+        } else {
+            throw new Error("Hospede não encontrado")
+        }   
     }
 
     pegaHospedeId = async (id_Hospede) => {
         const dao = new Dao()
         return await dao.pegaHospedeId(id_Hospede)
     }
-
+    
     deletaUmHospede = async (id_Hospede) => {
         const dao = new Dao()
-        return await dao.deletaHospede(id_Hospede)
+        const hospedeModel = new HospedeModel()
+        const hospedeAtual = await hospedeModel.pegaHospedeId(id_Hospede)
+
+        if (hospedeAtual) {
+            const hospedeDeletado = {
+                "email": hospedeAtual.email
+            }
+            return await dao.deletaHospede(id_Hospede, hospedeDeletado)
+        } else {
+            throw new Error("Hospede não encontrado")
+        }        
+
+        
     }
 
     atualizaUmHospede = async (id_Hospede, novosDados) => {
         const dao = new Dao()
-        const hospedeAtual = await HospedeModel.pegaHospedeId(id_Hospede)
+        const hospedeModel = new HospedeModel()
+        const hospedeAtual = await hospedeModel.pegaHospedeId(id_Hospede)
         console.log(hospedeAtual)
 
         if (hospedeAtual) {
