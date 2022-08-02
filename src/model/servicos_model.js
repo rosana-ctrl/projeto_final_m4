@@ -1,38 +1,87 @@
-import bd from "../database/bd.js"
+import ServicosDao from '../DAO/servicosDAO.js'
+import validacaoServicos from '../services/validacaoServicos.js';
 
 export default class Servicos {
 
-    solicitaServico = (bd_servicos) => {
-        bd.bd_servicos.push(bd_servicos)
+    insereServico = async (dados) => {
+        try {
+            let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
+            let resultado = ServicosDao.insereServico(servico);
+            return {
+                "dados": resultado,
+                "status": 200
+            }
+        } catch (error) {
+            throw error
+        }
     }
 
-    pegaServico = () => {
-        return bd.bd_servicos
+    atualizaServico = async (id, dados) => {
+
+        let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
+        let resultado = await ServicosDao.pegaServico(id)
+        console.log(resultado)
+        if (resultado.length != 0) {
+            const servicoAtualizado = {
+                "room_service": dados.room_service || resultado.room_service,
+                "early_checkin": dados.early_checkin || resultado.early_checkin,
+                "late_checkout": dados.late_checkout || resultado.late_checkout,
+                "governanca": dados.governanca || resultado.governanca,
+                "concierge": dados.concierge || resultado.concierge
+            }
+            return await ServicosDao.atualizaServico(id, servicoAtualizado)
+        } else {
+            throw new Error("Serviço não encontrado")
+        }
     }
 
-    deletaServico = (room_service) => {
+    pegaTodosServicos = async () => {
+        try {
+            let resultado = await ServicosDao.pegaTodosServicos()
+            return {
+                "dados": resultado,
+                "total": resultado.length,
+                "status": 200
+            }
 
-        const bd_v2 = bd.bd_servicos.filter(bd_servicos => bd_servicos.room_service !== room_service)
-        bd.bd_servicos = bd_v2
+        } catch (error) {
+            throw error
+        }
     }
 
-    atualizaServico = (room_service, new_service) => {
-
-        const newDb = bd.bd_servicos.map(bd_servicos => {
-            if (bd_servicos.room_service === room_service) {
+    pegaServico = async (id) => {
+        try {
+            let resultado = await ServicosDao.pegaServico(id)
+            if (resultado.length != 0) {
                 return {
-                    "id": bd_servicos.id,
-                    "room_service": new_service.room_service || bd_servicos.room_service,
-                    "late_checkout": new_service.late_checkout || bd_servicos.late_checkout,
-                    "early_checkin": new_service.early_checkin || bd_servicos.early_checkin,
-                    "concierge": new_service.concierge || bd_servicos.concierge,
-                    "governanca": new_service.governanca || bd_servicos.governanca
+                    "dados": resultado,
+                    "status": 200
+                }
+            } else {
+                return {
+                    "mensagem": `Servico com id ${id} não encontrado`,
+                    "status": 400
                 }
             }
-            return bd_servicos
-        })
+        } catch (error) {
+            throw error
+        }
+    }
 
-        bd.bd_servicos = newDb
+    deletaServico = async (id) => {
 
+        let resultado = await ServicosDao.pegaServico(id)
+
+        if (resultado.length != 0) {
+            resultado = await ServicosDao.deletaServico(id)
+            return {
+                "mensagem": `Servico com id ${id} não encontrado`,
+                "status": 200
+            }
+        }
+        return {
+            "mensagem": `Servico com id ${id} não encontrado`,
+            "status": 400
+        }
     }
 }

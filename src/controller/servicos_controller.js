@@ -3,54 +3,68 @@ import validacaoServicos from "../services/validacaoServicos.js"
 
 const servicosController = (app) => {
     const modelServicos = new Servicos
-    app.get('/servicos', (req, res) => {
-        const todosServicos = modelServicos.pegaServico()
 
-        res.json({
-            "msg": todosServicos,
-            "erro": false
-        })
+    app.post('/servicos', async (req, res) => {
+        try {
+            let servico = await modelServicos.insereServico(req.body)
+            res.json({
+                "msg": "Serviço inserido com sucesso"
+            })
+            //todo: retornar id do registro inserido
+        } catch (error) {
+            res.json(error.message)
+        }
     })
 
-    app.post('/servicos', (req, res) => {
+    app.put('/servicos/id/:id', async (req, res) => {
         const body = req.body
+        const id = req.params.id
         try {
-
-            const servico = new validacaoServicos(body.room_service, body.early_checkin, body.late_checkout, body.governanca, body.concierge)
-            modelServicos.solicitaServico(servico);
+            let servico = await modelServicos.atualizaServico(id, body)
             res.json({
-                "msg": servico,
+                "msg": "Serviço atualizado com sucesso"
+            })
+        } catch (error) {
+            res.json(error.message)
+        }
+    })
+
+    app.get('/servicos', async (req, res) => {
+        try {
+            let resposta = await modelServicos.pegaTodosServicos()
+
+            res.status(resposta.status).json({
+                "usuarios": resposta.dados,
+                "total": resposta.total,
                 "erro": false
             })
         } catch (error) {
-            res.json({
-                "msg": error.message,
+            res.status(500).json({
+                "mensagem": error.message,
                 "erro": true
             })
         }
     })
-    app.delete('/servicos/room_service/:room_service', (req, res) => {
-        const room_service = req.params.room_service
-        modelServicos.deletaServico(room_service)
-        res.json({
-            'mensagem': `${room_service} serviço deletado`,
-            "erro": false
-        })
+
+    app.get('/servico/id/:id', async (req, res) => {
+        try {
+            let todosServicos = await modelServicos.pegaServico(req.params.id)
+
+            res.json(
+                todosServicos)
+        } catch (error) {
+            res.json(error)
+        }
     })
 
-    app.put('/servicos/room_service/:room_service', (req, res) => {
-        const body = req.body
+    app.delete('/servicos/id/:id', async (req, res) => {
         try {
+            let servico = await modelServicos.deletaServico(req.params.id)
+            res.json(servico)
 
-            const servico = new validacaoServicos(body.room_service, body.early_checkin, body.late_checkout, body.governanca, body.concierge)
-            modelServicos.atualizaServico(servico);
-            res.json({
-                "msg": servico,
-                "erro": false
-            })
         } catch (error) {
-            res.json({
-                "msg": error.message,
+            res.status(400).json({
+                "mensagem": error.message,
                 "erro": true
             })
         }

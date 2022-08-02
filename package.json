@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/rosana-ctrl/projeto_final_m4.git"
   },
-  "author": "Sara, Rachelle, Rosana, Julia, Elica e Edson",
+  "author": "Sara, Rachelle, Rosana, Elica e Edson",
   "license": "ISC",
   "type": "module",
   "bugs": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/rosana-ctrl/projeto_final_m4#readme",
   "devDependencies": {
+    "jest": "^28.1.3",
     "nodemon": "^2.0.19"
   },
   "dependencies": {

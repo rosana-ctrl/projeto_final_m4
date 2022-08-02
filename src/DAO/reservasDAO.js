@@ -42,7 +42,8 @@ const reservasDAO = {
     insereReserva: (reserva) => {
         return new Promise((resolve, reject) => {
             db.run(`INSERT INTO RESERVAS (QUARTO, QUANTLEITOS, FRIGOBAR, DATAENTRADA, DATASAIDA)
-            VALUES (?,?,?,?,?)`, reserva.quarto, reserva.quantLeitos, reserva.frigobar, reserva.dataEntrada, reserva.dataSaida,
+            VALUES (?,?,?,?,?)` ,
+                reserva.quarto, reserva.quantLeitos, reserva.frigobar, reserva.dataEntrada, reserva.dataSaida,
                 (error) => {
                     if (error) {
                         reject({
@@ -51,7 +52,7 @@ const reservasDAO = {
                         })
                     } else {
                         resolve({
-                            "mensagem": "Reserva inserida com sucesso",
+                            "mensagem": `Reserva inserida com sucesso`,
                             "erro": false
                         })
                     }
@@ -82,22 +83,15 @@ const reservasDAO = {
     atualizaReserva: (quarto, novosDados) => {
         return new Promise((resolve, reject) => {
             db.run(`UPDATE RESERVAS 
-            SET QUARTO = ?, QUANTLEITOS = ?, FRIGOBAR = ?, DATAENTRADA = ?, DATASAIDA =?,
+            SET QUARTO = ?, QUANTLEITOS = ?, FRIGOBAR = ?, DATAENTRADA = ?, DATASAIDA =?
             WHERE QUARTO = ?`,
                 novosDados.quarto, novosDados.quantLeitos, novosDados.frigobar, novosDados.dataEntrada, novosDados.dataSaida,
                 quarto,
                 (error) => {
                     if (error) {
-                        reject({
-                            "mensagem": error.message,
-                            "erro": true
-                        })
+                        reject(error)
                     } else {
-                        resolve({
-                            "mensagem": `Reserva do quarto ${quarto} atualizada com sucesso`,
-                            "Reserva": novosDados,
-                            "erro": false
-                        })
+                        resolve(novosDados)
                     }
                 }
             )
