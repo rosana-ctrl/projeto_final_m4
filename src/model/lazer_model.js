@@ -31,21 +31,6 @@ class Lazer {
 
     }
 
-    insereAtividade = async (nome_Atividade)=>{
-        try {
-            const mensagem = await lazerDAO.insereAtividade(nome_Atividade)
-            return {
-                "mensagem" : mensagem,
-                "status" : 200
-            }
-        } catch (error) {
-            return {
-                "mensagem" : error.message,
-                "status" : 400
-            }
-        }
-    }
-
     pegaUmId = async (id) => {
         try {
             const dados = await lazerDAO.pegaUmId(id)
@@ -68,6 +53,21 @@ class Lazer {
             }
         }
 
+    } 
+
+    insereAtividade = async (nome_Atividade)=>{
+        try {
+            const mensagem = await lazerDAO.insereAtividade(nome_Atividade)
+            return {
+                "mensagem" : mensagem,
+                "status" : 200
+            }
+        } catch (error) {
+            return {
+                "mensagem" : error.message,
+                "status" : 400
+            }
+        }
     }    
 
     deletaAtividade = async (id)=>{
