@@ -1,3 +1,5 @@
+import db from "../database/db-sqlite.js"
+
 const lazerDAO = {
     pegarTodosLazer: (db) => {
         return new Promise ((resolve, reject) => {
@@ -19,75 +21,44 @@ const lazerDAO = {
         })
     },
 
-    pegaUmaAtividade: (nome_atividade) => {
-        return new Promise((resolve, reject) => {
-            db.all(`SELECT * FROM LAZER WHERE NOME_ATIVIDADE = ?`, nome_atividade,
-                (error, rows) => {
-                    if (error) {
-                        reject({
-                            msg: error.message,
-                            error: true
-                        })
-                    } else {
-                        resolve({
-                            lazer: rows,
-                            error: false
-                        })
-                    }
-                })
+    pegaUmaAtividade : (nome_Atividade)=>{
+        return new Promise((resolve, reject)=>{
+            db.get('SELECT * FROM LAZER WHERE nome_Atividade = ?', nome_Atividade,
+            (erro, dado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(dado)
+                }
+            })
         })
-    
+
     },
 
-    pegaUmNome: (nome_hospede) => {
-        return new Promise((resolve, reject) => {
-            db.all(`SELECT * FROM LAZER WHERE NOME_HOSPEDE = ?`, nome_hospede,
-                (error, rows) => {
-                    if (error) {
-                        reject({
-                            msg: error.message,
-                            error: true
-                        })
-                    } else {
-                        resolve({
-                            lazer: rows,
-                            error: false
-                        })
-                    }
-                })
+    pegaUmId : (id)=>{
+        return new Promise((resolve, reject)=>{
+            db.get('SELECT * FROM LAZER WHERE id = ?', id,
+            (erro, dado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(dado)
+                }
+            })
         })
-    
+
     },
 
-    pegaUmaData: (dia_atividade) => {
-        return new Promise((resolve, reject) => {
-            db.all(`SELECT * FROM LAZER WHERE DIA_ATIVIDADE = ?`, dia_atividade,
-                (error, rows) => {
-                    if (error) {
-                        reject({
-                            msg: error.message,
-                            error: true
-                        })
-                    } else {
-                        resolve({
-                            lazer: rows,
-                            error: false
-                        })
-                    }
-                })
-        })
     
-    },
-
     insereAtividade: (atividade) => {
         return new Promise((resolve, reject) => {
-            db.run(`INSERT INTO LAZER (ID, NOME_HOSPEDE, NOME_ATIVIDADE, DIA_ATIVIDADE)
-            VALUES (?,?,?,?)`, atividade.id, atividade.nome_hospede, atividade.nome_atividade, atividade.dia_atividade,
+            db.run(`INSERT INTO LAZER (NOME_HOSPEDE, NOME_ATIVIDADE, DIA_ATIVIDADE)
+            VALUES (?,?,?)`, atividade.nome_Hospede, atividade.nome_Atividade, atividade.dia_Atividade,
                 (error) => {
                     if (error) {
                         reject({
-                            msg: error.message,
-                            error: true
+                            "msg": error.message,
+                            "error": true
                         })
                     } else {
                         resolve({
@@ -99,6 +70,20 @@ const lazerDAO = {
             )
         })
     },
+
+    // insereAtividade: (atividade)=>{
+    //     return new Promise((resolve, reject)=>{
+    //         db.run(`INSERT INTO LAZER (nome_Hospede, nome_Atividade, dia_Atividade)
+    //         VALUES (?, ?, ?)`, atividade.nome_Hospede, atividade.nome_Atividade, atividade.dia_Atividade,
+    //         (erro)=>{
+    //             if(erro){
+    //                 reject(erro)
+    //             }else{
+    //                 resolve("Atividade agendada com sucesso")
+    //             }
+    //         })
+    //     })
+    // },
 
     deletaAtividade: (nome_atividade) => {
         return new Promise((resolve, reject) => {
@@ -121,9 +106,9 @@ const lazerDAO = {
 
     atualizaAtividade: (nome_atividade, novosDados) => {
         return new Promise((resolve, reject) => {
-            db.run(`UPDATE ATIVIDADE 
-            SET NOME_HOSPEDE = ?, NOME_ATIVIDADE = ?, DIA_ATIVIDADE = ?, WHERE ATIVIDADE = ?`,
-                novosDados.hospede, novosDados.atividade, novosDados.data,
+            db.run(`UPDATE LAZER 
+            SET NOME_HOSPEDE = ?, NOME_ATIVIDADE = ?, DIA_ATIVIDADE = ? WHERE nome_Atividade = ?`,
+                novosDados.nome_hospede, novosDados.nome_atividade, novosDados.dia_atividade, nome_atividade,
                 (error) => {
                     if (error) {
                         reject({

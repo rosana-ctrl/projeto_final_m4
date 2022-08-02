@@ -10,59 +10,77 @@ const lazer_controller = (app) => {
         res.json (await lazerDao.pegarTodosLazer(db))
     })
 
-    app.get('/lazer/atividades/:atividade', async (req, res) => {
-        const atividade = req.params.nome_atividade
+    app.get('/lazer/atividades/:nome_Atividade', async (req, res)=>{
+        const nome_Atividade = req.params.nome_Atividade
+
         try {
-            const nome_atividade = await lazerModel.pegaUmaAtividade(atividade)
-            res.json(nome_atividade)
+            const resposta = await lazerModel.pegaUmaAtividade(nome_Atividade)
+            if(resposta.status===200){
+                res.status(resposta.status).json({
+                    "usuario": resposta.dados,
+                    "erro" : false
+                })   
+            }else{
+                res.status(resposta.status).json({
+                    "mensagem": resposta.mensagem,
+                    "erro" : true
+                }) 
+            }
+            
         } catch (error) {
-            res.json({
-                "msg" : error.message,
+            res.status(500).json({
+                "mensagem": error.message,
                 "erro" : true
             })
         }
     })
 
-    app.get('/lazer/atividades/:hospede', async (req, res) => {
-        const atividade = req.params.nome_hospede
+    app.get('/lazer/atividades/:id', async (req, res)=>{
+        const id = req.params.id
+
         try {
-            const nome_hospede = await lazerModel.pegaUmNome(atividade)
-            res.json(nome_hospede)
+            const resposta = await usuarioModel.pegaUmId(id)
+            if(resposta.status===200){
+                res.status(resposta.status).json({
+                    "usuario": resposta.dados,
+                    "erro" : false
+                })   
+            }else{
+                res.status(resposta.status).json({
+                    "mensagem": resposta.mensagem,
+                    "erro" : true
+                }) 
+            }
+            
         } catch (error) {
-            res.json({
-                "msg" : error.message,
+            res.status(500).json({
+                "mensagem": error.message,
                 "erro" : true
             })
         }
     })
+    
 
-    app.get('/lazer/atividades/:data', async (req, res) => {
-        const atividade = req.params.dia_atividade
-        try {
-            const dia_atividade = await lazerModel.pegaUmaData(atividade)
-            res.json(dia_atividade)
+    app.post('/lazer', async (req, res)=>{
+        const body = req.body
+        try {            
+           
+                const resposta = await lazerModel.insereAtividade(body)
+
+                res.json({
+                    "mensagem": resposta.mensagem,
+                    })  
+                
+            
+                        
         } catch (error) {
             res.json({
-                "msg" : error.message,
+                "mensagem": error.message,
                 "erro" : true
             })
         }
+
     })
-
-app.post ('/lazer', async(req, res) => {
-    const body = req.body
-    try {
-        const resposta = await lazerModel.insereAtividade(body)
-
-        res.json (resposta)
-
-    } catch (error) {
-        res.json({
-            "msg" : error.message,
-            "erro" : true
-        }) 
-    }
-})
 
 app.delete ('/lazer/atividades/:atividade', async (req, res) => {
     const nome_atividade = req.params.nome_atividade
@@ -77,11 +95,14 @@ app.delete ('/lazer/atividades/:atividade', async (req, res) => {
 
 app.put ('/lazer/atividades/:atividade', async (req, res) => {
     const body = req.body
-    const nome_atividade = req.params.nome_atividade
+    const atividade = req.params.atividade
     try {
-        const novoDados = new validacaoAtividade(body.nome_hospede, body.nome_atividade, body.dia_atividade)
-        const resposta = await lazerModel.atualizaAtividade(nome_atividade, novoDados)
-        res.json(resposta)
+        const novoDados = new validacaoAtividade (body.nome_hospede, body.nome_atividade, body.dia_atividade)
+        const resposta = await lazerModel.atualizaAtividade(atividade, novoDados)
+        res.json({
+            "Atividade": resposta,
+                    "erro": false
+        })
 
     } catch (error) {
         res.json(error)
