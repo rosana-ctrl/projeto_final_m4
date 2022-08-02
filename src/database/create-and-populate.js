@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS "LAZER" (
   );`;
 
 const ADD_LAZER_DATA = `
-INSERT INTO LAZER (ID, NOME_HOSPEDE, NOME_ATIVIDADE, DIA_ATIVIDADE)
+INSERT INTO LAZER (id, nome_hospede, nome_atividade, dia_atividade)
 VALUES 
     (1, 'Geraldo Nascimento', 'Trilha', '10/07/2022'),
     (2, 'Mariah Assunção', 'SPA', '28/07/2022'),
