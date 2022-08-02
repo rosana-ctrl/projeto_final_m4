@@ -52,14 +52,14 @@ export default class Servicos {
     pegaServico = async (id) => {
         try {
             let resultado = await ServicosDao.pegaServico(id)
-            if (resultado) {
+            if (resultado.length != 0) {
                 return {
                     "dados": resultado,
                     "status": 200
                 }
             } else {
                 return {
-                    "mensagem": `Servico com ${id} não encontrado`,
+                    "mensagem": `Servico com id ${id} não encontrado`,
                     "status": 400
                 }
             }
@@ -75,11 +75,12 @@ export default class Servicos {
         if (resultado.length != 0) {
             resultado = await ServicosDao.deletaServico(id)
             return {
+                "mensagem": `Servico com id ${id} não encontrado`,
                 "status": 200
             }
         }
         return {
-            "mensagem": `Servico com ${id} não encontrado`,
+            "mensagem": `Servico com id ${id} não encontrado`,
             "status": 400
         }
     }
