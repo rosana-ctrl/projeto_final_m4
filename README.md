@@ -158,6 +158,20 @@ Rodando o projeto:
 npm start ou npm run dev 
 ```
 
+## Reinicializando Banco de Dados
+
+Para iniciar um banco de dados novo com os dados padrão, delete o arquivo `database.db` e rode o comando abaixo:
+```
+node ./src/database/create-and-populate
+```
+
+## Testes
+
+Os testes foram implementados utilizando Jest e Super Test. Para executá-los, rode o comando no terminal:
+```
+npm test
+```
+
 ## Rotas Implementadas
 
 ### Hóspede
@@ -370,10 +384,10 @@ npm start ou npm run dev
  Esquema de resposta
 
    ```json
-{
+  {
 	"mensagem": "Reserva do quarto 13 não encontrada",
 	"erro": false
-}
+  }
   ```
 
 * __POST `/reservas`__ <sup>Adiciona uma nova reserva</sup>
@@ -390,10 +404,10 @@ npm start ou npm run dev
  Esquema de resposta
  
  ```json
-{
+  {
 	"mensagem": "Reserva inserida com sucesso",
 	"erro": false
-}
+  }
 ```
 
 * __DELETE `/reservas/quarto/:quarto`__ <sup>Deleta apenas uma reserva</sup>
@@ -401,10 +415,10 @@ npm start ou npm run dev
  Esquema de resposta
  
   ```json
-{
+  {
 	"mensage": "Reserva do quarto 37 deletada com sucesso",
 	"erro": true
-}
+  }
 ```
 
 * __DELETE `/reservas/quarto/:quarto`__ <sup>Deleta uma reserva que não existe</sup>
@@ -412,10 +426,10 @@ npm start ou npm run dev
  Esquema de resposta
  
   ```json
-{
+  {
 	"mensagem": "Reserva do quarto 50 não encontrada",
 	"erro": false
-}
+  }
 ```
 
 * __PUT `/reservas/quarto/:quarto`__ <sup>Atualiza apenas uma reserva</sup>
@@ -423,7 +437,7 @@ npm start ou npm run dev
  Esquema de resposta
  
   ```json
-{
+  {
 	"msg": "Reserva Atualizada com sucesso",
 	"reserva": {
 		"id_reserva": 22,
@@ -434,7 +448,7 @@ npm start ou npm run dev
 		"dataSaida": "3/7/2022"
 	},
 	"erro": false
-}
+  }
 ```
 
 ### Lazer
