@@ -195,6 +195,7 @@ npm start ou npm run dev
 
 Esquema da resposta
 
+```
 {
 	"restaurante": 	"id": 26,
 			"cardapio": "feijoada",
@@ -204,10 +205,13 @@ Esquema da resposta
 	],
 	"erro": false
 }
+```
 
 * __GET `/restaurante/cliente/:cliente`__ <sup>Pega um pedido pelo cliente na URL</sup>
 
 Esquema da resposta
+
+```
 {
 	"restaurante": {
 		"id": 25,
@@ -217,11 +221,13 @@ Esquema da resposta
 	},
 	"erro": false
 }
+```
 
 * __POST `/restaurante`__ <sup>Adiciona um novo pedido</sup>
 
 Esquema da requisição
 
+```
 {
 	"restaurante": {
 		"cardapio": "feijoada",
@@ -230,11 +236,13 @@ Esquema da requisição
 	},
 	"erro": false
 }
+```
 
 * __PUT `/restaurante/id/:id`__ <sup>Atualiza apenas um pedido pelo id na URL</sup>
 
 Esquema da requisição
 
+```
 {
 			"id": 26,
 			"cardapio": "feijoada",
@@ -243,28 +251,35 @@ Esquema da requisição
 		}
 	],
 }
+```
 
 Esquema da resposta
 
+```
 {
 	"msg": "Cardapio feijoada atualizado com sucesso",
 	"erro": false
 }
+```
 
 * __DELETE `/restaurante/id/:id`__ <sup>Deleta apenas um pedido pelo id na URL</sup>
 
 Esquema da resposta
 
+```
 {
 	"restaurante": {
 		"msg": "pedido de id:25 deletado com sucesso"
 	},
 	"erro": false
 }
+```
 
+```
 ERROS Esquema da resposta
 
 {
 	"msg": "ID não encontrado",
 	"erro": true
 }
+```
