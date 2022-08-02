@@ -24,15 +24,9 @@ const reservasDAO = {
             db.all(`SELECT * FROM RESERVAS WHERE QUARTO = ?`, quarto,
                 (error, linhas) => {
                     if (error) {
-                        reject({
-                            "mensagem": error.message,
-                            "erro": true
-                        })
+                        reject(error)
                     } else {
-                        resolve({
-                            "Reserva": linhas,
-                            "erro": false
-                        })
+                        resolve(linhas)
                     }
                 })
         })

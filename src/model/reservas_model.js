@@ -19,7 +19,22 @@ export default class Reservas {
     }
 
     pegaUmaReserva = async (quarto) => {
-        return await reservasDAO.pegaUmaReserva(quarto)
+        try{
+            let resposta = await reservasDAO.pegaUmaReserva(quarto)
+            if(resposta.length != 0){
+                return {
+                    "mensage": resposta,
+                    "erro": true
+                }
+            } else {
+                return {
+                    "mensagem": `Reserva do quarto ${quarto} não encontrada`,
+                    "erro":false
+                }
+            }
+        } catch (error) {
+            throw error
+        }
     }
 
     deletaReserva = async (quarto) => {
