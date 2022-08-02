@@ -1,6 +1,6 @@
-# API HOTEL <img src="https://o.remove.bg/downloads/e4c6f5c6-bbc7-4789-afc6-7786dee1d7d6/Design_sem_nome__6_-removebg-preview.png"  width="40px;">
+# API HOTEL <img src="./src/assets/img/local_hotel-removebg-preview.png"  width="40px;">
 
-<div id="inicio" align=center>
+<div id="inicio" align="center">
   <a href="#Projeto">Projeto  |</a>&nbsp;&nbsp;
   <a href="###Squad"> Squad  |</a>&nbsp;&nbsp;
   <a href="#linguagens"> Pré-requisitos  |</a>&nbsp;&nbsp;
@@ -82,27 +82,27 @@ Definimos quais são as entidades que o projeto precisa contemplar e implementam
 
 Modelagem para visualização das relações das entidades para construção da API referente ao Hotel
 
- <img src="https://o.remove.bg/downloads/7878c23e-9675-48be-9cda-43222b4b72be/H%C3%93SPEDES-removebg-preview.png" align="center">
+ <img src="./src/assets/img/modelagem.png" align="center">
 <table>
   <tr>
     <td align="center"  width="180px;"> 
-    <img src="https://o.remove.bg/downloads/a5b4e79c-25f6-478a-9fb0-3cff8b62323c/1-removebg-preview.png">
+    <img src="./src/assets/img/1.png">
        <h4>Atividades de Lazer</h4> 
     </td>   
     <td align="center" width="180px;"> 
-       <img src="https://o.remove.bg/downloads/28af2f54-4994-4050-9403-a042231eaedf/5-removebg-preview.png" width="82px;">
+       <img src="./src/assets/img/5.png" width="82px;">
       <h4>Restaurante</h4>
     </td>   
     <td align="center" width="180px;">  
-      <img src="https://o.remove.bg/downloads/99bef2c0-95c6-40ea-86ab-fce278025b87/3-removebg-preview.png"  width="100px;">
+      <img src="./src/assets/img/3.png"  width="100px;">
       <h4>Hóspedes</h4>
     </td>   
     <td align="center" width="180px;"> 
-    <img src="https://o.remove.bg/downloads/c186f033-7e13-435f-acb2-24a781f8aeb2/4-removebg-preview.png"  width="122px;">
+    <img src="./src/assets/img/4.png"  width="122px;">
         <h4>Serviços</h4>
     </td>
     <td align="center" width="180px;"> 
-    <img src="https://o.remove.bg/downloads/68d0d2c7-6a42-4778-aa54-f6e8b9bd9be7/2-removebg-preview.png"  width="90px;">
+    <img src="./src/assets/img/2.png"  width="90px;">
     <h4>Reservas</h4>
     </td>
     </tr>
