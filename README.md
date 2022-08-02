@@ -9,12 +9,13 @@
   <a href="#como-utilizar-a-api">Como usar a API</a>&nbsp;&nbsp;
 </div>
 
-<div>
-  <a href="#rotas-implementadas"> Rotas Implementadas teste  |</a>&nbsp;&nbsp;
-   <a href="#hóspedes">Hóspedes  |</a>&nbsp;&nbsp;
+<div align="center">
+  <a href="#rotas-implementadas"> Rotas Implementadas  |</a>&nbsp;&nbsp;
+   <a href="#hóspedes">Hóspedes    |</a>&nbsp;&nbsp;
     <a href="##reservas-1">Reservas  |</a>&nbsp;&nbsp;
      <a href="#lazer">Lazer  |</a>&nbsp;&nbsp;
       <a href="#servicos">Serviços  |</a>&nbsp;&nbsp;
+       <a href="#restaurante">Restaurante  </a>&nbsp;&nbsp;
 </div>
 
 
@@ -124,10 +125,13 @@ Modelagem para visualização das relações das entidades para construção da 
 ## Pré-requisitos
 `Node.js` <sup> v.16.15.1 </sup><br>
 `NPM` <sup>v.8.11.0 </sup><br>
-`Insomnia`
 
 ## Packages
-
+`Express`<br>
+`Nodemon`<br>
+`SQLite`<br>
+`Jest`<br>
+`Super Test`
 
 # Como utilizar a API
 ## Instalação da Aplicação
