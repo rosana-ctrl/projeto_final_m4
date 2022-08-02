@@ -245,7 +245,7 @@ npm start ou npm run dev
       {
           "mensagem": "Hospede com id 3 atualizado com sucesso",
           "hospede": {
-            "id_Hospede": 6,
+            "id_Hospede": 3,
             "nome": "Ronald Magalhães",
             "genero": "M",
             "nasc": "24/05/1981",
