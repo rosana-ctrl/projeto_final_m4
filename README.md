@@ -150,7 +150,7 @@ npm start ou npm run dev
 * __PUT `/hospede/email/:email`__ <sup>Atualiza apenas um hóspede</sup>
 
 ### Reservas
-* __GET `/reservas`__ <sup>Pega todas as reservas realizadas/sup>
+* __GET `/reservas`__ <sup>Pega todas as reservas realizadas</sup>
 
 * __GET `/reservas/quarto/:quarto`__ <sup>Seleciona apenas uma reserva</sup>
 
@@ -159,6 +159,23 @@ npm start ou npm run dev
 * __DELETE `/reservas/quarto/:quarto`__ <sup>Deleta apenas uma reserva</sup>
 
 * __PUT `/reservas/quarto/:quarto`__ <sup>Atualiza apenas uma reserva</sup>
+
+
+### Lazer
+* __GET `/lazer`__ <sup>Pega todas as atividades agendadas</sup>
+
+* __GET `/lazer/atividades/:atividade`__ <sup>Seleciona uma atividade pelo nome da atividade</sup>
+
+* __GET `/lazer/atividades/:hospede`__ <sup>Seleciona uma atividade pelo nome do hóspede</sup>
+
+* __GET `/lazer/atividades/:data`__ <sup>Seleciona uma atividade pelo dia que está agendada</sup>
+
+* __POST `/lazer`__ <sup>Adiciona uma nova atividade</sup>
+
+* __DELETE `/lazer/atividades/:atividade`__ <sup>Deleta uma atividade</sup>
+
+* __PUT `/lazer/atividades/:atividade`__ <sup>Atualiza uma atividade</sup>
+
 
 ### Servicos
 * __GET `/servicos`__ <sup>Pega todos os servicos realizados/sup>
@@ -170,3 +187,4 @@ npm start ou npm run dev
 * __DELETE `/servicos/id/:id`__ <sup>Deleta apenas um servico pelo id na URL</sup>
 
 * __PUT `/servicos/id/:id`__ <sup>Atualiza apenas um servico pelo id na URL</sup>
+
