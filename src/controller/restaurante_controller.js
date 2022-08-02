@@ -23,6 +23,7 @@ const cliente = req.params.cliente
 try{
 const restaurante = await restauranteModel.pegaRestauranteCliente(cliente)
 
+
 res.json({"restaurante" : restaurante,
               "erro" : false}
         )
@@ -42,8 +43,7 @@ try{
 const restaurante = await restauranteModel.inserirRestaurante(body)
         
 res.json(
-    {"msg":"Cardapio inserido com sucesso",
-    "restaurante":restaurante,
+    {"restaurante":restaurante,
      "erro": false
     }
      )
@@ -63,7 +63,6 @@ try {
 
     res.json(
         {"restaurante":restaurante,
-        "msg" : "Cardapio deletado com sucesso",
         "erro" : false}
     )
     

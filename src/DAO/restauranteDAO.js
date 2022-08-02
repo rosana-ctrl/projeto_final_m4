@@ -23,7 +23,7 @@ const dao = {
                     if (error)
                         reject(error)
                     else
-                        resolve({msg:'restaurante inserido com sucesso'})
+                        resolve({msg:"Cardapio inserido com sucesso"})
                 }
             )
         })
@@ -69,7 +69,7 @@ const dao = {
                 if (error)
                     reject(error)
                 else
-                    resolve({msg:`restaurante de id:${id} deletado com sucesso`
+                    resolve({msg:`pedido de id:${id} deletado com sucesso`
                 })
             })
         })

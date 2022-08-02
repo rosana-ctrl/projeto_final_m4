@@ -6,7 +6,6 @@ const restauranteModel = {
     inserirRestaurante : async (cardapio)=>{
     return await dao.inserirRestaurante(cardapio)
     },
-
     
     pegaTodosRestaurante : async ()=>{
     return await dao.pegaTodosRestaurante()
