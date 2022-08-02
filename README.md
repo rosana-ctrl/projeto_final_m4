@@ -24,49 +24,54 @@ Definimos quais são as entidades que o projeto precisa contemplar e implementam
 
 <table>
   <tr>
-    <td align="center"  width="180px;"> 
+    <td align="center"  width="180px;"> <br>
+      <img src="https://avatars.githubusercontent.com/u/93957967?v=4" width="80px;">
        <h4>Edson Vieira</h4> 
        <a href="https://github.com/Edson-7728">
-          <img src="https://o.remove.bg/downloads/ef10834f-8f3c-414e-a2f6-6cd0d363e326/1-removebg-preview.png" width="40px;">
+          <img src="https://cdn0.iconfinder.com/data/icons/shift-logotypes/32/Github-512.png" width="30px;">
        </a>
        <a href="https://www.linkedin.com/in/edson-vieira7728/">
-          <img src="https://o.remove.bg/downloads/1c665c47-cda0-43cc-a314-567a26cb7cb6/2-removebg-preview.png" width="40px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="28px;">
        </a>
     </td>   
-    <td align="center" width="180px;"> 
+    <td align="center" width="180px;"> <br>
+    <img src="https://avatars.githubusercontent.com/u/102865744?v=4" width="80px;">
       <h4>Élica Dias</h4>
        <a href="https://github.com/elicadv">
-          <img src="https://o.remove.bg/downloads/ef10834f-8f3c-414e-a2f6-6cd0d363e326/1-removebg-preview.png" width="40px;">
+          <img src="https://cdn0.iconfinder.com/data/icons/shift-logotypes/32/Github-512.png" width="30px;">
        </a>
        <a href="https://www.linkedin.com/in/%C3%A9lica-dias-a4989116b/">
-          <img src="https://o.remove.bg/downloads/1c665c47-cda0-43cc-a314-567a26cb7cb6/2-removebg-preview.png" width="40px;">
+               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="28px;">
        </a>
     </td>   
-    <td align="center" width="180px;">  
+    <td align="center" width="180px;">  <br>
+      <img src="https://avatars.githubusercontent.com/u/102765815?v=4" width="80px;">
       <h4>Rachelle Santolin</h4>
       <a href="https://github.com/rachellesdev">
-        <img src="https://o.remove.bg/downloads/ef10834f-8f3c-414e-a2f6-6cd0d363e326/1-removebg-preview.png" width="40px;">
+         <img src="https://cdn0.iconfinder.com/data/icons/shift-logotypes/32/Github-512.png" width="30px;">
       </a>
       <a href="https://www.linkedin.com/in/rachelle-santolin/">
-        <img src="https://o.remove.bg/downloads/1c665c47-cda0-43cc-a314-567a26cb7cb6/2-removebg-preview.png" width="40px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="28px;">
       </a>
     </td>   
-    <td align="center" width="180px;"> 
+    <td align="center" width="180px;"> <br>
+    <img src="https://avatars.githubusercontent.com/u/83434769?v=4" width="80px;">
         <h4>Rosana Ribeiro</h4>
           <a href="https://github.com/rosana-ctrl">
-        <img src="https://o.remove.bg/downloads/ef10834f-8f3c-414e-a2f6-6cd0d363e326/1-removebg-preview.png" width="40px;">
+      <img src="https://cdn0.iconfinder.com/data/icons/shift-logotypes/32/Github-512.png" width="30px;">
       </a>
       <a href="https://www.linkedin.com/in/rosana-ribeiro-39364a35/">
-        <img src="https://o.remove.bg/downloads/1c665c47-cda0-43cc-a314-567a26cb7cb6/2-removebg-preview.png" width="40px;">
+               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="28px;">
       </a>
     </td>
-    <td align="center" width="180px;"> 
+    <td align="center" width="180px;"> <br>
+    <img src="https://avatars.githubusercontent.com/u/98292860?v=4" width="80px;">
     <h4>Sara Lirio</h4>
       <a href="https://github.com/Sara-Lirio">
-        <img src="https://o.remove.bg/downloads/ef10834f-8f3c-414e-a2f6-6cd0d363e326/1-removebg-preview.png" width="40px;">
+   <img src="https://cdn0.iconfinder.com/data/icons/shift-logotypes/32/Github-512.png" width="30px;">
       </a>
       <a href="https://www.linkedin.com/in/saralirio/">
-        <img src="https://o.remove.bg/downloads/1c665c47-cda0-43cc-a314-567a26cb7cb6/2-removebg-preview.png" width="40px;">
+               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="28px;">
       </a>
     </td>
     </tr>
