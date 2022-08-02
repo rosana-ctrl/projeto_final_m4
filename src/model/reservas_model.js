@@ -5,7 +5,7 @@ export default class Reservas {
     insereReserva = async (reserva) => {
         try {
             const novaReserva = new ValidacaoReserva(reserva.quarto, reserva.quantLeitos, reserva.frigobar, reserva.dataEntrada, reserva.dataSaida)
-            reservasDAO.insereReserva(novaReserva)
+            return await reservasDAO.insereReserva(novaReserva)
         } catch (error) {
             return {
                 "msg": error.message,
@@ -27,23 +27,21 @@ export default class Reservas {
     }
 
     atualizaReserva = async (quarto, novosDados) => {
-        const reservaAtualizada = await reservasDAO.atualizaReserva(novosDados => {
-            if (reservaAtualizada.quarto === quarto) {
-                return {
-                    "id_reserva": reservaAtualizada.id_reserva,
-                    "quarto": novosDados.quarto || reservaAtualizada.quarto,
-                    "quantLeitos": novosDados.quantLeitos || reservaAtualizada.quantLeitos,
-                    "frigobar": novosDados.frigobar || reservaAtualizada.frigobar,
-                    "dataEntrada": novosDados.dataEntrada || reservaAtualizada.dataEntrada,
-                    "dataSaida": novosDados.dataSaida || reservaAtualizada.dataSaida
-                }
+        const reservaModel = new Reservas ()
+        const reservaAntiga = await reservaModel.pegaUmaReserva(quarto)
+        if (reservaAntiga) {
+            const reservaAtualizada = {
+                "quarto": novosDados.quarto || reservaAntiga.quarto,
+                "quantLeitos": novosDados.quantLeitos || reservaAntiga.quantLeitos,
+                "frigobar": novosDados.frigobar || reservaAntiga.frigobar,
+                "dataEntrada": novosDados.dataEntrada || reservaAntiga.dataEntrada,
+                "dataSaida": novosDados.dataSaida || reservaAntiga.dataSaida
             }
-            return reservaAtualizada
-        })
+            return await reservasDAO.atualizaReserva(quarto, reservaAtualizada)
 
-        reservasDAO.atualizaReserva = reservaAtualizada
-
+        } else {
+            throw new Error("Serviço não encontrado")
+        }
     }
 }
-
 

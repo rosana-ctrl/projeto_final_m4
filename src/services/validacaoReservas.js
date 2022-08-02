@@ -1,4 +1,4 @@
-let id_reserva = 0
+let id_reserva = 21
 
 class ValidacaoReserva {
     constructor(quarto, quantLeitos, frigobar, dataEntrada, dataSaida){
@@ -24,25 +24,31 @@ validaSaida = (dataSaida, dataEntrada) => {
         const monthSaida = Number(dataSaidaSplit[1]) - 1
         const yearSaida = Number(dataSaidaSplit[2])
 
-        const newDataSai = (`${yearSaida},${monthSaida},${daySaida}`)
-        dataSaida = new Date(newDataSai)
+        const novaDataSaida = (`${yearSaida},${monthSaida},${daySaida}`)
+        dataSaida = new Date(novaDataSaida)
 
         const data1 = dataEntrada.getTime();
         const data2 = dataSaida.getTime()
 
         const diff = Math.sign(data2 - data1)
 
+        const monthSaida1 = Number(dataSaidaSplit[1]) 
+        let dataSaidaFinal = (`${daySaida}/${monthSaida1}/${yearSaida}`)
+
         const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
         if (dataSaida) {
             if (days <= 0) {
                 throw new Error("A data de saída precisa ser maior que a data de entrada")
             } else {
-                return dataSaida
+               
+                return dataSaidaFinal
             }
         } else {
             throw new Error("Insira uma data de saída posterior a data de entrada")
         }
     }
+    
 }
 
 export default ValidacaoReserva
+

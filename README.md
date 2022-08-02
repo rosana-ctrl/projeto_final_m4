@@ -159,3 +159,14 @@ npm start ou npm run dev
 * __DELETE `/reservas/quarto/:quarto`__ <sup>Deleta apenas uma reserva</sup>
 
 * __PUT `/reservas/quarto/:quarto`__ <sup>Atualiza apenas uma reserva</sup>
+
+### Servicos
+* __GET `/servicos`__ <sup>Pega todos os servicos realizados/sup>
+
+* __GET `/servico/id/:id`__ <sup>Seleciona apenas um servico pelo id na URL</sup>
+
+* __POST `/servicos`__ <sup>Adiciona um novo servico</sup>
+
+* __DELETE `/servicos/id/:id`__ <sup>Deleta apenas um servico pelo id na URL</sup>
+
+* __PUT `/servicos/id/:id`__ <sup>Atualiza apenas um servico pelo id na URL</sup>

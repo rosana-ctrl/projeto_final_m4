@@ -1,3 +1,4 @@
+import Dao from "../DAO/hospedeDAO.js"
 let id_Hospede = 0
 
 class ValidaHospede {
@@ -91,7 +92,6 @@ class ValidaHospede {
             throw new Error("Insira uma data")
         }
     }
-
 
 
 }
