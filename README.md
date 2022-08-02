@@ -26,10 +26,11 @@
 
 
 Como proposta de Projeto de final de módulo fomos escalados para desenvolver uma API que será o produto viável de um aplicativo.<br>
-Definimos quais são as entidades que o projeto precisa contemplar e implementamos utilizando o **CRUD** e a arquitetura do projeto em **MVC**. 
+Definimos quais são as entidades que o projeto precisa contemplar e implementamos utilizando o **CRUD** e a arquitetura do projeto em **MVC**. <br>
+O tema da API escolhido pela squad foi Hotel, utilizando metódologias ágeis para o desenvolvimento de nosso projeto (SCRUM e Kanban).
 
 **Curso:** Web Dev FullStack <br> 
-**Instituição:** Resilia Educação <br>
+**Instituição:** [Resilia Educação](https://www.resilia.com.br/)  <br>
 **Projeto:** Final - Módulo 4 <br>
 
 
