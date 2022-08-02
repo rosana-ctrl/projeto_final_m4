@@ -1,4 +1,3 @@
-
 import db from "../database/db-sqlite.js";
 
 const reservasDAO = {
@@ -82,54 +81,17 @@ const reservasDAO = {
     },
 
     atualizaReserva: (quarto, novosDados) => {
-        const query = (novosDados) => {
-            let quarto = ""
-            let quantLeitos = ""
-            let frigobar = ""
-            let dataEntrada = ""
-            let dataSaida = ""
-            if (novosDados.quarto) {
-                quarto = `QUARTO = ?`
-            }
-            if (novosDados.quantLeitos) {
-                quantLeitos = `QUANTLEITOS = ?`
-                if (quarto) {
-                    quantLeitos = ', ' + quantLeitos
-                }
-            }
-            if (novosDados.frigobar) {
-                frigobar = `FRIGOBAR = ?`
-                if (quarto || quantLeitos) {
-                    frigobar = ', ' + frigobar
-                }
-            }
-            if (novosDados.dataEntrada) {
-                dataEntrada = `DATAENTRADA = ?`
-                if (quarto || quantLeitos || frigobar) {
-                    dataEntrada = ', ' + dataEntrada
-                }
-            }
-            if (novosDados.dataSaida) {
-                dataSaida = `DATASAIDA = ?`
-                if (quarto || quantLeitos || frigobar || dataEntrada) {
-                    dataSaida = ', ' + dataSaida
-                }
-            }
-
-            return `UPDATE RESERVAS SET 
-            ${quarto} ${quantLeitos} ${frigobar} ${dataEntrada} ${dataSaida}
-            WHERE QUARTO = ?`
-        }
-
         return new Promise((resolve, reject) => {
-            db.run(query(novosDados),
-                ...Object.values(novosDados), quarto,
+            db.run(`UPDATE RESERVAS 
+            SET QUARTO = ?, QUANTLEITOS = ?, FRIGOBAR = ?, DATAENTRADA = ?, DATASAIDA =?
+            WHERE QUARTO = ?`,
+                novosDados.quarto, novosDados.quantLeitos, novosDados.frigobar, novosDados.dataEntrada, novosDados.dataSaida,
+                quarto,
                 (error) => {
                     if (error) {
                         reject(error)
                     } else {
-                        resolve(`Reserva do quarto ${quarto} atualizada com sucesso`,
-                        )
+                        resolve(novosDados)
                     }
                 }
             )

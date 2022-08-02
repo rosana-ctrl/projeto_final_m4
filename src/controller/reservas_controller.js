@@ -1,4 +1,5 @@
 import Reservas from "../model/reservas_model.js"
+import ValidacaoReserva from "../services/validacaoReservas.js"
 
 const reservasController = (app) => {
     const modelReservas = new Reservas()
@@ -43,26 +44,22 @@ const reservasController = (app) => {
 
     })
 
+
     app.put('/reservas/quarto/:quarto', async (req, res) => {
         const body = req.body
         const quarto = req.params.quarto
         try {
-            const {status,mensagem} = await modelReservas.atualizaReserva(quarto)
-            if(status === 404) {
-                res.status(404).json({
-                    "mensagem":mensagem,
-                    "erro": true
-                })
-            } else {
-                const resposta = await modelReservas.atualizaReserva(quarto,body)
-                res.status(resposta.status).json({
-                    "mensagem": resposta.mensagem,
-                    "erro":false
-                })
-            }
+            const novosDados = new ValidacaoReserva (body.quarto, body.quantLeitos, body.frigobar, body.dataEntrada, body.dataSaida)
+            await modelReservas.atualizaReserva(quarto, novosDados)
+            res.json({
+                "msg": "Reserva Atualizada com sucesso",
+                "reserva": novosDados,
+                "erro":false
+            })
+
         } catch (error) {
-            res.status(500).json ({
-                "mensagem": error.mensage,
+            res.json({
+                "msg": error.message,
                 "erro":true
             })
         }

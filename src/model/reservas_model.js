@@ -27,20 +27,21 @@ export default class Reservas {
     }
 
     atualizaReserva = async (quarto, novosDados) => {
-       try {
-        const resposta = await reservasDAO.atualizaReserva(quarto,novosDados)
-        return {
-            "mensagem": messagem,
-            "status":200
-        }
-       } catch (error) {
-        return {
-            "mensagem": error.message,
-            "status":400
-        }
-       }
+        const reservaModel = new Reservas ()
+        const reservaAntiga = await reservaModel.pegaUmaReserva(quarto)
+        if (reservaAntiga) {
+            const reservaAtualizada = {
+                "quarto": novosDados.quarto || reservaAntiga.quarto,
+                "quantLeitos": novosDados.quantLeitos || reservaAntiga.quantLeitos,
+                "frigobar": novosDados.frigobar || reservaAntiga.frigobar,
+                "dataEntrada": novosDados.dataEntrada || reservaAntiga.dataEntrada,
+                "dataSaida": novosDados.dataSaida || reservaAntiga.dataSaida
+            }
+            return await reservasDAO.atualizaReserva(quarto, reservaAtualizada)
 
+        } else {
+            throw new Error("Serviço não encontrado")
+        }
     }
 }
-
 
