@@ -3,15 +3,18 @@
 <div id="inicio" align="center">
   <a href="#Projeto">Projeto  |</a>&nbsp;&nbsp;
   <a href="#Squad"> Squad  |</a>&nbsp;&nbsp;
-  <a href="#Modelagem e Entidades"> Modelagem e Entidades |</a>&nbsp;&nbsp;
-  <a href="#Pré-requisitos"> Pré-requisitos  |</a>&nbsp;&nbsp;
-  <a href="#Packages"> Packages  |</a>&nbsp;&nbsp;
-  <a href="#Como usar a API">Como usar a API</a>&nbsp;&nbsp;
+  <a href="#modelagem-e-entidades"> Modelagem e Entidades |</a>&nbsp;&nbsp;
+  <a href="#pré-requisitos"> Pré-requisitos  |</a>&nbsp;&nbsp;
+  <a href="##packages"> Packages  |</a>&nbsp;&nbsp;
+  <a href="#como-utilizar-a-api">Como usar a API</a>&nbsp;&nbsp;
 </div>
 
 <div>
-  <a href="#Rotas Implementadas">Rotas Implementadas  |</a>&nbsp;&nbsp;
   <a href="#rotas-implementadas"> Rotas Implementadas teste  |</a>&nbsp;&nbsp;
+   <a href="#hóspedes">Hóspedes  |</a>&nbsp;&nbsp;
+    <a href="##reservas-1">Reservas  |</a>&nbsp;&nbsp;
+     <a href="#lazer">Lazer  |</a>&nbsp;&nbsp;
+      <a href="#servicos">Serviços  |</a>&nbsp;&nbsp;
 </div>
 
 
