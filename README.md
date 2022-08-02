@@ -278,7 +278,8 @@ npm start ou npm run dev
 	"nome_Atividade": "Bingo",
 	"dia_Atividade": "18/08/2022"
     }
-
+    ```
+    
     Esquema da resposta
     ```json
     {
