@@ -32,7 +32,7 @@ export default class HospedeModel {
         const dao = new Dao()
         return await dao.pegaHospedeId(id_Hospede)
     }
-
+    
     deletaUmHospede = async (id_Hospede) => {
         const dao = new Dao()
         const hospedeModel = new HospedeModel()
