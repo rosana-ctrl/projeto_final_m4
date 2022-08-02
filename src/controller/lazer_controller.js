@@ -16,7 +16,7 @@ const lazer_controller = (app) => {
             const resposta = await lazerModel.pegaUmaAtividade(nome_Atividade)
             if(resposta.status===200){
                 res.status(resposta.status).json({
-                    "usuario": resposta.dados,
+                    "mensagem": resposta.dados,
                     "erro" : false
                 })   
             }else{
