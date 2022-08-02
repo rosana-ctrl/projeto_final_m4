@@ -1,4 +1,5 @@
 import restauranteModel from "../model/restaurante_model.js"
+import {criaRestaurante} from "../services/validaRestaurante.js"
 
 const hotelRestaurante = (app)=>{
 
@@ -40,7 +41,8 @@ app.post('/restaurante',async (req, res)=>{
 const body = req.body
         
 try{
-const restaurante = await restauranteModel.inserirRestaurante(body)
+const restaurante = criaRestaurante(body.cardapio, body.bebida, body.cliente)
+await restauranteModel.inserirRestaurante(restaurante)
         
 res.json(
     {"restaurante":restaurante,
