@@ -4,8 +4,8 @@ export default class Dao {
 
     insereHospede = (hospede) => {
         const INSERE_HOSPEDE = `
-        INSERT INTO HOSPEDES (id_Hospede, nome, genero, nasc, email, celular, senha)
-        VALUES (?,?,?,?,?,?,?)
+        INSERT INTO HOSPEDES (nome, genero, nasc, email, celular, senha)
+        VALUES (?,?,?,?,?,?)
         `
         return new Promise((resolve, reject) => {
             db.run(INSERE_HOSPEDE,
@@ -39,9 +39,9 @@ export default class Dao {
         SELECT * FROM HOSPEDES
         WHERE email = ?
         `
-        return new Promise((resolve, reject) => {
-            db.all(PEGA_HOSPEDE, email, (error, row) => {
-                if (error)
+        return new Promise((resolve, reject)=>{
+            db.get(PEGA_HOSPEDE, email, (error, row)=>{
+                if(error)
                     reject(error)
                 else
                     resolve(row)
@@ -70,11 +70,11 @@ export default class Dao {
         WHERE id_Hospede = ?
         `
         return new Promise((resolve, reject) => {
-            db.get(DELETA_HOSPEDE, id_Hospede, (error, row) => {
+            db.run(DELETA_HOSPEDE, id_Hospede, (error) => {
                 if (error)
                     reject(error)
                 else
-                    resolve(row)
+                    resolve(`Hospede com ID = ${id_Hospede} deletado`)
             })
         })
     }
