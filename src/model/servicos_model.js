@@ -75,7 +75,7 @@ export default class Servicos {
         if (resultado.length != 0) {
             resultado = await ServicosDao.deletaServico(id)
             return {
-                "mensagem": `Servico com id ${id} não encontrado`,
+                "mensagem": `Servico com id ${id} deletado`,
                 "status": 200
             }
         }
