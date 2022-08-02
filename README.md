@@ -173,15 +173,269 @@ npm start ou npm run dev
 
 ### Reservas
 * __GET `/reservas`__ <sup>Pega todas as reservas realizadas</sup>
+  
+  Esquema de resposta
+  
+    ```json
+  {
+	"Reservas": [
+		{
+			"id": 1,
+			"quarto": "10",
+			"quantLeitos": "3",
+			"frigobar": "Sim",
+			"dataEntrada": "01/07/2022",
+			"dataSaida": "03/07/2022"
+		},
+		{
+			"id": 2,
+			"quarto": "11",
+			"quantLeitos": "3",
+			"frigobar": "Sim",
+			"dataEntrada": "01/07/2022",
+			"dataSaida": "05/07/2022"
+		},
+		{
+			"id": 3,
+			"quarto": "12",
+			"quantLeitos": "3",
+			"frigobar": "Não",
+			"dataEntrada": "02/07/2022",
+			"dataSaida": "03/07/2022"
+		},
+		{
+			"id": 4,
+			"quarto": "14",
+			"quantLeitos": "2",
+			"frigobar": "Sim",
+			"dataEntrada": "02/07/2022",
+			"dataSaida": "05/07/2022"
+		},
+		{
+			"id": 5,
+			"quarto": "15",
+			"quantLeitos": "2",
+			"frigobar": "Não",
+			"dataEntrada": "03/07/2022",
+			"dataSaida": "05/07/2022"
+		},
+		{
+			"id": 6,
+			"quarto": "18",
+			"quantLeitos": "2",
+			"frigobar": "Sim",
+			"dataEntrada": "04/07/2022",
+			"dataSaida": "08/07/2022"
+		},
+		{
+			"id": 7,
+			"quarto": "20",
+			"quantLeitos": "1",
+			"frigobar": "Sim",
+			"dataEntrada": "05/07/2022",
+			"dataSaida": "06/07/2022"
+		},
+		{
+			"id": 8,
+			"quarto": "22",
+			"quantLeitos": "1",
+			"frigobar": "Sim",
+			"dataEntrada": "05/07/2022",
+			"dataSaida": "07/07/2022"
+		},
+		{
+			"id": 9,
+			"quarto": "23",
+			"quantLeitos": "1",
+			"frigobar": "Não",
+			"dataEntrada": "07/07/2022",
+			"dataSaida": "08/07/2022"
+		},
+		{
+			"id": 10,
+			"quarto": "25",
+			"quantLeitos": "2",
+			"frigobar": "Sim",
+			"dataEntrada": "07/07/2022",
+			"dataSaida": "11/07/2022"
+		},
+		{
+			"id": 11,
+			"quarto": "27",
+			"quantLeitos": "4",
+			"frigobar": "Sim",
+			"dataEntrada": "07/07/2022",
+			"dataSaida": "10/07/2022"
+		},
+		{
+			"id": 12,
+			"quarto": "28",
+			"quantLeitos": "3",
+			"frigobar": "Sim",
+			"dataEntrada": "07/07/2022",
+			"dataSaida": "09/07/2022"
+		},
+		{
+			"id": 13,
+			"quarto": "29",
+			"quantLeitos": "3",
+			"frigobar": "Não",
+			"dataEntrada": "08/07/2022",
+			"dataSaida": "09/07/2022"
+		},
+		{
+			"id": 14,
+			"quarto": "30",
+			"quantLeitos": "2",
+			"frigobar": "Não",
+			"dataEntrada": "10/07/2022",
+			"dataSaida": "12/07/2022"
+		},
+		{
+			"id": 15,
+			"quarto": "32",
+			"quantLeitos": "2",
+			"frigobar": "Sim",
+			"dataEntrada": "10/07/2022",
+			"dataSaida": "13/07/2022"
+		},
+		{
+			"id": 16,
+			"quarto": "34",
+			"quantLeitos": "1",
+			"frigobar": "Sim",
+			"dataEntrada": "10/07/2022",
+			"dataSaida": "14/07/2022"
+		},
+		{
+			"id": 17,
+			"quarto": "35",
+			"quantLeitos": "1",
+			"frigobar": "Sim",
+			"dataEntrada": "11/07/2022",
+			"dataSaida": "17/07/2022"
+		},
+		{
+			"id": 18,
+			"quarto": "36",
+			"quantLeitos": "2",
+			"frigobar": "Sim",
+			"dataEntrada": "11/07/2022",
+			"dataSaida": "14/07/2022"
+		},
+		{
+			"id": 19,
+			"quarto": "37",
+			"quantLeitos": "3",
+			"frigobar": "Sim",
+			"dataEntrada": "12/07/2022",
+			"dataSaida": "17/07/2022"
+		},
+		{
+			"id": 20,
+			"quarto": "39",
+			"quantLeitos": "2",
+			"frigobar": "Não",
+			"dataEntrada": "13/07/2022",
+			"dataSaida": "14/07/2022"
+		}
+	],
+	"erro": false
+  }
+
+   ```
+
 
 * __GET `/reservas/quarto/:quarto`__ <sup>Seleciona apenas uma reserva</sup>
 
+
+    ```json
+  {
+	"mensage": [
+		{
+			"id": 1,
+			"quarto": "10",
+			"quantLeitos": "3",
+			"frigobar": "Sim",
+			"dataEntrada": "01/07/2022",
+			"dataSaida": "03/07/2022"
+		}
+	],
+	"erro": true
+  }
+    ```
+    
+* __GET `/reservas/quarto/:quarto`__ <sup>Seleciona uma reserva que não existe</sup>
+
+ Esquema de resposta
+
+   ```json
+{
+	"mensagem": "Reserva do quarto 13 não encontrada",
+	"erro": false
+}
+  ```
+
 * __POST `/reservas`__ <sup>Adiciona uma nova reserva</sup>
+  
+  Adicionando json:<br>
+	{<br>
+			"quarto": "40",<br>
+			"quantLeitos": "2",<br>
+			"frigobar": "Sim",<br>
+			"dataEntrada": "20/05/2022",<br>
+			"dataSaida": "26/05/2022"<br>
+		}<br>
+    
+ Esquema de resposta
+ 
+ ```json
+{
+	"mensagem": "Reserva inserida com sucesso",
+	"erro": false
+}
+```
 
 * __DELETE `/reservas/quarto/:quarto`__ <sup>Deleta apenas uma reserva</sup>
 
+ Esquema de resposta
+ 
+  ```json
+{
+	"mensage": "Reserva do quarto 37 deletada com sucesso",
+	"erro": true
+}
+```
+
+* __DELETE `/reservas/quarto/:quarto`__ <sup>Deleta uma reserva que não existe</sup>
+
+ Esquema de resposta
+ 
+  ```json
+{
+	"mensagem": "Reserva do quarto 50 não encontrada",
+	"erro": false
+}
+```
+
 * __PUT `/reservas/quarto/:quarto`__ <sup>Atualiza apenas uma reserva</sup>
 
+ Esquema de resposta
+ 
+  ```json
+{
+	"msg": "Reserva Atualizada com sucesso",
+	"reserva": {
+		"id_reserva": 22,
+		"quarto": "12",
+		"quantLeitos": "3",
+		"frigobar": "Sim",
+		"dataEntrada": "01/07/2022",
+		"dataSaida": "3/7/2022"
+	},
+	"erro": false
+}
+```
 
 ### Lazer
 * __GET `/lazer`__ <sup>Pega todas as atividades agendadas</sup>
