@@ -227,14 +227,14 @@ npm start ou npm run dev
 
 * __DELETE `/hospede/id/:id`__ <sup>Deleta apenas um hóspede</sup>
 
- Esquema de resposta
+  Esquema de resposta
 
-  ```json
-    {
-        "mensagem": "Hospede com id 5 foi deletado com sucesso",
-	      "erro": false
-    }
-  ```
+    ```json
+      {
+          "mensagem": "Hospede com id 5 foi deletado com sucesso",
+          "erro": false
+      }
+    ```
 
 
 * __PUT `/hospede/id/:id`__ <sup>Atualiza apenas um hóspede</sup>
