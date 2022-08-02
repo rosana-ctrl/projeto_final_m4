@@ -188,3 +188,83 @@ npm start ou npm run dev
 
 * __PUT `/servicos/id/:id`__ <sup>Atualiza apenas um servico pelo id na URL</sup>
 
+
+
+### Restaurante
+* __GET `/resturante`__ <sup>Pega todos os pedidos realizados</sup>
+
+Esquema da resposta
+
+{
+	"restaurante": 	"id": 26,
+			"cardapio": "feijoada",
+			"bebida": "coca-cola",
+			"cliente": "Julia"
+		}
+	],
+	"erro": false
+}
+
+* __GET `/restaurante/cliente/:cliente`__ <sup>Pega um pedido pelo cliente na URL</sup>
+
+Esquema da resposta
+{
+	"restaurante": {
+		"id": 25,
+		"cardapio": "strogonoff",
+		"bebida": "água",
+		"cliente": "Julia"
+	},
+	"erro": false
+}
+
+* __POST `/restaurante`__ <sup>Adiciona um novo pedido</sup>
+
+Esquema da requisição
+
+{
+	"restaurante": {
+		"cardapio": "feijoada",
+		"bebida": "coca-cola",
+		"cliente": "Julia"
+	},
+	"erro": false
+}
+
+* __PUT `/restaurante/id/:id`__ <sup>Atualiza apenas um pedido pelo id na URL</sup>
+
+Esquema da requisição
+
+{
+			"id": 26,
+			"cardapio": "feijoada",
+			"bebida": "coca-cola",
+			"cliente": "Julia"
+		}
+	],
+}
+
+Esquema da resposta
+
+{
+	"msg": "Cardapio feijoada atualizado com sucesso",
+	"erro": false
+}
+
+* __DELETE `/restaurante/id/:id`__ <sup>Deleta apenas um pedido pelo id na URL</sup>
+
+Esquema da resposta
+
+{
+	"restaurante": {
+		"msg": "pedido de id:25 deletado com sucesso"
+	},
+	"erro": false
+}
+
+ERROS Esquema da resposta
+
+{
+	"msg": "ID não encontrado",
+	"erro": true
+}
