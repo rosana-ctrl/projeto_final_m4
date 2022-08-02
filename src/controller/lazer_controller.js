@@ -1,6 +1,5 @@
 import Lazer from "../model/lazer_model.js"
 import lazerDao from "../DAO/lazer_DAO.js"
-import validacaoAtividade from "../services/validaLazer.js"
 import db from "../database/db-sqlite.js"
 
 const lazer_controller = (app) => {
@@ -33,46 +32,16 @@ const lazer_controller = (app) => {
                 "erro" : true
             })
         }
-    })
-
-    app.get('/lazer/atividades/:id', async (req, res)=>{
-        const id = req.params.id
-
-        try {
-            const resposta = await usuarioModel.pegaUmId(id)
-            if(resposta.status===200){
-                res.status(resposta.status).json({
-                    "usuario": resposta.dados,
-                    "erro" : false
-                })   
-            }else{
-                res.status(resposta.status).json({
-                    "mensagem": resposta.mensagem,
-                    "erro" : true
-                }) 
-            }
-            
-        } catch (error) {
-            res.status(500).json({
-                "mensagem": error.message,
-                "erro" : true
-            })
-        }
-    })
-    
+    })    
 
     app.post('/lazer', async (req, res)=>{
         const body = req.body
-        try {            
-           
-                const resposta = await lazerModel.insereAtividade(body)
+        try {           
+            const resposta = await lazerModel.insereAtividade(body)
 
-                res.json({
-                    "mensagem": resposta.mensagem,
-                    })  
-                
-            
-                        
+            res.json({
+                "mensagem": resposta.mensagem,
+                    })                 
         } catch (error) {
             res.json({
                 "mensagem": error.message,
@@ -82,30 +51,37 @@ const lazer_controller = (app) => {
 
     })
 
-app.delete ('/lazer/atividades/:atividade', async (req, res) => {
-    const nome_atividade = req.params.nome_atividade
-    try {
-        const resposta = await lazerModel.deletaAtividade(nome_atividade)
-        res.json(resposta)
-    } catch (error) {
-        res.json(error)
-    }
+    app.delete ('/lazer/atividades/:id', async (req, res) => {
+        const id = req.params.id
+        try {
+            const resposta = await lazerModel.deletaAtividade(id)        
+                res.json({
+                    "mensagem": resposta.mensagem,
+                })
+        } catch (error) {
+            res.json({
+                "mensagem": error.message,
+                "erro" : true
+        })
 
+    }
 })
 
-app.put ('/lazer/atividades/:atividade', async (req, res) => {
+app.put('/lazer/atividades/:id',async (req, res)=>{
     const body = req.body
-    const atividade = req.params.atividade
+    const id = req.params.id
     try {
-        const novoDados = new validacaoAtividade (body.nome_hospede, body.nome_atividade, body.dia_atividade)
-        const resposta = await lazerModel.atualizaAtividade(atividade, novoDados)
+        const lazer = await lazerModel.atualizarAtividade(id, body)
         res.json({
-            "Atividade": resposta,
-                    "erro": false
+            "msg" : `Atividade para Id ${id} foi atualizada com sucesso`,
+            "erro" : false
         })
 
     } catch (error) {
-        res.json(error)
+        res.json({
+            "msg" : error.message,
+            "erro" : true
+        })
     }
 })
 
@@ -115,4 +91,3 @@ app.put ('/lazer/atividades/:atividade', async (req, res) => {
 
 
 export default lazer_controller
-

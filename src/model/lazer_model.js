@@ -1,21 +1,8 @@
 import lazerDAO from "../DAO/lazer_DAO.js"
 import db from "../database/db-sqlite.js"
 
-class Lazer {
-   
-    insereAtividade = async(atividade) => {
-        try {
-            const novaAtividade = new validacaoAtividade (atividade.nome_hospede, atividade.nome_atividade, atividade.dia_atividade)
-            lazerDAO.insereAtividade (novaAtividade)
-        } catch (error) {
-            return {
-                "msg": error.message,
-                "erro": true
-            }
-        }
-        
-       
-    }
+class Lazer {   
+    
     pegaAtividades = async () => {
         return await lazerDAO.pegarTodosLazer()
     }
@@ -46,8 +33,6 @@ class Lazer {
 
     insereAtividade = async (nome_Atividade)=>{
         try {
-           
-            // const novoAtividade = criaAtividade(nome_Atividade)
             const mensagem = await lazerDAO.insereAtividade(nome_Atividade)
             return {
                 "mensagem" : mensagem,
@@ -61,7 +46,7 @@ class Lazer {
         }
     }
 
-    pegaUmId = async (id)=> {
+    pegaUmId = async (id) => {
         try {
             const dados = await lazerDAO.pegaUmId(id)
             if(dados){
@@ -85,28 +70,38 @@ class Lazer {
 
     }    
 
-    deletaAtividade = async (nome_atividade) => {
-        return await lazerDAO.deletaAtividade (nome_atividade)
+    deletaAtividade = async (id)=>{
+        try {
+            const mensagem = await lazerDAO.deletaAtividade(id)
+            return {
+                "mensagem" : mensagem,
+                "status" : 200
+            }
+            
+        } catch (error) {
+            return {
+                "mensagem" : error.message,
+                "status" : 400
+            }
+        }
     }
 
-    atualizaAtividade = async (nome_atividade, novosDados) => {
-        const atividadeAtualizada = await lazerDAO.atualizaAtividade (nome_atividade, novosDados) 
-            if (atividadeAtualizada.nome_atividade === nome_atividade) {
-                return {
-                    "id": atividadeAtualizada.id,
-                    "nome_Hospede": novosDados.nome_hospede || atividadeAtualizada.nome_hospede,
-                    "nome_Atividade": novosDados.nome_atividade || atividadeAtualizada.nome_atividade,
-                    "dia_Atividade": novosDados.dia_atividade || atividadeAtualizada.dia_atividade
-                }
+    atualizarAtividade = async (id, novosDados)=>{
+        const lazerAtual = await lazerDAO.pegaUmId(id)
+        console.log(lazerAtual)
+        if(lazerAtual){
+            const lazerAtualizado = {
+                "nome_Hospede" : novosDados.nome_Hospede || lazerAtual.nome_Hospede,
+                "nome_Atividade" : novosDados.nome_Atividade || lazerAtual.nome_Atividade,
+                "dia_Atividade" : novosDados.dia_Atividade || lazerAtual.dia_Atividade
             }
-            return atividadeAtualizada
-        
-        
+            return await lazerDAO.atualizarAtividade(id, lazerAtualizado)
+        } else{
+            throw new Error("Atividade não encontrada")
+        }
+
     }
 
 }
 
 export default Lazer
-
-
-

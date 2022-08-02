@@ -71,23 +71,10 @@ const lazerDAO = {
         })
     },
 
-    // insereAtividade: (atividade)=>{
-    //     return new Promise((resolve, reject)=>{
-    //         db.run(`INSERT INTO LAZER (nome_Hospede, nome_Atividade, dia_Atividade)
-    //         VALUES (?, ?, ?)`, atividade.nome_Hospede, atividade.nome_Atividade, atividade.dia_Atividade,
-    //         (erro)=>{
-    //             if(erro){
-    //                 reject(erro)
-    //             }else{
-    //                 resolve("Atividade agendada com sucesso")
-    //             }
-    //         })
-    //     })
-    // },
 
-    deletaAtividade: (nome_atividade) => {
+    deletaAtividade: (id) => {
         return new Promise((resolve, reject) => {
-            db.run(`DELETE FROM RESERVAS WHERE NOME_ATIVIDADE = ?`, nome_atividade,
+            db.run(`DELETE FROM LAZER WHERE id = ?`, id,
                 (error) => {
                     if (error) {
                         reject({
@@ -96,7 +83,7 @@ const lazerDAO = {
                         })
                     } else {
                         resolve({
-                            msg: `Atividade ${nome_atividade} deletada com sucesso`,
+                            msg: `Atividade de ID ${id} deletada com sucesso`,
                             error: false
                         })
                     }
@@ -104,30 +91,25 @@ const lazerDAO = {
         })
     },
 
-    atualizaAtividade: (nome_atividade, novosDados) => {
+    atualizarAtividade: (id, novoAtividade) => {
+        const ATUALIZA_LAZER = `
+        UPDATE LAZER
+        SET nome_Hospede = ?, nome_Atividade = ?, dia_Atividade = ?
+        WHERE id = ?
+        `
         return new Promise((resolve, reject) => {
-            db.run(`UPDATE LAZER 
-            SET NOME_HOSPEDE = ?, NOME_ATIVIDADE = ?, DIA_ATIVIDADE = ? WHERE nome_Atividade = ?`,
-                novosDados.nome_hospede, novosDados.nome_atividade, novosDados.dia_atividade, nome_atividade,
+            db.run(ATUALIZA_LAZER,
+                novoAtividade.nome_Hospede, novoAtividade.nome_Atividade, novoAtividade.dia_Atividade,
+                id,
                 (error) => {
-                    if (error) {
-                        reject({
-                            "mensagem": error.message,
-                            "erro": true
-                        })
-                    } else {
-                        resolve({
-                            msg: `Atividade de Lazer ${nome_atividade} atualizada com sucesso`,
-                            "Atividade": novosDados,
-                            error: false
-                        })
-                    }
+                    if (error)
+                        reject(error)
+                    else
+                        resolve(novoAtividade)
                 }
             )
         })
     }
+    
 }
-
-
-
 export default lazerDAO
