@@ -20,7 +20,7 @@ const ServicosDao = {
         })
     },
 
-    atualizaservico: (id, servico) => {
+    atualizaServico: (id, servico) => {
         const ATUALIZA_SERVICO = `
         UPDATE SERVICOS
         SET room_service = ?, early_checkin = ?, late_checkout = ?, governanca = ?, concierge = ?
@@ -75,7 +75,7 @@ const ServicosDao = {
         WHERE id = ?
         `
         return new Promise((resolve, reject) => {
-            db.get(DELETA_SERVICO, id, (error, row) => {
+            db.run(DELETA_SERVICO, id, (error, row) => {
                 if (error)
                     reject(error)
                 else

@@ -17,15 +17,21 @@ export default class Servicos {
     }
 
     atualizaServico = async (id, dados) => {
-        try {
-            let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
-            let resultado = await ServicosDao.atualizaservico(id, servico)
-            return {
-                "dados": resultado,
-                "status": 200
+
+        let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
+        let resultado = await ServicosDao.pegaServico(id)
+        console.log(resultado)
+        if (resultado.length != 0) {
+            const servicoAtualizado = {
+                "room_service": dados.room_service || resultado.room_service,
+                "early_checkin": dados.early_checkin || resultado.early_checkin,
+                "late_checkout": dados.late_checkout || resultado.late_checkout,
+                "governanca": dados.governanca || resultado.governanca,
+                "concierge": dados.concierge || resultado.concierge
             }
-        } catch (error) {
-            throw error
+            return await ServicosDao.atualizaServico(id, servicoAtualizado)
+        } else {
+            throw new Error("Serviço não encontrado")
         }
     }
 
@@ -46,25 +52,35 @@ export default class Servicos {
     pegaServico = async (id) => {
         try {
             let resultado = await ServicosDao.pegaServico(id)
-            return {
-                "dados": resultado,
-                "status": 200
+            if (resultado) {
+                return {
+                    "dados": resultado,
+                    "status": 200
+                }
+            } else {
+                return {
+                    "mensagem": `Servico com ${id} não encontrado`,
+                    "status": 400
+                }
             }
-
         } catch (error) {
             throw error
         }
     }
 
     deletaServico = async (id) => {
-        try {
-            let resultado = await ServicosDao.deletaServico(id)
+
+        let resultado = await ServicosDao.pegaServico(id)
+
+        if (resultado.length != 0) {
+            resultado = await ServicosDao.deletaServico(id)
             return {
                 "status": 200
             }
-
-        } catch (error) {
-            throw error
+        }
+        return {
+            "mensagem": `Servico com ${id} não encontrado`,
+            "status": 400
         }
     }
 }

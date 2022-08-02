@@ -40,7 +40,7 @@ const servicosController = (app) => {
             })
         } catch (error) {
             res.status(500).json({
-                "mensagem": error.mensagem,
+                "mensagem": error.message,
                 "erro": true
             })
         }
@@ -61,8 +61,12 @@ const servicosController = (app) => {
         try {
             let servico = await modelServicos.deletaServico(req.params.id)
             res.json(servico)
+
         } catch (error) {
-            res.json(error.message)
+            res.status(400).json({
+                "mensagem": error.message,
+                "erro": true
+            })
         }
     })
 }
