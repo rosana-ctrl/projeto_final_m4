@@ -39,7 +39,10 @@ const reservasController = (app) => {
             const resposta = await modelReservas.deletaReserva(quarto)
             res.json(resposta)
         } catch (error) {
-            res.json(error)
+            res.json({
+                "mensagem": error.message,
+                "erro": true
+            })
         }
 
     })

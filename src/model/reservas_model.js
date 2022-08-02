@@ -38,7 +38,21 @@ export default class Reservas {
     }
 
     deletaReserva = async (quarto) => {
-        return await reservasDAO.deletaReserva(quarto)
+       
+        let resposta = await reservasDAO.pegaUmaReserva(quarto)
+            if(resposta.length != 0){
+                let resposta = await reservasDAO.deletaReserva(quarto)
+                return {
+                    "mensage": `Reserva do quarto ${quarto} deletada com sucesso`,
+                    "erro": true
+                }
+            } else {
+                return {
+                    "mensagem": `Reserva do quarto ${quarto} não encontrada`,
+                    "erro":false
+                }
+            }
+       
     }
 
     atualizaReserva = async (quarto, novosDados) => {
