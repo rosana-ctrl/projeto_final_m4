@@ -1,6 +1,6 @@
 // import bd from '../database/bd.js'
 
-import Dao from "../DAO/hospedeDAO"
+import Dao from "../DAO/hospedeDAO.js"
 
 export default class HospedeModel {
 
@@ -48,6 +48,6 @@ export default class HospedeModel {
             return await dao.atualizaHospede(id_Hospede, hospedeAtualizado)
         } else {
             throw new Error("Hospede não encontrado")
-        }        
+        }
     }
 }
