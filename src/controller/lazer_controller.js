@@ -76,7 +76,7 @@ app.put('/lazer/atividades/:id',async (req, res)=>{
             "msg" : `Atividade para hospede no Id ${id} foi atualizada com sucesso`,
             "erro" : false
         })
-
+// teste
     } catch (error) {
         res.json({
             "msg" : error.message,
