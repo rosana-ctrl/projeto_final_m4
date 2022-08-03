@@ -7,9 +7,9 @@ class Lazer {
         return await lazerDAO.pegarTodosLazer()
     }
     
-    pegaUmaAtividade = async (nome_Atividade)=>{
+    pegaUmNome = async (nome_Hospede)=>{
         try {
-            const dados = await lazerDAO.pegaUmaAtividade(nome_Atividade)
+            const dados = await lazerDAO.pegaUmNome (nome_Hospede)
             if(dados){
                 return {
                     "dados" : dados,
@@ -17,7 +17,7 @@ class Lazer {
                 }
             } else{
                 return {
-                    "mensagem" : `Atividade ${nome_Atividade} não encontrada`,
+                    "mensagem" : `Nome do hospede ${nome_Hospede} não foi encontrado`,
                     "status" : 404
                 }
             }
@@ -97,7 +97,7 @@ class Lazer {
             }
             return await lazerDAO.atualizarAtividade(id, lazerAtualizado)
         } else{
-            throw new Error("Atividade não encontrada")
+            throw new Error("Id não encontrado")
         }
 
     }

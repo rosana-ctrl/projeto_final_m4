@@ -9,14 +9,14 @@ const lazer_controller = (app) => {
         res.json (await lazerDao.pegarTodosLazer(db))
     })
 
-    app.get('/lazer/atividades/:nome_Atividade', async (req, res)=>{
-        const nome_Atividade = req.params.nome_Atividade
+    app.get('/lazer/atividades/:nome_Hospede', async (req, res)=>{
+        const nome_Hospede = req.params.nome_Hospede
 
         try {
-            const resposta = await lazerModel.pegaUmaAtividade(nome_Atividade)
+            const resposta = await lazerModel.pegaUmNome(nome_Hospede)
             if(resposta.status===200){
                 res.status(resposta.status).json({
-                    "mensagem": resposta.dados,
+                    "Hospede": resposta.dados,
                     "erro" : false
                 })   
             }else{
@@ -73,7 +73,7 @@ app.put('/lazer/atividades/:id',async (req, res)=>{
     try {
         const lazer = await lazerModel.atualizarAtividade(id, body)
         res.json({
-            "msg" : `Atividade para Id ${id} foi atualizada com sucesso`,
+            "msg" : `Atividade para hospede no Id ${id} foi atualizada com sucesso`,
             "erro" : false
         })
 

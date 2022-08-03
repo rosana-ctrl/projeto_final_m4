@@ -21,9 +21,9 @@ const lazerDAO = {
         })
     },
 
-    pegaUmaAtividade : (nome_Atividade)=>{
+    pegaUmNome : (nome_Hospede)=>{
         return new Promise((resolve, reject)=>{
-            db.get('SELECT * FROM LAZER WHERE nome_Atividade = ?', nome_Atividade,
+            db.get('SELECT * FROM LAZER WHERE nome_Hospede = ?', nome_Hospede,
             (erro, dado)=>{
                 if(erro){
                     reject(erro)
@@ -62,7 +62,7 @@ const lazerDAO = {
                         })
                     } else {
                         resolve({
-                            "mensagem": "Atividade agendada com sucesso",
+                            "mensagem": `Atividade ${atividade.nome_Atividade} para hospede ${atividade.nome_Hospede} inserida com sucesso`,
                             "erro": false
                         })
                     }
@@ -83,7 +83,7 @@ const lazerDAO = {
                         })
                     } else {
                         resolve({
-                            msg: `Atividade de ID ${id} deletada com sucesso`,
+                            msg: `Atividade de hospede no Id ${id} foi deletada com sucesso`,
                             error: false
                         })
                     }
