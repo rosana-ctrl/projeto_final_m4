@@ -184,7 +184,7 @@ npm start ou npm run dev
 
   ```json
   {
-	"usuarios": [
+	"servicos": [
 		{
 			"id": 1,
 			"room_service": "café da manhã",
