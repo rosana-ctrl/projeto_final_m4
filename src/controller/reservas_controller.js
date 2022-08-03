@@ -15,7 +15,7 @@ const reservasController = (app) => {
     app.get('/reservas/quarto/:quarto', async (req, res) => {
         const quarto = req.params.quarto
         try {
-            const reserva = await modelReservas.pegaUmaReserva(quarto)
+            let reserva = await modelReservas.pegaUmaReserva(quarto)
             res.json(reserva)
         } catch (error) {
             res.json(error)
@@ -39,7 +39,10 @@ const reservasController = (app) => {
             const resposta = await modelReservas.deletaReserva(quarto)
             res.json(resposta)
         } catch (error) {
-            res.json(error)
+            res.json({
+                "mensagem": error.message,
+                "erro": true
+            })
         }
 
     })
