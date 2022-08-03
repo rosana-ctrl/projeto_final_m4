@@ -144,15 +144,123 @@ npm start ou npm run dev
 ## Rotas Implementadas
 
 ### Hóspede
-* __GET `/hospede`__ <sup>Pega todos os hóspedes adicionado</sup>
+* __GET `/hospede`__ <sup>Pega todos os hóspedes adicionados</sup>
+  
+   Esquema da resposta
+    ```json
+  {
+    "hospedes": [
+      {
+        "id_Hospede": 1,
+        "nome": "Rachelle Santolin",
+        "genero": "F",
+        "nasc": "13/12/1992",
+        "email": "rach@gmail.com",
+        "celular": "(21) 99765-8972",
+        "senha": "aB@aQ34526"
+      },
+      {
+        "id_Hospede": 2,
+        "nome": "Gloria Santos",
+        "genero": "F",
+        "nasc": "17/10/1990",
+        "email": "gloria@gmail.com",
+        "celular": "(21) 99545-8867",
+        "senha": "cD@aJ34826"
+      },
+      {
+        "id_Hospede": 3,
+        "nome": "Ronald Magalhães",
+        "genero": "M",
+        "nasc": "24/05/1980",
+        "email": "ronald@gmail.com",
+        "celular": "(11) 99321-9967",
+        "senha": "123@aBcD"
+      },
+      {
+        "id_Hospede": 4,
+        "nome": "Kay Torres",
+        "genero": "NB",
+        "nasc": "09/09/1988",
+        "email": "kay@gmail.com",
+        "celular": "(31) 98381-9467",
+        "senha": "456!aBcD"
+      }
+    ],
+    "erro": false
+  }
+    ```
 
 * __GET `/hospede/email/:email`__ <sup>Seleciona apenas um hóspede</sup>
 
+  Esquema de resposta
+
+  ```json
+    {
+        "hospede": {
+        "id_Hospede": 4,
+        "nome": "Kay Torres",
+        "genero": "NB",
+        "nasc": "09/09/1988",
+        "email": "kay@gmail.com",
+        "celular": "(31) 98381-9467",
+        "senha": "456!aBcD"
+      },
+      "erro": false
+    }
+    ```
+
 * __POST `/hospede`__ <sup>Adiciona um novo hóspede</sup>
 
-* __DELETE `/hospede/email/:email`__ <sup>Deleta apenas um hóspede</sup>
+  Esquema de resposta
 
-* __PUT `/hospede/email/:email`__ <sup>Atualiza apenas um hóspede</sup>
+  ```json
+    {
+        "msg": "Hóspede inserido com sucesso",
+        "hospede": {
+          "id_Hospede": 5,
+          "nome": "Groot",
+          "genero": "M",
+          "nasc": "10/05/2000",
+          "email": "groot@gmail.com",
+          "celular": "(21) 99565-5643",
+          "senha": "897@aBcD"
+      },
+      "erro": false
+    }
+    ```
+
+* __DELETE `/hospede/id/:id`__ <sup>Deleta apenas um hóspede</sup>
+
+  Esquema de resposta
+
+    ```json
+      {
+          "mensagem": "Hospede com id 5 foi deletado com sucesso",
+          "erro": false
+      }
+    ```
+
+
+* __PUT `/hospede/id/:id`__ <sup>Atualiza apenas um hóspede</sup>
+
+  Esquema de resposta
+
+    ```json
+      {
+          "mensagem": "Hospede com id 3 atualizado com sucesso",
+          "hospede": {
+            "id_Hospede": 3,
+            "nome": "Ronald Magalhães",
+            "genero": "M",
+            "nasc": "24/05/1981",
+            "email": "ronald123@gmail.com",
+            "celular": "(11) 99321-9967",
+            "senha": "123@aBcD"
+          },
+          "erro": false
+      }
+    ```
 
 ### Reservas
 * __GET `/reservas`__ <sup>Pega todas as reservas realizadas</sup>
@@ -183,13 +291,191 @@ npm start ou npm run dev
 
 
 ### Servicos
-* __GET `/servicos`__ <sup>Pega todos os servicos realizados/sup>
+* __GET `/servicos`__ <sup>Pega todos os servicos realizados</sup>
+  
+  Esquema de resposta                             
+
+  ```json
+  {
+    "servicos": [
+      {
+        "id": 1,
+        "room_service": "café da manhã",
+        "early_checkin": null,
+        "late_checkout": "2021-01-13 16:30:00",
+        "governanca": "toalha",
+        "concierge": "teatro"
+      },
+      {
+        "id": 2,
+        "room_service": "almoço",
+        "early_checkin": "null",
+        "late_checkout": "null",
+        "governanca": "mull",
+        "concierge": "cinema"
+      },
+      {
+        "id": 3,
+        "room_service": "café da manhã",
+        "early_checkin": "null",
+        "late_checkout": "null",
+        "governanca": "travesseiro",
+        "concierge": "null"
+      },
+      {
+        "id": 4,
+        "room_service": "lanche",
+        "early_checkin": "null",
+        "late_checkout": "null",
+        "governanca": "null",
+        "concierge": "show"
+      },
+      {
+        "id": 5,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 6,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 7,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 8,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 9,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 10,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      }
+    ],
+    "total": 10,
+    "erro": false
+  }
+```
 
 * __GET `/servico/id/:id`__ <sup>Seleciona apenas um servico pelo id na URL</sup>
 
+Esquema de resposta
+```json
+{
+	"dados": [
+		{
+			"id": 3,
+			"room_service": "café da manhã",
+			"early_checkin": "null",
+			"late_checkout": "null",
+			"governanca": "travesseiro",
+			"concierge": "null"
+		}
+	],
+	"status": 200
+}
+```
+* __GET `/servico/id/:id`__ <sup>Seleciona apenas um servico pelo id na URL</sup>
+
+Esquema de resposta para id não encontrado
+
+```json
+{
+	"mensagem": "Servico com id 27 não encontrado",
+	"status": 400
+}
+
+```
+
 * __POST `/servicos`__ <sup>Adiciona um novo servico</sup>
+
+Adicionando json: <br>
+{<br>
+
+	"room_service": "jantar",
+	"early_checkin": "23/03/2022 09:09",
+	"late_checkout": "24/03/2022 10:09",
+	"governanca": "coberta",
+	"concierge": "restaurante"
+
+}<br>
+
+Esquema de resposta
+
+```json
+{
+	"msg": "Serviço inserido com sucesso"
+}
+```
 
 * __DELETE `/servicos/id/:id`__ <sup>Deleta apenas um servico pelo id na URL</sup>
 
+Esquema de resposta
+
+```json
+{
+	"mensagem": "Servico com id 11 deletado",
+	"status": 200
+}
+```
+* __DELETE `/servicos/id/:id`__ <sup>Tentativa de deletar um servico pelo id na URL que não existe</sup>
+
+```json
+{
+	"mensagem": "Servico com id 11 não encontrado",
+	"status": 400
+}
+
+```
+
 * __PUT `/servicos/id/:id`__ <sup>Atualiza apenas um servico pelo id na URL</sup>
 
+Esquema de resposta
+
+```json
+{
+	"room_service": "almoço",
+	"early_checkin": "21/05/2022 10:30",
+	"late_checkout": "21/05/2022 10:30",
+	"governanca": "coberta",
+	"concierge": "restaurante"
+}
+
+{
+	"msg": "Serviço atualizado com sucesso"
+}
+
+```
+* __PUT `/servicos/id/:id`__ <sup>Tentativa de atualizar um servico pelo id na URL que não existe</sup>
+
+```json
+{"Serviço não encontrado"}
+
+```

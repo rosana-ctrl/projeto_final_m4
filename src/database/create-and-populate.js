@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS "SERVICOS" (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "room_service" varchar(255),
     "early_checkin" datetime,
-    "late_checkout" varchar,
+    "late_checkout" datetime,
     "governanca" varchar(255),
     "concierge" varchar(255)
   );`;
