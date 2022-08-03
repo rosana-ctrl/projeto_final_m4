@@ -40,7 +40,6 @@ class validacaoServicos {
         } catch {
             throw new Error("Data inválida.")
         }
-
     }
 }
 
