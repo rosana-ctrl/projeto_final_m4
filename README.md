@@ -139,15 +139,123 @@ npm start ou npm run dev
 ## Rotas Implementadas
 
 ### Hóspede
-* __GET `/hospede`__ <sup>Pega todos os hóspedes adicionado</sup>
+* __GET `/hospede`__ <sup>Pega todos os hóspedes adicionados</sup>
+  
+   Esquema da resposta
+    ```json
+  {
+    "hospedes": [
+      {
+        "id_Hospede": 1,
+        "nome": "Rachelle Santolin",
+        "genero": "F",
+        "nasc": "13/12/1992",
+        "email": "rach@gmail.com",
+        "celular": "(21) 99765-8972",
+        "senha": "aB@aQ34526"
+      },
+      {
+        "id_Hospede": 2,
+        "nome": "Gloria Santos",
+        "genero": "F",
+        "nasc": "17/10/1990",
+        "email": "gloria@gmail.com",
+        "celular": "(21) 99545-8867",
+        "senha": "cD@aJ34826"
+      },
+      {
+        "id_Hospede": 3,
+        "nome": "Ronald Magalhães",
+        "genero": "M",
+        "nasc": "24/05/1980",
+        "email": "ronald@gmail.com",
+        "celular": "(11) 99321-9967",
+        "senha": "123@aBcD"
+      },
+      {
+        "id_Hospede": 4,
+        "nome": "Kay Torres",
+        "genero": "NB",
+        "nasc": "09/09/1988",
+        "email": "kay@gmail.com",
+        "celular": "(31) 98381-9467",
+        "senha": "456!aBcD"
+      }
+    ],
+    "erro": false
+  }
+    ```
 
 * __GET `/hospede/email/:email`__ <sup>Seleciona apenas um hóspede</sup>
 
+  Esquema de resposta
+
+  ```json
+    {
+        "hospede": {
+        "id_Hospede": 4,
+        "nome": "Kay Torres",
+        "genero": "NB",
+        "nasc": "09/09/1988",
+        "email": "kay@gmail.com",
+        "celular": "(31) 98381-9467",
+        "senha": "456!aBcD"
+      },
+      "erro": false
+    }
+    ```
+
 * __POST `/hospede`__ <sup>Adiciona um novo hóspede</sup>
 
-* __DELETE `/hospede/email/:email`__ <sup>Deleta apenas um hóspede</sup>
+  Esquema de resposta
 
-* __PUT `/hospede/email/:email`__ <sup>Atualiza apenas um hóspede</sup>
+  ```json
+    {
+        "msg": "Hóspede inserido com sucesso",
+        "hospede": {
+          "id_Hospede": 5,
+          "nome": "Groot",
+          "genero": "M",
+          "nasc": "10/05/2000",
+          "email": "groot@gmail.com",
+          "celular": "(21) 99565-5643",
+          "senha": "897@aBcD"
+      },
+      "erro": false
+    }
+    ```
+
+* __DELETE `/hospede/id/:id`__ <sup>Deleta apenas um hóspede</sup>
+
+  Esquema de resposta
+
+    ```json
+      {
+          "mensagem": "Hospede com id 5 foi deletado com sucesso",
+          "erro": false
+      }
+    ```
+
+
+* __PUT `/hospede/id/:id`__ <sup>Atualiza apenas um hóspede</sup>
+
+  Esquema de resposta
+
+    ```json
+      {
+          "mensagem": "Hospede com id 3 atualizado com sucesso",
+          "hospede": {
+            "id_Hospede": 3,
+            "nome": "Ronald Magalhães",
+            "genero": "M",
+            "nasc": "24/05/1981",
+            "email": "ronald123@gmail.com",
+            "celular": "(11) 99321-9967",
+            "senha": "123@aBcD"
+          },
+          "erro": false
+      }
+    ```
 
 ### Reservas
 * __GET `/reservas`__ <sup>Pega todas as reservas realizadas</sup>
