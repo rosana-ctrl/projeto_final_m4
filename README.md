@@ -269,7 +269,7 @@ npm start ou npm run dev
 	"total": 10,
 	"erro": false
 }
-  ``
+  
 
 * __GET `/servico/id/:id`__ <sup>Seleciona apenas um servico pelo id na URL</sup>
 
