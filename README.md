@@ -288,96 +288,96 @@ npm start ou npm run dev
 ### Servicos
 * __GET `/servicos`__ <sup>Pega todos os servicos realizados</sup>
   
-  Esquema de resposta
+  Esquema de resposta                             
 
   ```json
   {
-	"servicos": [
-		{
-			"id": 1,
-			"room_service": "café da manhã",
-			"early_checkin": null,
-			"late_checkout": "2021-01-13 16:30:00",
-			"governanca": "toalha",
-			"concierge": "teatro"
-		},
-		{
-			"id": 2,
-			"room_service": "almoço",
-			"early_checkin": "null",
-			"late_checkout": "null",
-			"governanca": "mull",
-			"concierge": "cinema"
-		},
-		{
-			"id": 3,
-			"room_service": "café da manhã",
-			"early_checkin": "null",
-			"late_checkout": "null",
-			"governanca": "travesseiro",
-			"concierge": "null"
-		},
-		{
-			"id": 4,
-			"room_service": "lanche",
-			"early_checkin": "null",
-			"late_checkout": "null",
-			"governanca": "null",
-			"concierge": "show"
-		},
-		{
-			"id": 5,
-			"room_service": "jantar",
-			"early_checkin": 0,
-			"late_checkout": "0",
-			"governanca": "coberta",
-			"concierge": "restaurante"
-		},
-		{
-			"id": 6,
-			"room_service": "jantar",
-			"early_checkin": 0,
-			"late_checkout": "0",
-			"governanca": "coberta",
-			"concierge": "restaurante"
-		},
-		{
-			"id": 7,
-			"room_service": "jantar",
-			"early_checkin": 0,
-			"late_checkout": "0",
-			"governanca": "coberta",
-			"concierge": "restaurante"
-		},
-		{
-			"id": 8,
-			"room_service": "jantar",
-			"early_checkin": 0,
-			"late_checkout": "0",
-			"governanca": "coberta",
-			"concierge": "restaurante"
-		},
-		{
-			"id": 9,
-			"room_service": "jantar",
-			"early_checkin": 0,
-			"late_checkout": "0",
-			"governanca": "coberta",
-			"concierge": "restaurante"
-		},
-		{
-			"id": 10,
-			"room_service": "jantar",
-			"early_checkin": 0,
-			"late_checkout": "0",
-			"governanca": "coberta",
-			"concierge": "restaurante"
-		}
-	],
-	"total": 10,
-	"erro": false
-}
-  
+    "servicos": [
+      {
+        "id": 1,
+        "room_service": "café da manhã",
+        "early_checkin": null,
+        "late_checkout": "2021-01-13 16:30:00",
+        "governanca": "toalha",
+        "concierge": "teatro"
+      },
+      {
+        "id": 2,
+        "room_service": "almoço",
+        "early_checkin": "null",
+        "late_checkout": "null",
+        "governanca": "mull",
+        "concierge": "cinema"
+      },
+      {
+        "id": 3,
+        "room_service": "café da manhã",
+        "early_checkin": "null",
+        "late_checkout": "null",
+        "governanca": "travesseiro",
+        "concierge": "null"
+      },
+      {
+        "id": 4,
+        "room_service": "lanche",
+        "early_checkin": "null",
+        "late_checkout": "null",
+        "governanca": "null",
+        "concierge": "show"
+      },
+      {
+        "id": 5,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 6,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 7,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 8,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 9,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      },
+      {
+        "id": 10,
+        "room_service": "jantar",
+        "early_checkin": 0,
+        "late_checkout": "0",
+        "governanca": "coberta",
+        "concierge": "restaurante"
+      }
+    ],
+    "total": 10,
+    "erro": false
+  }
+```
 
 * __GET `/servico/id/:id`__ <sup>Seleciona apenas um servico pelo id na URL</sup>
 
