@@ -17,23 +17,27 @@ export default class Servicos {
     }
 
     atualizaServico = async (id, dados) => {
+        try {
+            let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
+            let resultado = await ServicosDao.pegaServico(id)
 
-        let servico = new validacaoServicos(dados.room_service, dados.early_checkin, dados.late_checkout, dados.governanca, dados.concierge)
-        let resultado = await ServicosDao.pegaServico(id)
-        console.log(resultado)
-        if (resultado.length != 0) {
-            const servicoAtualizado = {
-                "room_service": dados.room_service || resultado.room_service,
-                "early_checkin": dados.early_checkin || resultado.early_checkin,
-                "late_checkout": dados.late_checkout || resultado.late_checkout,
-                "governanca": dados.governanca || resultado.governanca,
-                "concierge": dados.concierge || resultado.concierge
+            if (resultado.length != 0) {
+                const servicoAtualizado = {
+                    "room_service": dados.room_service || resultado.room_service,
+                    "early_checkin": dados.early_checkin || resultado.early_checkin,
+                    "late_checkout": dados.late_checkout || resultado.late_checkout,
+                    "governanca": dados.governanca || resultado.governanca,
+                    "concierge": dados.concierge || resultado.concierge
+                }
+                return await ServicosDao.atualizaServico(id, servicoAtualizado)
+            } else {
+                throw new Error("Serviço não encontrado")
             }
-            return await ServicosDao.atualizaServico(id, servicoAtualizado)
-        } else {
-            throw new Error("Serviço não encontrado")
+        } catch (error) {
+            throw error
         }
     }
+
 
     pegaTodosServicos = async () => {
         try {
