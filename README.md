@@ -563,18 +563,129 @@ npm test
 ### Lazer
 * __GET `/lazer`__ <sup>Pega todas as atividades agendadas</sup>
 
-* __GET `/lazer/atividades/:atividade`__ <sup>Seleciona uma atividade pelo nome da atividade</sup>
+    Esquema da resposta
+    ```json
+    {
+	"lazer": [
+		{
+			"id": 1,
+			"nome_Hospede": "Geraldo Nascimento",
+			"nome_Atividade": "Trilha",
+			"dia_Atividade": "10/07/2022"
+		},
+		{
+			"id": 2,
+			"nome_Hospede": "Mariah Assunção",
+			"nome_Atividade": "SPA",
+			"dia_Atividade": "28/07/2022"
+		},
+		{
+			"id": 3,
+			"nome_Hospede": "Hudson de Lima",
+			"nome_Atividade": "Jogos Eletronicos (LoL)",
+			"dia_Atividade": "10/08/2022"
+		},
+		{
+			"id": 4,
+			"nome_Hospede": "Isabela da Cunha",
+			"nome_Atividade": "Yoga",
+			"dia_Atividade": "12/08/2022"
+		},
+		{
+			"id": 5,
+			"nome_Hospede": "Heloise Marlene",
+			"nome_Atividade": "Visita Museus",
+			"dia_Atividade": "25/08/2022"
+		},
+		{
+			"id": 6,
+			"nome_Hospede": "Vicente Cardoso",
+			"nome_Atividade": "Bingo",
+			"dia_Atividade": "26/08/2022"
+		},
+		{
+			"id": 13,
+			"nome_Hospede": "Vanessa de Paula",
+			"nome_Atividade": "Degustação Queijos e Vinhos",
+			"dia_Atividade": "27/08/2022"
+		},
+		{
+			"id": 14,
+			"nome_Hospede": "Davi Aparício",
+			"nome_Atividade": "Sauna",
+			"dia_Atividade": "25/08/2022"
+		},
+		{
+			"id": 16,
+			"nome_Hospede": "Joaquim Moura",
+			"nome_Atividade": "Bingo",
+			"dia_Atividade": "18/08/2022"
+		}
+	],
+	"error": false
+    }
+    ```
 
-* __GET `/lazer/atividades/:hospede`__ <sup>Seleciona uma atividade pelo nome do hóspede</sup>
+* __GET `/lazer/atividades/:nome_Hospede`__ <sup>Seleciona uma atividade pelo nome do hospede</sup>
 
-* __GET `/lazer/atividades/:data`__ <sup>Seleciona uma atividade pelo dia que está agendada</sup>
-
+  Esquema da resposta
+    ```json
+  {
+    "Hospede": {
+		"id": 3,
+		"nome_Hospede": "Hudson de Lima",
+		"nome_Atividade": "Jogos Eletronicos (LoL)",
+		"dia_Atividade": "10/08/2022"
+	},
+	"erro": false
+  } 
+    ```
 * __POST `/lazer`__ <sup>Adiciona uma nova atividade</sup>
 
-* __DELETE `/lazer/atividades/:atividade`__ <sup>Deleta uma atividade</sup>
+    Esquema da requisição
+    ```json
+    {
+	"nome_Hospede": "Hudson de Lima",
+	"nome_Atividade": "Jogos Eletronicos (LoL)",
+	"dia_Atividade": "10/08/2022"
+	}
+    ```
+      Esquema da resposta
+    ```json
+    {
+		"mensagem": "Atividade Jogos Eletronicos (LoL) para hospede Hudson de Lima inserida com sucesso",
+		"erro": false
+    }
+    ```
 
-* __PUT `/lazer/atividades/:atividade`__ <sup>Atualiza uma atividade</sup>
+* __DELETE `/lazer/atividades/:id`__ <sup>Deleta atividade do hospede pelo id</sup>
 
+    Esquema da resposta
+    ```json
+    {
+		"msg": "Atividade de hospede no Id 17 foi deletada com sucesso",
+		"error": false
+    }
+    ```
+
+* __PUT `/lazer/atividades/:id`__ <sup>Atualiza atividade do hospede pelo id</sup>
+
+    Esquema da requisição
+    ```json
+    {
+	"nome_Hospede": "Joaquim Moura",
+	"nome_Atividade": "Aula de Surf",
+	"dia_Atividade": "26/08/2022"
+    }
+    ```
+    
+    Esquema da resposta
+    ```json
+    {
+	"msg": "Atividade para hospede no Id 17 foi atualizada com sucesso",
+	"erro": false
+    }
+    ```
 
 ### Servicos
 * __GET `/servicos`__ <sup>Pega todos os servicos realizados</sup>
