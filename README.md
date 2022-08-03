@@ -227,12 +227,12 @@ npm start ou npm run dev
     }
     ```
 
-* __GET `/lazer/atividades/:nome_Atividade`__ <sup>Seleciona uma atividade pelo nome da atividade</sup>
+* __GET `/lazer/atividades/:nome_Hospede`__ <sup>Seleciona uma atividade pelo nome do hospede</sup>
 
   Esquema da resposta
     ```json
   {
-    "Lazer": {
+    "Hospede": {
 		"id": 3,
 		"nome_Hospede": "Hudson de Lima",
 		"nome_Atividade": "Jogos Eletronicos (LoL)",
@@ -254,36 +254,36 @@ npm start ou npm run dev
       Esquema da resposta
     ```json
     {
-		"mensagem": "Atividade agendada com sucesso",
+		"mensagem": "Atividade Jogos Eletronicos (LoL) para hospede Hudson de Lima inserida com sucesso",
 		"erro": false
     }
     ```
 
-* __DELETE `/lazer/atividades/:id`__ <sup>Deleta uma atividade pelo id</sup>
+* __DELETE `/lazer/atividades/:id`__ <sup>Deleta atividade do hospede pelo id</sup>
 
     Esquema da resposta
     ```json
     {
-		"msg": "Atividade de ID 3 deletada com sucesso",
+		"msg": "Atividade de hospede no Id 17 foi deletada com sucesso",
 		"error": false
     }
     ```
 
-* __PUT `/lazer/atividades/:id`__ <sup>Atualiza uma atividade</sup>
+* __PUT `/lazer/atividades/:id`__ <sup>Atualiza atividade do hospede pelo id</sup>
 
     Esquema da requisição
     ```json
     {
 	"nome_Hospede": "Joaquim Moura",
-	"nome_Atividade": "Bingo",
-	"dia_Atividade": "18/08/2022"
+	"nome_Atividade": "Aula de Surf",
+	"dia_Atividade": "26/08/2022"
     }
     ```
     
     Esquema da resposta
     ```json
     {
-	"msg": "Atividade para Id 16 foi atualizada com sucesso",
+	"msg": "Atividade para hospede no Id 17 foi atualizada com sucesso",
 	"erro": false
     }
     ```
