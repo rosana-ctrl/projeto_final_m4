@@ -34,7 +34,7 @@ const servicosController = (app) => {
             let resposta = await modelServicos.pegaTodosServicos()
 
             res.status(resposta.status).json({
-                "usuarios": resposta.dados,
+                "serviços": resposta.dados,
                 "total": resposta.total,
                 "erro": false
             })
