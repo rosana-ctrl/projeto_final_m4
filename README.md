@@ -876,3 +876,82 @@ Esquema de resposta
 {"Serviço não encontrado"}
 
 ```
+
+### Restaurante
+
+* __GET `/restaurante`__ <sup>Pega todos os pedidos realizados</sup>
+
+Esquema da resposta
+```json
+  {
+	
+	[
+	"restaurante":"id": 26,
+	"cardapio": "feijoada",
+	"bebida": "coca-cola",
+	"cliente": "Julia"
+	],
+	"erro": false
+	    }
+  ```
+  
+* __GET `/restaurante/cliente/:cliente`__ <sup>Pega um pedido pelo cliente na URL</sup>
+
+Esquema da resposta
+```json
+  {
+   "restaurante": {
+		"id": 25,
+		"cardapio": "strogonoff",
+		"bebida": "água",
+		"cliente": "Julia"
+	},
+	"erro": false
+	  } 
+  ```
+
+* __POST `/restaurante`__ <sup>Adiciona um novo pedido</sup>
+
+Esquema da requisição
+```json
+  {
+	"restaurante": {
+		"cardapio": "feijoada",
+		"bebida": "coca-cola",
+		"cliente": "Julia"
+	},
+	"erro": false
+		}
+   ```
+
+* __DELETE `/restaurante/id/:id`__ <sup>Deleta apenas um pedido pelo id na URL</sup>
+
+Esquema da requisição
+```json
+  {
+	"restaurante": {
+	"msg": "pedido de id:25 deletado com sucesso"
+	   },
+	"erro": false
+ }
+  ```
+
+Esquema da resposta
+
+```json
+  {
+	"msg": "ID não encontrado",
+	"erro": true
+  }
+  ```
+
+* __PUT `/restaurante/id/:id`__ <sup>Atualiza apenas um pedido pelo id na URL</sup>
+
+
+Esquema da resposta
+```json
+  {
+	"msg": "Cardapio feijoada atualizado com sucesso",
+	"erro": false
+	}
+  ```
