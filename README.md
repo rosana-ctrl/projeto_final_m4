@@ -183,7 +183,7 @@ npm start ou npm run dev
   Esquema de resposta
 
   ```json
-  {
+{
 	"servicos": [
 		{
 			"id": 1,
@@ -265,11 +265,11 @@ npm start ou npm run dev
 			"governanca": "coberta",
 			"concierge": "restaurante"
 		}
-	],
+				],
 	"total": 10,
 	"erro": false
 }
-  
+```
 
 * __GET `/servico/id/:id`__ <sup>Seleciona apenas um servico pelo id na URL</sup>
 
