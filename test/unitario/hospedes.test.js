@@ -1,6 +1,5 @@
 import ValidaHospede from "../../src/services/validaHospede.js";
 
-
 describe("Testando metodos", ()=>{
 
     test("Deve aceitar nome", ()=>{
@@ -8,7 +7,7 @@ describe("Testando metodos", ()=>{
     })
 
     test("Deve aceitar senha", ()=>{
-        expect(ValidaHospede.validaNome("R123@uhbv")).toBe("R123@uhbv")
+        expect(ValidaHospede.validaSenha("R123@uhbv")).toBe("R123@uhbv")
     })
 
     test("Deve aceitar celular", ()=>{
