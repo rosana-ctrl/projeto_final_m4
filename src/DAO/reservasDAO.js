@@ -24,15 +24,9 @@ const reservasDAO = {
             db.all(`SELECT * FROM RESERVAS WHERE QUARTO = ?`, quarto,
                 (error, linhas) => {
                     if (error) {
-                        reject({
-                            "mensagem": error.message,
-                            "erro": true
-                        })
+                        reject(error)
                     } else {
-                        resolve({
-                            "Reserva": linhas,
-                            "erro": false
-                        })
+                        resolve(linhas)
                     }
                 })
         })
@@ -64,17 +58,11 @@ const reservasDAO = {
     deletaReserva: (quarto) => {
         return new Promise((resolve, reject) => {
             db.run(`DELETE FROM RESERVAS WHERE QUARTO = ?`, quarto,
-                (error) => {
+                (error,linhas) => {
                     if (error) {
-                        reject({
-                            "mensagem": error.message,
-                            "erro": true
-                        })
+                        reject(error)
                     } else {
-                        resolve({
-                            "mensagem": `Reserva do quarto ${quarto} deletada com sucesso`,
-                            "erro": false
-                        })
+                        resolve(linhas)
                     }
                 })
         })

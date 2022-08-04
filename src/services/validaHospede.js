@@ -1,18 +1,14 @@
-import Dao from "../DAO/hospedeDAO.js"
-let id_Hospede = 0
-
 class ValidaHospede {
     constructor(nome, genero, nasc, email, celular, senha) {
-        this.id_Hospede = id_Hospede++
-        this.nome = this.validaNome(nome)
-        this.genero = this.validaGenero(genero)
-        this.nasc = this.validaNasc(nasc)
-        this.email = this.validaEmail(email)
-        this.celular = this.validaCelular(celular)
-        this.senha = this.validaSenha(senha)
+        this.nome = ValidaHospede.validaNome(nome)
+        this.genero = ValidaHospede.validaGenero(genero)
+        this.nasc = ValidaHospede.validaNasc(nasc)
+        this.email = ValidaHospede.validaEmail(email)
+        this.celular = ValidaHospede.validaCelular(celular)
+        this.senha = ValidaHospede.validaSenha(senha)
     }
 
-    validaNome = (nome) => {        
+    static validaNome = (nome) => {        
             if (nome.length == 0) {
                 throw new Error("O campo NOME não pode ficar vazio")
             } else {
@@ -20,7 +16,7 @@ class ValidaHospede {
             }
     }
 
-    validaCelular = (celular) => {
+    static validaCelular = (celular) => {
         const regexT = /^\([1-9]{2}\) 9[1-9]{1}[0-9]{3}\-[0-9]{4}$/
 
         if (celular) {
@@ -35,7 +31,7 @@ class ValidaHospede {
 
     }
 
-    validaSenha = (senha) => {
+    static validaSenha = (senha) => {
 
         const regex = /^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{8,15}$/
 
@@ -51,21 +47,21 @@ class ValidaHospede {
 
     }
 
-    validaEmail = (email) => {
+    static validaEmail = (email) => {
         const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/
 
         if (email) {
             if (regexEmail.exec(email)) {
                 return email
             } else {
-                throw new Error("Email inválido")
+                throw new Error("Email inválido. Por favor, insira um email válido")
             }
         } else {
             throw new Error("Insira um email")
         }
     }
 
-    validaGenero = (genero) => {
+    static validaGenero = (genero) => {
         const regexGenero = /F|M|NB|f|m|nb/
 
         if (genero) {
@@ -79,7 +75,7 @@ class ValidaHospede {
         }
     }
 
-    validaNasc = (nasc) => {
+    static validaNasc = (nasc) => {
         const regexNasc = /([0-2][0-9]|3[0-1])\/(0[0-9]|1[0-2])\/[0-9]{4}/
 
         if (nasc) {
