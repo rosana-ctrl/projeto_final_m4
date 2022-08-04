@@ -163,7 +163,7 @@ npm start ou npm run dev
 
 Para iniciar um banco de dados novo com os dados padrão, delete o arquivo `database.db` e rode o comando abaixo:
 ```
-npm populate
+npm run populate
 ```
 
 ## Testes
