@@ -1,5 +1,6 @@
 import lazerDAO from "../DAO/lazer_DAO.js"
 import db from "../database/db-sqlite.js"
+import {campoNomeVazio, campoAtividadeVazio, campoDataVazio, } from "../services/validaLazer.js";
 
 class Lazer {   
     
@@ -57,11 +58,13 @@ class Lazer {
 
     insereAtividade = async (nome_Atividade)=>{
         try {
-            const mensagem = await lazerDAO.insereAtividade(nome_Atividade)
+            if(campoAtividadeVazio(nome_Atividade.nome_Atividade) && campoNomeVazio(nome_Atividade.nome_Hospede)&& campoDataVazio(nome_Atividade.dia_Atividade)){
+                const mensagem = await lazerDAO.insereAtividade(nome_Atividade)
             return {
                 "mensagem" : mensagem,
                 "status" : 200
             }
+            }           
         } catch (error) {
             return {
                 "mensagem" : error.message,
@@ -75,15 +78,14 @@ class Lazer {
             const mensagem = await lazerDAO.deletaAtividade(id)
             return {
                 "mensagem" : mensagem,
-                "status" : 200
+                "status" : 200               
             }
-            
         } catch (error) {
             return {
                 "mensagem" : error.message,
                 "status" : 400
             }
-        }
+        }        
     }
 
     atualizarAtividade = async (id, novosDados)=>{
