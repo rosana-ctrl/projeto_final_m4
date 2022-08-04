@@ -779,7 +779,7 @@ npm test
     "total": 10,
     "erro": false
   }
-```
+``
 
 * __GET `/servico/id/:id`__ <sup>Seleciona apenas um servico pelo id na URL</sup>
 
@@ -795,7 +795,7 @@ Esquema de resposta
 			"governanca": "travesseiro",
 			"concierge": "null"
 		}
-	],
+		],
 	"status": 200
 }
 ```
