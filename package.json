@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "start": "node ./src/server/server.js",
+    "dev": "nodemon ./src/server/server.js",
+    "populate": "node ./src/database/create-and-populate.js"
   },
   "repository": {
     "type": "git",
