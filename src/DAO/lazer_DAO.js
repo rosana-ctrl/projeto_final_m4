@@ -72,9 +72,9 @@ const lazerDAO = {
     },
 
 
-    deletaAtividade: (id) => {
+    deletaAtividade: (nome_Hospede) => {
         return new Promise((resolve, reject) => {
-            db.run(`DELETE FROM LAZER WHERE id = ?`, id,
+            db.run(`DELETE FROM LAZER WHERE nome_Hospede = ?`, nome_Hospede,
                 (error) => {
                     if (error) {
                         reject({
@@ -83,7 +83,7 @@ const lazerDAO = {
                         })
                     } else {
                         resolve({
-                            msg: `Atividade de hospede no Id ${id} foi deletada com sucesso`,
+                            msg: `Atividade de hospede ${nome_Hospede} foi excluída com sucesso`,
                             error: false
                         })
                     }

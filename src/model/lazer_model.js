@@ -1,6 +1,6 @@
 import lazerDAO from "../DAO/lazer_DAO.js"
 import db from "../database/db-sqlite.js"
-import {campoNomeVazio, campoAtividadeVazio, campoDataVazio, } from "../services/validaLazer.js";
+import {campoNomeVazio, campoAtividadeVazio, campoDataVazio} from "../services/validaLazer.js";
 
 class Lazer {   
     
@@ -73,12 +73,12 @@ class Lazer {
         }
     }    
 
-    deletaAtividade = async (id)=>{
+    deletaAtividade = async (nome_Hospede)=>{
         try {
-            const mensagem = await lazerDAO.deletaAtividade(id)
-            return {
-                "mensagem" : mensagem,
-                "status" : 200               
+            const mensagem = await lazerDAO.deletaAtividade(nome_Hospede)
+                return {
+                    "mensagem" : mensagem,
+                    "status" : 200  
             }
         } catch (error) {
             return {

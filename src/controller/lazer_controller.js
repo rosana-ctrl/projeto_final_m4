@@ -51,12 +51,12 @@ const lazer_controller = (app) => {
 
     })
 
-    app.delete ('/lazer/atividades/:id', async (req, res) => {
-        const id = req.params.id
+    app.delete ('/lazer/atividades/:nome_Hospede', async (req, res) => {
+        const nome_Hospede = req.params.nome_Hospede
         try {
-            const resposta = await lazerModel.deletaAtividade(id)        
+            const resposta = await lazerModel.deletaAtividade(nome_Hospede)        
                 res.json({
-                    "mensagem": resposta.mensagem,
+                    "mensagem": resposta.mensagem,                    
                 })
         } catch (error) {
             res.json({
