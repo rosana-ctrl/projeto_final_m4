@@ -1,7 +1,7 @@
 import app from '../app.js'
 
-const port = process.env.PORT || 3009
+const port = 3009
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`http://localhost:${port}/`)
 })
