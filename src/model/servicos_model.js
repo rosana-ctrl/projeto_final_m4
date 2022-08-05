@@ -64,7 +64,7 @@ export default class Servicos {
             } else {
                 return {
                     "mensagem": `Servico com id ${id} não encontrado`,
-                    "status": 400
+                    "status": 404
                 }
             }
         } catch (error) {
