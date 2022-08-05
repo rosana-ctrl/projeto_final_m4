@@ -45,3 +45,22 @@ describe("Testando cliente",() => {
       })
    
    })
+   describe("Testando pedido",() => {
+    test("Valida pedido-falha", () =>{
+       try {
+            criaRestaurante({"cardapio":"Panqueca",
+                             "bebida": "coca-cola",
+                             "cliente" : "Selma"})
+           } catch (error) {
+           expect(error.message).toBe("Insira um cardapio válido")
+           }
+       })
+   
+   test("Valida restaurante sucesso", ()=>{
+        expect(()=>criaRestaurante({
+                  "cardapio" :"strogonoff",
+                  "bebida": "coca-cola",
+                  "cliente" :"Selma"
+        })).toThrow()
+    })
+   })
