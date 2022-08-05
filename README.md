@@ -668,12 +668,12 @@ npm test
     }
     ```
 
-* __DELETE `/lazer/atividades/:id`__ <sup>Deleta atividade do hospede pelo id</sup>
+* __DELETE `/lazer/atividades/:nome_Hospede`__ <sup>Deleta atividade do hospede</sup>
 
     Esquema da resposta
     ```json
     {
-		"msg": "Atividade de hospede no Id 17 foi deletada com sucesso",
+		"msg": "Atividade de hospede Hudson de Lima foi deletada com sucesso",
 		"error": false
     }
     ```
