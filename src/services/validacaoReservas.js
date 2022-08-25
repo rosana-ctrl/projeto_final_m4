@@ -1,16 +1,17 @@
 let id_reserva = 21
 
 class ValidacaoReserva {
-    constructor(quarto, quantLeitos, frigobar, dataEntrada, dataSaida){
+    constructor(quarto, quantLeitos, quantAdultos, quantCrian, dataEntrada, dataSaida) {
         this.id_reserva = id_reserva++
         this.quarto = quarto
         this.quantLeitos = quantLeitos
-        this.frigobar = frigobar
+        this.quantAdultos = quantAdultos
+        this.quantCrian = quantCrian
         this.dataEntrada = dataEntrada
         this.dataSaida = this.validaSaida(dataSaida)
     }
 
-validaSaida = (dataSaida, dataEntrada) => {
+    validaSaida = (dataSaida, dataEntrada) => {
         const dataEntradaSplit = this.dataEntrada.split('/');
         const dayEnt = Number(dataEntradaSplit[0])
         const monthEnt = Number(dataEntradaSplit[1]) - 1
@@ -32,7 +33,7 @@ validaSaida = (dataSaida, dataEntrada) => {
 
         const diff = Math.sign(data2 - data1)
 
-        const monthSaida1 = Number(dataSaidaSplit[1]) 
+        const monthSaida1 = Number(dataSaidaSplit[1])
         let dataSaidaFinal = (`${daySaida}/${monthSaida1}/${yearSaida}`)
 
         const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
@@ -40,15 +41,14 @@ validaSaida = (dataSaida, dataEntrada) => {
             if (days <= 0) {
                 throw new Error("A data de saída precisa ser maior que a data de entrada")
             } else {
-               
+
                 return dataSaidaFinal
             }
         } else {
             throw new Error("Insira uma data de saída posterior a data de entrada")
         }
     }
-    
+
 }
 
 export default ValidacaoReserva
-

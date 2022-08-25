@@ -4,7 +4,7 @@ export default class Reservas {
 
     insereReserva = async (reserva) => {
         try {
-            const novaReserva = new ValidacaoReserva(reserva.quarto, reserva.quantLeitos, reserva.frigobar, reserva.dataEntrada, reserva.dataSaida)
+            const novaReserva = new ValidacaoReserva(reserva.quarto, reserva.quantLeitos, reserva.quantAdultos, reserva.quantCrian, reserva.dataEntrada, reserva.dataSaida)
             return await reservasDAO.insereReserva(novaReserva)
         } catch (error) {
             return {
@@ -19,9 +19,9 @@ export default class Reservas {
     }
 
     pegaUmaReserva = async (quarto) => {
-        try{
+        try {
             let resposta = await reservasDAO.pegaUmaReserva(quarto)
-            if(resposta.length != 0){
+            if (resposta.length != 0) {
                 return {
                     "mensage": resposta,
                     "erro": true
@@ -29,7 +29,7 @@ export default class Reservas {
             } else {
                 return {
                     "mensagem": `Reserva do quarto ${quarto} não encontrada`,
-                    "erro":false
+                    "erro": false
                 }
             }
         } catch (error) {
@@ -38,31 +38,32 @@ export default class Reservas {
     }
 
     deletaReserva = async (quarto) => {
-       
+
         let resposta = await reservasDAO.pegaUmaReserva(quarto)
-            if(resposta.length != 0){
-                let resposta = await reservasDAO.deletaReserva(quarto)
-                return {
-                    "mensage": `Reserva do quarto ${quarto} deletada com sucesso`,
-                    "erro": true
-                }
-            } else {
-                return {
-                    "mensagem": `Reserva do quarto ${quarto} não encontrada`,
-                    "erro":false
-                }
+        if (resposta.length != 0) {
+            let resposta = await reservasDAO.deletaReserva(quarto)
+            return {
+                "mensage": `Reserva do quarto ${quarto} deletada com sucesso`,
+                "erro": true
             }
-       
+        } else {
+            return {
+                "mensagem": `Reserva do quarto ${quarto} não encontrada`,
+                "erro": false
+            }
+        }
+
     }
 
     atualizaReserva = async (quarto, novosDados) => {
-        const reservaModel = new Reservas ()
+        const reservaModel = new Reservas()
         const reservaAntiga = await reservaModel.pegaUmaReserva(quarto)
         if (reservaAntiga) {
             const reservaAtualizada = {
                 "quarto": novosDados.quarto || reservaAntiga.quarto,
                 "quantLeitos": novosDados.quantLeitos || reservaAntiga.quantLeitos,
-                "frigobar": novosDados.frigobar || reservaAntiga.frigobar,
+                "quantAdultos": novosDados.quantAdultos || reservaAntiga.quantAdultos,
+                "quantCrian": novosDados.quantCrian || reservaAntiga.quantCrian,
                 "dataEntrada": novosDados.dataEntrada || reservaAntiga.dataEntrada,
                 "dataSaida": novosDados.dataSaida || reservaAntiga.dataSaida
             }
@@ -73,4 +74,3 @@ export default class Reservas {
         }
     }
 }
-

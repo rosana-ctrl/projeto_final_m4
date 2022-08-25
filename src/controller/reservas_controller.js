@@ -52,18 +52,18 @@ const reservasController = (app) => {
         const body = req.body
         const quarto = req.params.quarto
         try {
-            const novosDados = new ValidacaoReserva (body.quarto, body.quantLeitos, body.frigobar, body.dataEntrada, body.dataSaida)
+            const novosDados = new ValidacaoReserva(body.quarto, body.quantLeitos, body.quantAdultos, body.quantCrian, body.dataEntrada, body.dataSaida)
             await modelReservas.atualizaReserva(quarto, novosDados)
             res.json({
                 "msg": "Reserva Atualizada com sucesso",
                 "reserva": novosDados,
-                "erro":false
+                "erro": false
             })
 
         } catch (error) {
             res.json({
                 "msg": error.message,
-                "erro":true
+                "erro": true
             })
         }
     })
