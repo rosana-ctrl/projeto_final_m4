@@ -35,9 +35,9 @@ const reservasDAO = {
 
     insereReserva: (reserva) => {
         return new Promise((resolve, reject) => {
-            db.run(`INSERT INTO RESERVAS (QUARTO, QUANTLEITOS, QUANTADULTOS, QUANTCRIAN, DATAENTRADA, DATASAIDA)
-            VALUES (?,?,?,?,?,?)`,
-                reserva.quarto, reserva.quantLeitos, reserva.quantAdultos, reserva.quantCrian, reserva.dataEntrada, reserva.dataSaida,
+            db.run(`INSERT INTO RESERVAS (IDHOSPEDE, QUARTO, QUANTLEITOS, QUANTADULTOS, QUANTCRIAN, DATAENTRADA, DATASAIDA)
+            VALUES (?,?,?,?,?,?,?)`,
+                reserva.idhospede, reserva.quarto, reserva.quantLeitos, reserva.quantAdultos, reserva.quantCrian, reserva.dataEntrada, reserva.dataSaida,
                 (error) => {
                     if (error) {
                         reject({
@@ -71,9 +71,9 @@ const reservasDAO = {
     atualizaReserva: (quarto, novosDados) => {
         return new Promise((resolve, reject) => {
             db.run(`UPDATE RESERVAS 
-            SET QUARTO = ?, QUANTLEITOS = ?, QUANTADULTOS = ?, QUANTCRIAN =?, DATAENTRADA = ?, DATASAIDA =?
+            SET IDHOSPEDE = ?, QUARTO = ?, QUANTLEITOS = ?, QUANTADULTOS = ?, QUANTCRIAN =?, DATAENTRADA = ?, DATASAIDA =?
             WHERE QUARTO = ?`,
-                novosDados.quarto, novosDados.quantLeitos, novosDados.quantAdultos, novosDados.quantCrian, novosDados.dataEntrada, novosDados.dataSaida,
+                novosDados.idhospede, DadosnovosDados.quarto, novosDados.quantLeitos, novosDados.quantAdultos, novosDados.quantCrian, novosDados.dataEntrada, novosDados.dataSaida,
                 quarto,
                 (error) => {
                     if (error) {

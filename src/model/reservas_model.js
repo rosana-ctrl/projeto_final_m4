@@ -4,7 +4,7 @@ export default class Reservas {
 
     insereReserva = async (reserva) => {
         try {
-            const novaReserva = new ValidacaoReserva(reserva.quarto, reserva.quantLeitos, reserva.quantAdultos, reserva.quantCrian, reserva.dataEntrada, reserva.dataSaida)
+            const novaReserva = new ValidacaoReserva(reserva.idhospede, reserva.quarto, reserva.quantLeitos, reserva.quantAdultos, reserva.quantCrian, reserva.dataEntrada, reserva.dataSaida)
             return await reservasDAO.insereReserva(novaReserva)
         } catch (error) {
             return {
@@ -60,6 +60,7 @@ export default class Reservas {
         const reservaAntiga = await reservaModel.pegaUmaReserva(quarto)
         if (reservaAntiga) {
             const reservaAtualizada = {
+                "idhospede": novosDados.idhospede || reservaAntiga.idhospede,
                 "quarto": novosDados.quarto || reservaAntiga.quarto,
                 "quantLeitos": novosDados.quantLeitos || reservaAntiga.quantLeitos,
                 "quantAdultos": novosDados.quantAdultos || reservaAntiga.quantAdultos,
