@@ -13,7 +13,7 @@ const reservasController = (app) => {
     })
 
     app.get('/reservas/:id', async (req, res) => {
-        const quarto = req.params.id
+        const id = req.params.id
         try {
             let reserva = await modelReservas.pegaUmaReserva(id)
             res.json(reserva)
@@ -34,7 +34,7 @@ const reservasController = (app) => {
     })
 
     app.delete('/reservas/:id', async (req, res) => {
-        const quarto = req.params.id
+        const id = req.params.id
         try {
             const resposta = await modelReservas.deletaReserva(id)
             res.json(resposta)
@@ -50,7 +50,7 @@ const reservasController = (app) => {
 
     app.put('/reservas/:id', async (req, res) => {
         const body = req.body
-        const quarto = req.params.id
+        const id = req.params.id
         try {
             const novosDados = new ValidacaoReserva(body.idhospede, body.quarto, body.quantLeitos, body.quantAdultos, body.quantCrian, body.dataEntrada, body.dataSaida)
             await modelReservas.atualizaReserva(id, novosDados)
