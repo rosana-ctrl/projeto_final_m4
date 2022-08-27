@@ -18,9 +18,9 @@ export default class Reservas {
         return await reservasDAO.pegaTodasReservas()
     }
 
-    pegaUmaReserva = async (quarto) => {
+    pegaUmaReserva = async (id) => {
         try {
-            let resposta = await reservasDAO.pegaUmaReserva(quarto)
+            let resposta = await reservasDAO.pegaUmaReserva(id)
             if (resposta.length != 0) {
                 return {
                     "mensage": resposta,
@@ -28,7 +28,7 @@ export default class Reservas {
                 }
             } else {
                 return {
-                    "mensagem": `Reserva do quarto ${quarto} não encontrada`,
+                    "mensagem": `Reserva do quarto de ${id} não encontrada`,
                     "erro": false
                 }
             }
@@ -37,27 +37,27 @@ export default class Reservas {
         }
     }
 
-    deletaReserva = async (quarto) => {
+    deletaReserva = async (id) => {
 
-        let resposta = await reservasDAO.pegaUmaReserva(quarto)
+        let resposta = await reservasDAO.pegaUmaReserva(id)
         if (resposta.length != 0) {
-            let resposta = await reservasDAO.deletaReserva(quarto)
+            let resposta = await reservasDAO.deletaReserva(id)
             return {
-                "mensage": `Reserva do quarto ${quarto} deletada com sucesso`,
+                "mensage": `Reserva do quarto de ${id} deletada com sucesso`,
                 "erro": true
             }
         } else {
             return {
-                "mensagem": `Reserva do quarto ${quarto} não encontrada`,
+                "mensagem": `Reserva do quarto de  ${id} não encontrada`,
                 "erro": false
             }
         }
 
     }
 
-    atualizaReserva = async (quarto, novosDados) => {
+    atualizaReserva = async (id, novosDados) => {
         const reservaModel = new Reservas()
-        const reservaAntiga = await reservaModel.pegaUmaReserva(quarto)
+        const reservaAntiga = await reservaModel.pegaUmaReserva(id)
         if (reservaAntiga) {
             const reservaAtualizada = {
                 "idhospede": novosDados.idhospede || reservaAntiga.idhospede,
@@ -68,7 +68,7 @@ export default class Reservas {
                 "dataEntrada": novosDados.dataEntrada || reservaAntiga.dataEntrada,
                 "dataSaida": novosDados.dataSaida || reservaAntiga.dataSaida
             }
-            return await reservasDAO.atualizaReserva(quarto, reservaAtualizada)
+            return await reservasDAO.atualizaReserva(id, reservaAtualizada)
 
         } else {
             throw new Error("Serviço não encontrado")

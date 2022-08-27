@@ -19,9 +19,9 @@ const reservasDAO = {
         })
     },
 
-    pegaUmaReserva: (quarto) => {
+    pegaUmaReserva: (id) => {
         return new Promise((resolve, reject) => {
-            db.all(`SELECT * FROM RESERVAS WHERE QUARTO = ?`, quarto,
+            db.all(`SELECT * FROM RESERVAS WHERE ID = ?`, id,
                 (error, linhas) => {
                     if (error) {
                         reject(error)
@@ -55,9 +55,9 @@ const reservasDAO = {
         })
     },
 
-    deletaReserva: (quarto) => {
+    deletaReserva: (id) => {
         return new Promise((resolve, reject) => {
-            db.run(`DELETE FROM RESERVAS WHERE QUARTO = ?`, quarto,
+            db.run(`DELETE FROM RESERVAS WHERE ID = ?`, id,
                 (error, linhas) => {
                     if (error) {
                         reject(error)
@@ -68,13 +68,13 @@ const reservasDAO = {
         })
     },
 
-    atualizaReserva: (quarto, novosDados) => {
+    atualizaReserva: (id, novosDados) => {
         return new Promise((resolve, reject) => {
             db.run(`UPDATE RESERVAS 
             SET IDHOSPEDE = ?, QUARTO = ?, QUANTLEITOS = ?, QUANTADULTOS = ?, QUANTCRIAN =?, DATAENTRADA = ?, DATASAIDA =?
-            WHERE QUARTO = ?`,
+            WHERE ID = ?`,
                 novosDados.idhospede, DadosnovosDados.quarto, novosDados.quantLeitos, novosDados.quantAdultos, novosDados.quantCrian, novosDados.dataEntrada, novosDados.dataSaida,
-                quarto,
+                id,
                 (error) => {
                     if (error) {
                         reject(error)
