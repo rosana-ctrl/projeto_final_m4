@@ -1,8 +1,9 @@
 let id_reserva = 21
 
 class ValidacaoReserva {
-    constructor(quarto, quantLeitos, quantAdultos, quantCrian, dataEntrada, dataSaida) {
+    constructor(idhospede, quarto, quantLeitos, quantAdultos, quantCrian, dataEntrada, dataSaida) {
         this.id_reserva = id_reserva++
+        this.idhospede = idhospede
         this.quarto = quarto
         this.quantLeitos = quantLeitos
         this.quantAdultos = quantAdultos
