@@ -12,7 +12,7 @@ const reservasController = (app) => {
         }
     })
 
-    app.get('/reservas/quarto/:id', async (req, res) => {
+    app.get('/reservas/:id', async (req, res) => {
         const quarto = req.params.id
         try {
             let reserva = await modelReservas.pegaUmaReserva(id)
@@ -33,7 +33,7 @@ const reservasController = (app) => {
 
     })
 
-    app.delete('/reservas/quarto/:id', async (req, res) => {
+    app.delete('/reservas/:id', async (req, res) => {
         const quarto = req.params.id
         try {
             const resposta = await modelReservas.deletaReserva(id)
@@ -48,7 +48,7 @@ const reservasController = (app) => {
     })
 
 
-    app.put('/reservas/quarto/:id', async (req, res) => {
+    app.put('/reservas/:id', async (req, res) => {
         const body = req.body
         const quarto = req.params.id
         try {
