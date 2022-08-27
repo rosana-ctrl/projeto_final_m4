@@ -185,6 +185,35 @@ function populaTabelaLzr() {
     });
 }
 
+const LOGIN_SCHEMA = `
+CREATE TABLE IF NOT EXISTS "LOGIN" (
+    "id_Login" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "email" varchar(64),
+    "senha" varchar(64)
+  );`;
+
+const ADD_LOGIN_DATA = `
+INSERT INTO LOGIN (id_Login, email, senha)
+VALUES 
+    (1, 'rosana@gmail.com', 'aB@aQ34526'),
+    (2, 'gloria@gmail.com', 'cD@aJ34826'),
+    (3, 'ronald@gmail.com', '123@aBcD'),
+    (4, 'kay@gmail.com', '456!aBcD')
+
+`
+
+function criaTabelaLogin() {
+    db.run(LOGIN_SCHEMA, (error) => {
+        if (error) console.log("Erro ao criar tabela de login");
+    })
+}
+
+function populaTabelaLogin() {
+    db.run(ADD_LOGIN_DATA, (error) => {
+        if (error) console.log("Erro ao popular tabela de login");
+    })
+}
+
 db.serialize(() => {
     criaTabelaReserva();
     populaTabelaReserva();
@@ -196,4 +225,6 @@ db.serialize(() => {
     populaTabelaRestaurante();
     criaTabelaLzr();
     populaTabelaLzr();
+    criaTabelaLogin();
+    populaTabelaLogin();
 })
