@@ -2,6 +2,23 @@ import db from "../database/db-sqlite.js"
 
 export default class Dao {
 
+
+    verificarLogin = (email, senha) => {
+        const PEGA_HOSPEDE = `
+        SELECT * FROM HOSPEDES
+        WHERE email = ? AND senha = ?
+        `
+
+        return new Promise((resolve, reject) => {
+            db.get(PEGA_HOSPEDE, email, senha, (error, row) => {
+                if (error)
+                    reject(error)
+                else
+                    resolve(row)
+            })
+        })
+    }
+
     insereHospede = (hospede) => {
         const INSERE_HOSPEDE = `
         INSERT INTO HOSPEDES (nome, genero, nasc, email, celular, senha)
@@ -39,9 +56,9 @@ export default class Dao {
         SELECT * FROM HOSPEDES
         WHERE email = ?
         `
-        return new Promise((resolve, reject)=>{
-            db.get(PEGA_HOSPEDE, email, (error, row)=>{
-                if(error)
+        return new Promise((resolve, reject) => {
+            db.get(PEGA_HOSPEDE, email, (error, row) => {
+                if (error)
                     reject(error)
                 else
                     resolve(row)

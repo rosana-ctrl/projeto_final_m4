@@ -5,22 +5,36 @@ const hospedeController = (app) => {
 
     const hospedeModel = new HospedeModel()
 
+    app.post('/hospede/login', async (req, res) => {
+        const body = req.body
+        try {
+            await hospedeModel.verificarLogin(body.email, body.senha)
+
+            res.json({
+                'msg': "Login efetuado com sucesso",
+                'erro': false
+            })
+        } catch (error) {
+            res.json({
+                'msg': error.message,
+                'erro': true
+            })
+        }
+    })
+
+
     app.get('/hospede', async (req, res) => {
         try {
             const hospedesTodos = await hospedeModel.pegaHospedes()
-            res.json(
-                {
-                    'hospedes': hospedesTodos,
-                    'erro': false
-                }
-            )
+            res.json({
+                'hospedes': hospedesTodos,
+                'erro': false
+            })
         } catch (error) {
-            res.json(
-                {
-                    "msg": error.message,
-                    "erro": true
-                }
-            )
+            res.json({
+                "msg": error.message,
+                "erro": true
+            })
         }
 
     })
@@ -29,21 +43,17 @@ const hospedeController = (app) => {
         const email = req.params.email
         const body = req.body
         try {
-                const hospede = await hospedeModel.pegaUmHospedeEmail(email)
-            res.json(
-                {
-                    "hospede": hospede,
-                    "erro": false
-                }
-            )
-                        
+            const hospede = await hospedeModel.pegaUmHospedeEmail(email)
+            res.json({
+                "hospede": hospede,
+                "erro": false
+            })
+
         } catch (error) {
-            res.json(
-                {
-                    "msg": error.message,
-                    "erro": true
-                }
-            )
+            res.json({
+                "msg": error.message,
+                "erro": true
+            })
         }
     })
 
@@ -54,20 +64,16 @@ const hospedeController = (app) => {
 
             await hospedeModel.addNovoHospede(novoHospede)
 
-            res.json(
-                {
-                    'msg': "Hóspede inserido com sucesso",
-                    'hospede': novoHospede,
-                    'erro': false
-                }
-            )
+            res.json({
+                'msg': "Hóspede inserido com sucesso",
+                'hospede': novoHospede,
+                'erro': false
+            })
         } catch (error) {
-            res.json(
-                {
-                    'msg': error.message,
-                    'erro': true
-                }
-            )
+            res.json({
+                'msg': error.message,
+                'erro': true
+            })
         }
     })
 
@@ -80,12 +86,10 @@ const hospedeController = (app) => {
                 "erro": false
             })
         } catch (error) {
-            res.json(
-                {
-                    'msg': error.message,
-                    'erro': true
-                }
-            )
+            res.json({
+                'msg': error.message,
+                'erro': true
+            })
         }
     })
 
@@ -101,12 +105,10 @@ const hospedeController = (app) => {
                 "erro": false
             })
         } catch (error) {
-            res.json(
-                {
-                    'msg': error.message,
-                    'erro': true
-                }
-            )
+            res.json({
+                'msg': error.message,
+                'erro': true
+            })
         }
     })
 
