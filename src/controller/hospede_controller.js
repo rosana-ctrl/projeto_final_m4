@@ -8,10 +8,11 @@ const hospedeController = (app) => {
     app.post('/hospede/login', async (req, res) => {
         const body = req.body
         try {
-            await hospedeModel.verificarLogin(body.email, body.senha)
+            const result = await hospedeModel.verificarLogin(body.email, body.senha)
 
             res.json({
                 'msg': "Login efetuado com sucesso",
+                "id": result.id,
                 'erro': false
             })
         } catch (error) {
