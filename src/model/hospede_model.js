@@ -1,7 +1,8 @@
 import Dao from "../DAO/hospedeDAO.js"
 
 export default class HospedeModel {
-    
+
+
     // add novo hospede no bd
     addNovoHospede = async (hospede) => {
         const dao = new Dao()
@@ -12,6 +13,22 @@ export default class HospedeModel {
     pegaHospedes = async () => {
         const dao = new Dao()
         return await dao.pegaTodosHospedes()
+    }
+
+    verificarLogin = async (email, senha) => {
+        const dao = new Dao()
+        const hospedeAtual = await dao.verificarLogin(email, senha)
+
+        if (hospedeAtual) {
+            return {
+                "email": hospedeAtual.email,
+                "id": hospedeAtual.id_Hospede
+
+            }
+
+        } else {
+            throw new Error("Hospede não encontrado")
+        }
     }
 
     pegaUmHospedeEmail = async (email) => {
@@ -25,14 +42,14 @@ export default class HospedeModel {
             return await dao.pegaHospedeEmail(email, hospedeBuscado)
         } else {
             throw new Error("Hospede não encontrado")
-        }   
+        }
     }
 
     pegaHospedeId = async (id_Hospede) => {
         const dao = new Dao()
         return await dao.pegaHospedeId(id_Hospede)
     }
-    
+
     deletaUmHospede = async (id_Hospede) => {
         const dao = new Dao()
         const hospedeModel = new HospedeModel()
@@ -45,9 +62,9 @@ export default class HospedeModel {
             return await dao.deletaHospede(id_Hospede, hospedeDeletado)
         } else {
             throw new Error("Hospede não encontrado")
-        }        
+        }
 
-        
+
     }
 
     atualizaUmHospede = async (id_Hospede, novosDados) => {
@@ -68,6 +85,6 @@ export default class HospedeModel {
             return await dao.atualizaHospede(id_Hospede, hospedeAtualizado)
         } else {
             throw new Error("Hospede não encontrado")
-        }        
+        }
     }
 }

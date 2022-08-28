@@ -5,7 +5,7 @@ import lazerController from "../src/controller/lazer_controller.js"
 import reservasController from "./controller/reservas_controller.js"
 import servicosController from "./controller/servicos_controller.js"
 import hotelRestaurante from './controller/restaurante_controller.js'
-import loginController from './controller/login_controller.js'
+
 
 
 const app = express()
@@ -17,7 +17,7 @@ lazerController(app)
 reservasController(app)
 servicosController(app)
 hotelRestaurante(app)
-loginController(app)
+
 
 
 export default app
