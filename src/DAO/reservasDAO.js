@@ -33,6 +33,20 @@ const reservasDAO = {
 
     },
 
+    pegaReservasHospede: (id) => {
+        return new Promise((resolve, reject) => {
+            db.all(`SELECT * FROM RESERVAS WHERE ID_HOSPEDE = ? ORDER BY dataEntrada`, id,
+                (error, linhas) => {
+                    if (error) {
+                        reject(error)
+                    } else {
+                        resolve(linhas)
+                    }
+                })
+        })
+
+    },
+
     insereReserva: (reserva) => {
         return new Promise((resolve, reject) => {
             db.run(`INSERT INTO RESERVAS (IDHOSPEDE, QUARTO, QUANTLEITOS, QUANTADULTOS, QUANTCRIAN, DATAENTRADA, DATASAIDA)

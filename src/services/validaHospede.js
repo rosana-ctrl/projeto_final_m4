@@ -1,5 +1,6 @@
 class ValidaHospede {
     constructor(nome, genero, nasc, email, celular, senha) {
+        this.id = ""
         this.nome = ValidaHospede.validaNome(nome)
         this.genero = ValidaHospede.validaGenero(genero)
         this.nasc = ValidaHospede.validaNasc(nasc)
@@ -8,12 +9,12 @@ class ValidaHospede {
         this.senha = ValidaHospede.validaSenha(senha)
     }
 
-    static validaNome = (nome) => {        
-            if (nome.length == 0) {
-                throw new Error("O campo NOME não pode ficar vazio")
-            } else {
-                return nome
-            }
+    static validaNome = (nome) => {
+        if (nome.length == 0) {
+            throw new Error("O campo NOME não pode ficar vazio")
+        } else {
+            return nome
+        }
     }
 
     static validaCelular = (celular) => {

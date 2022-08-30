@@ -22,6 +22,16 @@ const reservasController = (app) => {
         }
     })
 
+    app.get('/reservas/hospede/:id', async (req, res) => {
+        const id = req.params.id
+        try {
+            let reserva = await modelReservas.pegaReservasHospede(id)
+            res.json(reserva)
+        } catch (error) {
+            res.json(error)
+        }
+    })
+
     app.post('/reservas', async (req, res) => {
         const body = req.body
         try {

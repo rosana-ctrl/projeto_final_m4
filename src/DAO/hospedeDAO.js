@@ -28,10 +28,13 @@ export default class Dao {
             db.run(INSERE_HOSPEDE,
                 hospede.nome, hospede.genero, hospede.nasc, hospede.email, hospede.celular, hospede.senha,
                 (error) => {
-                    if (error)
+                    if (error) {
                         reject(error)
-                    else
+                    } else {
+                        //hospede.id = this.lastID
                         resolve(hospede)
+                    }
+
                 }
             )
         })
