@@ -61,9 +61,9 @@ const hospedeController = (app) => {
     app.post('/hospede', async (req, res) => {
         const body = req.body
         try {
-            const novoHospede = new ValidaHospede(body.nome, body.genero, body.nasc, body.email, body.celular, body.senha)
+            let novoHospede = new ValidaHospede(body.nome, body.genero, body.nasc, body.email, body.celular, body.senha)
 
-            await hospedeModel.addNovoHospede(novoHospede)
+            novoHospede = await hospedeModel.addNovoHospede(novoHospede)
 
             res.json({
                 'msg': "Hóspede inserido com sucesso",
