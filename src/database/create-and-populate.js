@@ -24,40 +24,24 @@ CREATE TABLE IF NOT EXISTS "RESERVAS" (
   );`;
 
 const ADD_RESERVAS_DATA = `
-  INSERT INTO RESERVAS (id_Hospede, quarto, quantLeitos, quantAdultos, quantCrian, dataEntrada, dataSaida)
+  INSERT INTO RESERVAS (id, id_Hospede, quarto, quantLeitos, quantAdultos, quantCrian, dataEntrada, dataSaida)
   VALUES 
-      ( '1', '10', '3', '2', '1', '01/07/2022', '03/07/2022'),
-      ( '1', '11', '3', '2', '1', '01/07/2022', '05/07/2022'),
-      ( '1', '12', '3', '1', '1', '02/07/2022', '03/07/2022'),
-      ( '1', '14', '2', '2', '0', '02/07/2022', '05/07/2022'),
-      ( '1', '15', '2', '2', '0', '03/07/2022', '05/07/2022'),
-      ( '1', '18', '2', '2', '0', '04/07/2022', '08/07/2022'),
-      ( '1', '20', '1', '1', '0', '05/07/2022', '06/07/2022'),
-      ( '1', '22', '1', '1', '0', '05/07/2022', '07/07/2022'),
-      ( '1', '23', '1', '1', '0', '07/07/2022', '08/07/2022'),
-      ( '1', '25', '2', '2', '0', '07/07/2022', '11/07/2022'),
-      ( '1', '27', '4', '2', '2', '07/07/2022', '10/07/2022'),
-      ('1', '28', '3', '2', '1', '07/07/2022', '09/07/2022'),
-      ( '1', '29', '3', '2', '1', '08/07/2022', '09/07/2022'),
-      ( '1', '30', '2', '2', '0', '10/07/2022', '12/07/2022'),
-      ( '1', '32', '2', '2', '0', '10/07/2022', '13/07/2022'),
-      ( '1', '34', '1', '1', '0', '10/07/2022', '14/07/2022'),
-      ( '1', '35', '1', '1', '0', '11/07/2022', '17/07/2022'),
-      ( '1', '36', '2', '2', '0', '11/07/2022', '14/07/2022'),
-      ( '1', '37', '3', '2', '1', '12/07/2022', '17/07/2022'),
-      ( '1', '39', '2', '2', '0', '13/07/2022', '14/07/2022')
+      ( '1', '1', '10', '3', '2', '1', '01/07/2022', '03/07/2022'),
+      ( '2', '2', '11', '3', '2', '1', '01/07/2022', '05/07/2022'),
+      ( '3', '3', '12', '3', '1', '1', '02/07/2022', '03/07/2022'),
+      ( '4', '4', '14', '2', '2', '0', '02/07/2022', '05/07/2022');
   `
 
 function criaTabelaReserva() {
     db.run(RESERVAS_SCHEMA, (error) => {
-        if (error) console.log("Erro ao criar tabela de reservas");
+        if (error) console.log("Erro ao criar tabela de reservas", error);
     });
 }
 
 
 function populaTabelaReserva() {
     db.run(ADD_RESERVAS_DATA, (error) => {
-        if (error) console.log("Erro ao popular tabela de reservas");
+        if (error) console.log("Erro ao popular tabela de reservas", error);
     });
 }
 
@@ -85,13 +69,13 @@ VALUES
 
 function criaTabelaHosp() {
     db.run(HOSPEDES_SCHEMA, (error) => {
-        if (error) console.log("Erro ao criar tabela de usuários");
+        if (error) console.log("Erro ao criar tabela de usuários", error);
     })
 }
 
 function populaTabelaHosp() {
     db.run(ADD_HOSPEDES_DATA, (error) => {
-        if (error) console.log("Erro ao popular tabela de usuários");
+        if (error) console.log("Erro ao popular tabela de usuários", error);
     })
 }
 

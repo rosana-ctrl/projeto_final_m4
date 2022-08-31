@@ -1,6 +1,10 @@
+import {
+    geradorId
+} from "../utils/gerador_id.js"
+
 class ValidaHospede {
     constructor(nome, genero, nasc, email, celular, senha) {
-        this.id = ""
+        this.id = geradorId()
         this.nome = ValidaHospede.validaNome(nome)
         this.genero = ValidaHospede.validaGenero(genero)
         this.nasc = ValidaHospede.validaNasc(nasc)

@@ -62,7 +62,7 @@ const hospedeController = (app) => {
         const body = req.body
         try {
             let novoHospede = new ValidaHospede(body.nome, body.genero, body.nasc, body.email, body.celular, body.senha)
-
+            console.log(novoHospede)
             novoHospede = await hospedeModel.addNovoHospede(novoHospede)
 
             res.json({
