@@ -49,7 +49,7 @@ const reservasDAO = {
 
     insereReserva: (reserva) => {
         return new Promise((resolve, reject) => {
-            db.run(`INSERT INTO RESERVAS (IDHOSPEDE, QUARTO, QUANTLEITOS, QUANTADULTOS, QUANTCRIAN, DATAENTRADA, DATASAIDA)
+            db.run(`INSERT INTO RESERVAS (id_Hospede, quarto, quantLeitos, quantAdultos, quantCrian, dataEntrada, dataSaida)
             VALUES (?,?,?,?,?,?,?)`,
                 reserva.idhospede, reserva.quarto, reserva.quantLeitos, reserva.quantAdultos, reserva.quantCrian, reserva.dataEntrada, reserva.dataSaida,
                 (error) => {
