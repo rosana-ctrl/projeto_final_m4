@@ -8,7 +8,7 @@ const reservasController = (app) => {
             const todasReservas = await modelReservas.pegaReservas()
             res.json(todasReservas)
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     })
 
@@ -18,7 +18,7 @@ const reservasController = (app) => {
             let reserva = await modelReservas.pegaUmaReserva(id)
             res.json(reserva)
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     })
 
@@ -28,7 +28,7 @@ const reservasController = (app) => {
             let reserva = await modelReservas.pegaReservasHospede(id)
             res.json(reserva)
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     })
 
@@ -38,7 +38,7 @@ const reservasController = (app) => {
             const resposta = await modelReservas.insereReserva(body)
             res.json(resposta)
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
 
     })
@@ -49,7 +49,7 @@ const reservasController = (app) => {
             const resposta = await modelReservas.deletaReserva(id)
             res.json(resposta)
         } catch (error) {
-            res.json({
+            res.status(404).json({
                 "mensagem": error.message,
                 "erro": true
             })
@@ -71,7 +71,7 @@ const reservasController = (app) => {
             })
 
         } catch (error) {
-            res.json({
+            res.status(404).json({
                 "msg": error.message,
                 "erro": true
             })
