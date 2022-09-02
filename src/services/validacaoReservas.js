@@ -7,7 +7,7 @@ class ValidacaoReserva {
         this.quantAdultos = quantAdultos
         this.quantCrian = quantCrian
         this.dataEntrada = dataEntrada
-        this.dataSaida = this.validaSaida(dataSaida)
+        this.dataSaida = this.validaSaida(dataSaida, dataEntrada)
     }
 
     validaSaida = (dataSaida, dataEntrada) => {
