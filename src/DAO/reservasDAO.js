@@ -55,7 +55,7 @@ const reservasDAO = {
                 (error) => {
                     if (error) {
                         reject({
-                            "mensagem": error.mensage,
+                            "mensagem": error.message,
                             "erro": true
                         })
                     } else {

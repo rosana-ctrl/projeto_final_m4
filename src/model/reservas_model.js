@@ -4,7 +4,7 @@ export default class Reservas {
 
     insereReserva = async (reserva) => {
         try {
-            const novaReserva = new ValidacaoReserva(reserva.idhospede, reserva.quarto, reserva.quantLeitos, reserva.quantAdultos, reserva.quantCrian, reserva.dataEntrada, reserva.dataSaida)
+            const novaReserva = new ValidacaoReserva(...Object.values(reserva))
             return await reservasDAO.insereReserva(novaReserva)
         } catch (error) {
             return {
