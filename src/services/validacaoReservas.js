@@ -11,7 +11,7 @@ class ValidacaoReserva {
     }
 
     validaSaida = (dataSaida, dataEntrada) => {
-        const dataEntradaSplit = this.dataEntrada.split('/');
+        const dataEntradaSplit = this.dataEntrada.split('-');
         const dayEnt = Number(dataEntradaSplit[0])
         const monthEnt = Number(dataEntradaSplit[1]) - 1
         const yearEnt = Number(dataEntradaSplit[2])
@@ -19,7 +19,7 @@ class ValidacaoReserva {
         const newDataEnt = (`${yearEnt},${monthEnt},${dayEnt}`)
         dataEntrada = new Date(newDataEnt)
 
-        const dataSaidaSplit = dataSaida.split('/');
+        const dataSaidaSplit = dataSaida.split('-');
         const daySaida = Number(dataSaidaSplit[0])
         const monthSaida = Number(dataSaidaSplit[1]) - 1
         const yearSaida = Number(dataSaidaSplit[2])
