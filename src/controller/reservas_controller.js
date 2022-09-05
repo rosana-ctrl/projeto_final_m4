@@ -62,7 +62,7 @@ const reservasController = (app) => {
         const body = req.body
         const id = req.params.id
         try {
-            const novosDados = new ValidacaoReserva(body.idhospede, body.quarto, body.quantLeitos, body.quantAdultos, body.quantCrian, body.dataEntrada, body.dataSaida)
+            const novosDados = new ValidacaoReserva(body.id_Hospede, body.quarto, body.quantLeitos, body.quantAdultos, body.quantCrian, body.dataEntrada, body.dataSaida)
             await modelReservas.atualizaReserva(id, novosDados)
             res.json({
                 "msg": "Reserva Atualizada com sucesso",
