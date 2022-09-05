@@ -87,7 +87,7 @@ const reservasDAO = {
             db.run(`UPDATE RESERVAS 
             SET IDHOSPEDE = ?, QUARTO = ?, QUANTLEITOS = ?, QUANTADULTOS = ?, QUANTCRIAN =?, DATAENTRADA = ?, DATASAIDA =?
             WHERE ID = ?`,
-                novosDados.idhospede, DadosnovosDados.quarto, novosDados.quantLeitos, novosDados.quantAdultos, novosDados.quantCrian, novosDados.dataEntrada, novosDados.dataSaida,
+                novosDados.idhospede, novosDados.quarto, novosDados.quantLeitos, novosDados.quantAdultos, novosDados.quantCrian, novosDados.dataEntrada, novosDados.dataSaida,
                 id,
                 (error) => {
                     if (error) {
