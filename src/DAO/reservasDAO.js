@@ -85,7 +85,7 @@ const reservasDAO = {
     atualizaReserva: (id, novosDados) => {
         return new Promise((resolve, reject) => {
             db.run(`UPDATE RESERVAS 
-            SET IDHOSPEDE = ?, QUARTO = ?, QUANTLEITOS = ?, QUANTADULTOS = ?, QUANTCRIAN =?, DATAENTRADA = ?, DATASAIDA =?
+            SET ID_HOSPEDE = ?, QUARTO = ?, QUANTLEITOS = ?, QUANTADULTOS = ?, QUANTCRIAN =?, DATAENTRADA = ?, DATASAIDA =?
             WHERE ID = ?`,
                 novosDados.idhospede, novosDados.quarto, novosDados.quantLeitos, novosDados.quantAdultos, novosDados.quantCrian, novosDados.dataEntrada, novosDados.dataSaida,
                 id,
